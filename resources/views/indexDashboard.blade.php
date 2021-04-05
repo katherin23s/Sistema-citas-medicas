@@ -5,23 +5,23 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin Premium Bootstrap Admin Dashboard Template</title>
+    <title>Star Admin Premium Bootstrap Admin dash-board Template</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="dashboard/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="dashboard/assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-    <link rel="stylesheet" href="dashboard/assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="dashboard/assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="dashboard/assets/vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="dash-board/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="dash-board/assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
+    <link rel="stylesheet" href="dash-board/assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="dash-board/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="dash-board/assets/vendors/css/vendor.bundle.addons.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="dashboard/assets/css/shared/style.css">
+    <link rel="stylesheet" href="dash-board/assets/css/shared/style.css">
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="dashboard/assets/css/demo_1/style.css">
+    <link rel="stylesheet" href="dash-board/assets/css/demo_1/style.css">
     <!-- End Layout styles -->
-    <link rel="shortcut icon" href="dashboard/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="dash-board/assets/images/favicon.ico" />
 
 </head>
 
@@ -29,7 +29,7 @@
     <div class="container-scroller">
 
 
-        @include('pages.admin.header')
+        @include('pages.administrador.header')
         <!-- si el nombre de la ruta -->
         <!-- la ruta indica al hijo -->
 
@@ -59,7 +59,7 @@
         @yield('calendario')
         @stack('jscalendario')
         @endif
-        @include('pages.admin.foother')
+        @include('pages.administrador.foother')
 
         <!-- partial -->
     </div>
@@ -69,19 +69,19 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="dashboard/assets/vendors/js/vendor.bundle.base.js"></script>
-    <script src="dashboard/assets/vendors/js/vendor.bundle.addons.js"></script>
+    <script src="dash-board/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="dash-board/assets/vendors/js/vendor.bundle.addons.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="dashboard/assets/js/shared/off-canvas.js"></script>
-    <script src="dashboard/assets/js/shared/misc.js"></script>
+    <script src="dash-board/assets/js/shared/off-canvas.js"></script>
+    <script src="dash-board/assets/js/shared/misc.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="dashboard/assets/js/demo_1/dashboard.js"></script>
+    <script src="dash-board/assets/js/demo_1/dash-board.js"></script>
     <!-- End custom js for this page-->
-    <script src="dashboard/assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
+    <script src="dash-board/assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
 
 
 

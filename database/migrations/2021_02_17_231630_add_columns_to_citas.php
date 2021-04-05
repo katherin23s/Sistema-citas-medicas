@@ -16,7 +16,7 @@ class AddColumnsToCitas extends Migration
         Schema::table('citas', function (Blueprint $table) {
             $table->foreign('id_paciente')->references('idPaciente')->on('pacientes');
             $table->foreign('id_medico')->references('idMedicos')->on('medicos');
-            $table->foreign('id_receta_medica')->references('idRecetaMedica')->on('receta_medica');
+            //  $table->foreign('id_receta_medica')->references('idRecetaMedica')->on('receta_medica');
         });
     }
 
@@ -30,7 +30,7 @@ class AddColumnsToCitas extends Migration
         Schema::table('citas', function (Blueprint $table) {
             $table->dropForeign('id_paciente');
             $table->dropForeign('id_medico');
-            $table->dropForeign('id_receta_medica');
+            // $table->dropForeign('id_receta_medica');
         });
     }
 }

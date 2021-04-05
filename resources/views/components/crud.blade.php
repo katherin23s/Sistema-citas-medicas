@@ -76,41 +76,17 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($citas as $cita)
                 <tr>
-                    <td>INV-87239</td>
-                    <td>Viola Ford</td>
-                    <td>Paid</td>
-                    <td>20 Jan 2019</td>
-                    <td>$755</td>
+                    <td>{{ ++$i }}
+                    </td>
+                    <td>{{ $cita->nombre }}</td>
+                    <td>{{ $cita->descripcion }}</td>
+                    <td>{{ $cita->tipoCita }}</td>
+                    <td>{{ $cita->id_paciente }}</td>
+                    <td>{{ date_format($cita->fecha_cita, 'jS M Y') }}</td>
                 </tr>
-                <tr>
-                    <td>INV-87239</td>
-                    <td>Dylan Waters</td>
-                    <td>Unpaid</td>
-                    <td>23 Feb 2019</td>
-                    <td>$800</td>
-                </tr>
-                <tr>
-                    <td>INV-87239</td>
-                    <td>Louis Poole</td>
-                    <td>Unpaid</td>
-                    <td>25 Mar 2019</td>
-                    <td>$463</td>
-                </tr>
-                <tr>
-                    <td>INV-87239</td>
-                    <td>Vera Howell</td>
-                    <td>Paid</td>
-                    <td>27 Mar 2019</td>
-                    <td>$235</td>
-                </tr>
-                <tr>
-                    <td>INV-87239</td>
-                    <td>Allie Goodman</td>
-                    <td>Unpaid</td>
-                    <td>1 Apr 2019</td>
-                    <td>$657</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\citasController;
+use App\Http\Controllers\consultoriosController;
+use App\Http\Controllers\especializacionController;
+use App\Http\Controllers\medicosController;
+use App\Http\Controllers\pacientesController;
+use App\Http\Controllers\usuariosController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +21,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::get('/', 'welcome');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,49 +66,47 @@ Route::get('/graficas', function () {
 });
 
 Route::get('/main', function () {
-    return view('pages.admin.dashboard');
+    return view('pages.administrador.dashboard');
 });
 
-Route::get('/citas', function () {
-    return view('pages.admin.citas');
-});
+Route::resources(['citas', 'citasController::class']);
 
 Route::get('/medicos', function () {
-    return view('pages.admin.medicos');
+    return view('pages.administrador.medicos');
 });
 
 Route::get('/pacientes', function () {
-    return view('pages.admin.pacientes');
+    return view('pages.administrador.pacientes');
 });
 
 Route::get('/usuarios', function () {
-    return view('pages.admin.usuarios');
+    return view('pages.administrador.usuarios');
 });
 
 Route::get('/configuracion', function () {
-    return view('pages.admin.configuracion');
+    return view('pages.administrador.configuracion');
 });
 
 Route::get('/especializacion', function () {
-    return view('pages.admin.especializacion');
+    return view('pages.administrador.especializacion');
 });
 
 Route::get('/consultorios', function () {
-    return view('pages.admin.consultorios');
+    return view('pages.administrador.consultorios');
 });
 
 Route::get('/facturacion', function () {
-    return view('pages.admin.facturacion');
+    return view('pages.administrador.facturacion');
 });
 
 
 Route::get('/calendario', function () {
-    return view('pages.admin.calendario');
+    return view('pages.administrador.calendario');
 });
 
 
 Route::get('/receta', function () {
-    return view('pages.admin.receta');
+    return view('pages.administrador.receta');
 });
 
 Route::get('/basic-table', function () {
@@ -105,7 +117,7 @@ Route::get('/font-awesome', function () {
     return view('pages.icons.font-awesome');
 });
 
-Route::get('/login', function () {
+Route::get('/login1', function () {
     return view('pages.samples.login');
 });
 
@@ -120,10 +132,3 @@ Route::get('/error-404', function () {
 Route::get('/error-500', function () {
     return view('pages.samples.error-500');
 });
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__ . '/auth.php';
