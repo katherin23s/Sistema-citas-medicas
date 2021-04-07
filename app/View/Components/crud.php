@@ -11,9 +11,12 @@ class crud extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $citas;
+    public $i;
+    public function __construct($citas, $i)
     {
-        //
+        $this->citas = $citas;
+        $this->i = $i;
     }
 
     /**

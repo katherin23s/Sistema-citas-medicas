@@ -69,7 +69,13 @@ Route::get('/main', function () {
     return view('pages.administrador.dashboard');
 });
 
-Route::resources(['citas', 'citasController::class']);
+/*Route::get('citas', function () {
+    return view('pages.administrador.citas');
+});*/
+
+/*Route::get('citas', [citasController::class, 'index']);*/
+
+Route::resources(['citas' => citasController::class]);
 
 Route::get('/medicos', function () {
     return view('pages.administrador.medicos');

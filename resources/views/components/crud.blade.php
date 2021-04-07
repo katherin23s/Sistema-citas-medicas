@@ -73,21 +73,20 @@
                     <th>Status</th>
                     <th>Due Date</th>
                     <th>Amount</th>
+                    <th>Customer</th>
                 </tr>
             </thead>
+            @foreach ($citas as $cita)
             <tbody>
-                @foreach ($citas as $cita)
-                <tr>
-                    <td>{{ ++$i }}
-                    </td>
-                    <td>{{ $cita->nombre }}</td>
-                    <td>{{ $cita->descripcion }}</td>
-                    <td>{{ $cita->tipoCita }}</td>
-                    <td>{{ $cita->id_paciente }}</td>
-                    <td>{{ date_format($cita->fecha_cita, 'jS M Y') }}</td>
-                </tr>
-                @endforeach
+                <td>{{ ++$i }}</td>
+                <td>{{ $cita->noFolio }}</td>
+                <td>{{ $cita->nombre }}</td>
+                <td>{{ $cita->descripcion }}</td>
+                <td>{{ $cita->tipoCita }}</td>
+                <td>{{ $cita->costo }}</td>
+
             </tbody>
+            @endforeach
         </table>
     </div>
     <div class="row d-flex justify-content-end p-1">

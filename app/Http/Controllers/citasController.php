@@ -14,9 +14,12 @@ class citasController extends Controller
      */
     public function index()
     {
-        $citas = Citas::latest()->paginate(5);
+        $citas = citas::latest()->paginate(5);
 
-        return view('administrador.citas', compact('citas'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('pages.administrador.citas', compact('citas'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
+        //  return view('pages.administrador.citas');
     }
 
     /**
@@ -26,7 +29,7 @@ class citasController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.administrador.create');
     }
 
     /**

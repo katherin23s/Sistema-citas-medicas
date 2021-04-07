@@ -134,8 +134,7 @@
 
                         <!---------- Division lineal de busqueda y agregar nuevas citas -------->
 
-                        <x-crud />
-
+                        <x-crud :citas="$citas" :i="$i" />
 
                         <!---------- /Division lineal de busqueda y agregar nuevas citas -------->
 
