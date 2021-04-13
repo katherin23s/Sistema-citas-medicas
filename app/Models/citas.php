@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class citas extends Model
 {
     use HasFactory;
+    protected $primaryKey = "idCita";
     protected $table = 'citas';
     public $timestamps = true;
     protected $casts = [
@@ -30,4 +32,17 @@ class citas extends Model
         'costo',
         'activo',
     ];
+
+
+
+    /*  public static function filtrarcitas($id)
+    {
+        return DB::table('citas')->where('idCita', $id)->get();
+    }*/
+
+    public static function updateCita($id, $datos)
+    {
+        DB::table('citas')->where('idCita', $id)->update($datos);
+        return 'ok';
+    }
 }

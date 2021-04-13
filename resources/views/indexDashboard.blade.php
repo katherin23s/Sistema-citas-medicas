@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Star Admin Premium Bootstrap Admin dash-board Template</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="dash-board/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="dash-board/assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="dash-board/assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="dash-board/assets/vendors/css/vendor.bundle.addons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -22,6 +24,7 @@
     <link rel="stylesheet" href="dash-board/assets/css/demo_1/style.css">
     <!-- End Layout styles -->
     <link rel="shortcut icon" href="dash-board/assets/images/favicon.ico" />
+
 
 </head>
 
@@ -101,6 +104,11 @@
     <script src="js/shared/chart.js"></script>
     <!-- End custom js for this page-->
     <script src="js/shared/jquery.cookie.js" type="text/javascript"></script>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/ajax.js') }}" defer></script>
+    <!-- <script src="/js/ajax.js"></script> -->
 </body>
 
 </html>

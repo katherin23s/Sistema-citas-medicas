@@ -75,7 +75,10 @@ Route::get('/main', function () {
 
 /*Route::get('citas', [citasController::class, 'index']);*/
 
+Route::post('citas', [citasController::class, 'editarCita']);
 Route::resources(['citas' => citasController::class]);
+
+
 
 Route::get('/medicos', function () {
     return view('pages.administrador.medicos');
