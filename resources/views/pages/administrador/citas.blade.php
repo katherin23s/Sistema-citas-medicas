@@ -40,9 +40,9 @@
                         <!-- Fecha -->
                         <div class="col-12 col-sm-6 col-xl">
                             <div class="form-group row ml-2">
-                                <label for="example-date-input" class="col-2 col-form-label" name="fecha">Date</label>
+                                <label class="col-2 col-form-label" name="fecha">Date</label>
                                 <div class="col-10">
-                                    <input class="form-control" id="idFechaCita" type="date" value="2011-08-19"
+                                    <input class="form-control" id="idFechaCita" name="fechaCita"type="date" value="2011-08-19"
                                         id="example-date-input">
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                         <div class="form-group row">
                             <label class="col-form-label">Folio</label>
                             <div class="col input-group mb-3">
-                                <input class="form-control" id="idCita" name="idCita" placeholder="folio">
+                                <input class="form-control" id="idCitaOculta" name="CitaOcultanombre">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button">Button</button>
                                 </div>
@@ -115,7 +115,7 @@
                         <div class="form-group row">
                             <label class="col-form-label">Folio</label>
                             <div class="col input-group mb-3">
-                                <input class="form-control" id="noFolio" name="folio" placeholder="folio">
+                                <input class="form-control" id="noFolioinput" name="folioinput" placeholder="folio">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button">Button</button>
                                 </div>
@@ -149,7 +149,7 @@
                         <div class="form-group row">
                             <label class=" col-form-label">Nombre paciente</label>
                             <div class="col input-group mb-3">
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre"
+                                <input type="text" class="form-control" id="idNombre" name="nombre"
                                     aria-label="Recipient's username" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button">Button</button>
@@ -161,7 +161,7 @@
                         <div class="form-group row">
                             <label class=" col-form-label">Descripcion</label>
                             <div class="col input-group mb-3">
-                                <input type="text" class="form-control" id="descripcion" name="descripcion"
+                                <input type="text" class="form-control" id="IdDescripcion" name="descripcion"
                                     placeholder="descripcion" aria-label="Recipient's username"
                                     aria-describedby="basic-addon2">
                                 <div class="input-group-append">
@@ -276,7 +276,7 @@
                                     </thead>
                                     @foreach ($citas as $cita)
                                     <tbody>
-                                        <tr id="idtr">
+                                        <tr id="idtr" action="{{ $cita->idCita}}">
                                             <td id=" idCita" type="hidden" style="display:none;">
                                                 {{ $cita->idCita}}</td>
                                             <td>{{ ++$i }}</td>
@@ -385,7 +385,56 @@
 
     </div>
     <div class="content-wrapper"> </div>
-    <script>
+<script>
+ 
+  // CREATE
+  $("#btn-save").click(function (e) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        e.preventDefault();
+        //EL nombre de la izquierda debe ser igual al de la base de datos
+        var formData = {
+            noFolio: jQuery('#noFolioinput').val(),
+            nombre: jQuery('#idNombre').val(),
+            descripcion: jQuery('#IdDescripcion').val(), 
+            tipoCita: jQuery('#idTipoCita').val(),
+            id_paciente: jQuery('#id_paciente').val(),
+            id_medico: jQuery('#idMedico').val(),    
+            fecha_cita: jQuery('#idFechaCita').val(),
+            horaCita: jQuery('#idHoracita').val(),
+            horaFinCita: jQuery('#idHorafincita').val(),
+            duracion: jQuery('#idDuracion').val(),
+            status: 1,
+            costo: 500,
+            activo: 1,  
+        };
+
+        //verificar si se estan pasando los datos...
+        console.log(formData); // ... yes
+
+        //Mandar los datos al metodo store del controlador...
+        var type = "POST";
+        var ajaxurl = 'citas';
+        $.ajax({
+            type: type,
+            url: ajaxurl,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+               console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    });
+
+
+
+//CITA CLIC EN TABLA
     $("table tbody tr").click(function() {
         var id1 = $(this).find("td:first-child").text();
         var id = parseInt(id1)
@@ -393,80 +442,83 @@
 
         //obtener la cita del id total
         $.ajax({
-            url: "citas",
-            type: "post",
+            url: "citas/"+id+"/edit",
+            type: "GET",
             data: {
                 _token: '{{csrf_token()}}',
                 id: id
             },
             success: function(data) {
             //Mostrar registro en el crud
-            console.log(data);
-           
-           
-            console.log(data.fecha_cita);
-             $("#nombre").val(data.nombre);
-             $("#nombre").val(data.fecha);
-            //document.forma.nombre.value = data.nombre;  
-    
+            console.log(data);           
+          
+    //se debe llamar el data igual que los campos de la BASE DE DATOS
             $("#idCita").val(data.idCita);
+            $("#noFolioinput").val(data.noFolio);
+            $("#idNombre").val(data.nombre);
+            $("#IdDescripcion").val(data.descripcion);
+            $("#idTipoCita").val(data.tipoCita);
+            $("#id_paciente").val(data.id_paciente);
+            $("#idMedico").val(data.id_medico);
             $("#idFechaCita").val(data.fecha_cita);
             $("#idHoracita").val(data.horaCita);
             $("#idHorafincita").val(data.horaFinCita);
-            $("#idDuracion").val(data.duracion);
-            $("#idTipocita").val(data.tipoCita);
-            $("#noFolio").val(data.noFolio);
-            $("#id_paciente").val(data.id_paciente);
-            $("#idMedico").val(data.id_medico);
-            $("#nombre").val(data.nombre);
-            $("#descripcion").val(data.descripcion);
+            $("#idDuracion").val(data.duracion);           
             },
         });
-    });
 
 
-             //UPDATE
+               //UPDATE
 
   $("#btn-update").click(function (e) {
-      var activarBoton = true;
-      console.log("textoooo");
-      var id = $("#idCita").val();
-      var fechaCita = $("#idFechaCita").val();
-      var horaCita = $("#idHoracita").val();
-      var horaFinCita = $("#idHorafincita").val();
-      var duracion = $("#idDuracion").val();
-      var tipoCitas = $("#idTipoCita").val();
-      var noFolio = $("#noFolio").val();
-      var paciente = $("#id_paciente").val();
-      var medico = $("#idMedico").val();
-      var nombre = $("#nombre").val();
-      var descripcion = $("#descripcion").val();
-      
+ 
+ var formData2 = {
+       noFolio: jQuery('#noFolioinput').val(),
+       nombre: jQuery('#idNombre').val(),
+       descripcion: jQuery('#IdDescripcion').val(), 
+       tipoCita: jQuery('#idTipoCita').val(),
+       id_paciente: jQuery('#id_paciente').val(),
+       id_medico: jQuery('#idMedico').val(),    
+       fecha_cita: jQuery('#idFechaCita').val(),
+       horaCita: jQuery('#idHoracita').val(),
+       horaFinCita: jQuery('#idHorafincita').val(),
+       duracion: jQuery('#idDuracion').val(),
+       status: 1,
+       costo: 500,
+       activo: 1,  
+   };
+        console.log(formData2);
+        $.ajax({
+        url: "citas/"+id,
+        type: "PATCH",
+        data: {
+            _token: '{{csrf_token()}}',
+            noFolio: jQuery('#noFolioinput').val(),
+            nombre: jQuery('#idNombre').val(),
+            descripcion: jQuery('#IdDescripcion').val(), 
+            tipoCita: jQuery('#idTipoCita').val(),
+            id_paciente: jQuery('#id_paciente').val(),
+            id_medico: jQuery('#idMedico').val(),    
+            fecha_cita: jQuery('#idFechaCita').val(),
+            horaCita: jQuery('#idHoracita').val(),
+            horaFinCita: jQuery('#idHorafincita').val(),
+            duracion: jQuery('#idDuracion').val(),
+            status: 1,
+            costo: 500,
+            activo: 1,  
+        }, //name: name, email: email 
+        success: function (data) {
+        console.log(data);
+        },
+        });
 
-      console.log(fechaCita);
-      console.log(horaCita);
-      console.log(horaFinCita);
-      console.log(duracion);
-      console.log(tipoCitas);
-      console.log(noFolio);
-      console.log(paciente);
-      console.log(medico);
-      console.log(nombre);
-      console.log(descripcion);
-    // if (name != "" && email != "") {
-    $.ajax({
-      url: "citas",
-      type: "post",
-      data: { _token: '{{csrf_token()}}', id: id, fechaCita:fechaCita, horaCita:horaCita,duracion:duracion,tipoCitas:tipoCitas,noFolio:noFolio,paciente:paciente,medico:medico,nombre:nombre,descripcion:descripcion}, //name: name, email: email 
-      success: function (data) {
-        alert(data);
-        alert("k sta pazandu");
-      },
+});
     });
-    /*  } else {
-      alert("Fill all fields");
-    }*/
-  });
-    </script>
+
+
+
+
+
+</script>
     <!-- partial:../../partials/_footer.html -->
     @endsection

@@ -41,8 +41,10 @@ class citasController extends Controller
      */
     public function store(Request $request)
     {
-
-        /*  $data =  $request->validate([
+        //obtenemos los datos de Ajax y lo asignamos en data..
+        //la parte izquierda representa el nombre de ajax
+        //parece que los valores se deben llamar igual que los atributos de la BD!!!
+        $data = $request->validate([
             'noFolio' => 'required',
             'nombre' => 'required',
             'descripcion' => 'required',
@@ -51,29 +53,14 @@ class citasController extends Controller
             'id_medico' => 'required',
             'fecha_cita' => 'required',
             'horaCita' => 'required',
+            'horaFinCita' => 'required',
             'duracion' => 'required',
             'status' => 'required',
             'costo' => 'required',
             'activo' => 'required',
-        ]);*/
-        $noFolio = $request["noFolio"];
-        $nombre = $request["nombre"];
-        $fechaCita = $request["fechaCita"];
-        $horaCita = $request["horaCita"];
-        $horaFinCita = $request["horaFinCita"];
-        $descripcion = $request["descripcion"];
-        $duracion = $request["duracion"];
-        //  $tipoCita = $request["tipoCita"];
-        $paciente = $request["paciente"];
-        $medico = $request["medico"];
+        ]);
 
-
-
-        $datos = array('noFolio' => $noFolio, 'nombre' => $nombre, 'fecha_cita' => $fechaCita, 'horaCita' => $horaCita, 'horaFinCita' => $horaFinCita, 'descripcion' => $descripcion, 'duracion' => $duracion, 'id_paciente' => $paciente, 'id_medico' => $medico);
-
-        //crear citas
-        $citas = citas::create($datos);
-        //si esta vacio el id
+        $citas = citas::create($data);
         return response()->json($citas);
     }
 
@@ -131,8 +118,8 @@ class citasController extends Controller
     {
         //  $id = $request["id"];
         //Seleccionar la cita
-        //   $cita = citas::findOrFail($id);
-        //  return response()->json($cita);
+        $cita = citas::findOrFail($id);
+        return response()->json($cita);
     }
 
     /**
@@ -144,19 +131,28 @@ class citasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $id = $request["id"];
-        $modificarCita = citas::find($request->id);
-        $modificarCita->fechaCita = $request->fechaCita;
-        $modificarCita->horaCita = $request->horaCita;
-        $modificarCita->duracion = $request->duracion;
-        $modificarCita->tipoCita = $request->tipoCita;
-        $modificarCita->noFolio = $request->noFolio;
-        $modificarCita->paciente = $request->paciente;
-        $modificarCita->medico = $request->medico;
-        $modificarCita->nombre = $request->nombre;
-        $modificarCita->descripcion = $request->descripcion;
-        $modificarCita->save();
-        return back()->with('cita_update', 'La cita ha sido  modificada exitosamente!');
+        /* $modificarCita = citas::updateCita($id, $datos);
+        return response()->json($modificarCita);*/
+        $data = $request->validate([
+            'noFolio' => 'required',
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'tipoCita' => 'required',
+            'id_paciente' => 'required',
+            'id_medico' => 'required',
+            'fecha_cita' => 'required',
+            'horaCita' => 'required',
+            'horaFinCita' => 'required',
+            'duracion' => 'required',
+            'status' => 'required',
+            'costo' => 'required',
+            'activo' => 'required',
+        ]);
+        //$noFolio = $request["noFolio"];
+        $citasmodificar = citas::find($id);
+        $citasmodificar->update($data);
+        $citasmodificar->save();
+        return response()->json($citasmodificar);
     }
 
     /**
