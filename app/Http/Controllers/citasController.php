@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Response;
 use App\Models\citas;
+use Illuminate\Support\Facades\DB;
 
 class citasController extends Controller
 {
@@ -13,12 +14,21 @@ class citasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $citas = citas::latest()->paginate(5);
 
-        return view('pages.administrador.citas', compact('citas'))
+        $texto = ($request->get('buscar'));
+        $citas = citas::where('noFolio', 'LIKE', '%' . $texto . '%')
+            ->orWhere('descripcion', 'LIKE', '%' . $texto . '%')
+            ->orderBy('noFolio')
+            ->paginate(5);
+
+        return view('pages.administrador.citas', compact('citas', 'texto'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+        //::latest()->paginate(5);
+        /*   $citas = citas::latest()->paginate(5);
+        return view('pages.administrador.citas', compact('citas',))
+            ->with('i', (request()->input('page', 1) - 1) * 5);*/
 
         //  return view('pages.administrador.citas');
     }
@@ -163,6 +173,7 @@ class citasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        citas::find($id)->delete();
+        return json_encode(array('statusCode' => 200));
     }
 }

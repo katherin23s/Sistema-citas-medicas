@@ -92,7 +92,6 @@
     <main id="main">
     </main><!-- End #main -->
 
-
     @include('ladingpage.foother')
 
     <div id="preloader"></div>

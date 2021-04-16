@@ -99,19 +99,7 @@
 
                     </div>
                     <!-- paciente y medico nombre -->
-
-
-                    <div class="m-0 px-5">
-                        <div class="form-group row">
-                            <label class="col-form-label">Folio</label>
-                            <div class="col input-group mb-3">
-                                <input class="form-control" id="idCitaOculta" name="CitaOcultanombre">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">Button</button>
-                                </div>
-                            </div>
-                        </div>
-
+                    <div class="form-group ml-5 mr-5">
                         <div class="form-group row">
                             <label class="col-form-label">Folio</label>
                             <div class="col input-group mb-3">
@@ -176,12 +164,10 @@
     </form>
     <!-- -->
     <div class="form-group d-flex justify-content-end px-4">
-
         <button id="btn-save" type="button" class="btn btn-outline-primary">Guardar</button>
         <button id="btn-update" type="button" class="btn btn-outline-secondary">Editar</button>
         <button type="button" class="btn btn-outline-success">Buscar</button>
-        <button type="button" class="btn btn-outline-danger">Danger</button>
-
+        <button type="button" id="btn-delete" class="btn btn-outline-danger">Danger</button>
     </div>
 
     <div class="row justify-content-center">
@@ -220,15 +206,15 @@
 
                             <div class="row m-0 d-flex">
                                 <div class="card col-12 col-xl-3 mt-3 mr-3 mb-3 ">
-                                    <div class="card-body pb-2">
+                                    <form class="card-body pb-2" action="{{route('citas.index')}}" method="get">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Browser"
+                                            <input type="text" class="form-control" name="buscar" placeholder="Browser"
                                                 aria-label="Browser" aria-describedby="basic-addon2">
                                             <div class="input-group-append d-flex justify-content-end">
                                                 <button class="btn btn-outline-primary" type="button">Buscar</button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                                 <!-- Agregar Seleccionado -->
                                 <button type="button" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto ">Añadir
@@ -292,10 +278,7 @@
                             </div>
                             <div class="row d-flex justify-content-end p-1">
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn btn-secondary">1</button>
-                                    <button type="button" class="btn btn-secondary">2</button>
-                                    <button type="button" class="btn btn-secondary">3</button>
-                                    <button type="button" class="btn btn-secondary">4</button>
+                                    {!! $citas->links() !!}
                                 </div>
                             </div>
                         </div>
@@ -384,9 +367,12 @@
         </div>
 
     </div>
-    <div class="content-wrapper"> </div>
+
+    
+<div class="content-wrapper"> </div>
 <script>
- 
+ document.getElementById('btn-update').disabled=true;
+ document.getElementById('btn-delete').disabled=true;
   // CREATE
   $("#btn-save").click(function (e) {
         $.ajaxSetup({
@@ -425,6 +411,7 @@
             dataType: 'json',
             success: function (data) {
                console.log(data);
+               window.location = "/citas";
             },
             error: function (data) {
                 console.log(data);
@@ -439,7 +426,8 @@
         var id1 = $(this).find("td:first-child").text();
         var id = parseInt(id1)
         alert(id);
-
+        document.getElementById('btn-update').disabled=false;   
+        document.getElementById('btn-delete').disabled=false;
         //obtener la cita del id total
         $.ajax({
             url: "citas/"+id+"/edit",
@@ -451,7 +439,6 @@
             success: function(data) {
             //Mostrar registro en el crud
             console.log(data);           
-          
     //se debe llamar el data igual que los campos de la BASE DE DATOS
             $("#idCita").val(data.idCita);
             $("#noFolioinput").val(data.noFolio);
@@ -463,15 +450,16 @@
             $("#idFechaCita").val(data.fecha_cita);
             $("#idHoracita").val(data.horaCita);
             $("#idHorafincita").val(data.horaFinCita);
-            $("#idDuracion").val(data.duracion);           
+            $("#idDuracion").val(data.duracion);        
             },
+            
         });
 
 
                //UPDATE
 
   $("#btn-update").click(function (e) {
- 
+    document.getElementById('btn-update').disabled=true;
  var formData2 = {
        noFolio: jQuery('#noFolioinput').val(),
        nombre: jQuery('#idNombre').val(),
@@ -509,10 +497,48 @@
         }, //name: name, email: email 
         success: function (data) {
         console.log(data);
+        document.getElementById('noFolioinput').value = '';
+        document.getElementById('idNombre').value = '';
+        document.getElementById('IdDescripcion').value = '';
+        document.getElementById('idTipoCita').value = '';
+        document.getElementById('id_paciente').value = '';
+        document.getElementById('idMedico').value = '';
+        document.getElementById('idFechaCita').value = '';
+        document.getElementById('idHoracita').value = '';
+        document.getElementById('idHorafincita').value = '';
+        document.getElementById('idDuracion').value = '';
+
+     
+        window.location = "/citas";
+            
         },
         });
 
 });
+
+//DELETE
+$("#btn-delete").click(function (e) {
+    document.getElementById('btn-delete').disabled=true;
+     var url = "citas";
+     var dltUrl = url+"/"+id;
+     $.ajax({
+         url: dltUrl,
+         type: "DELETE",
+         cache: false,
+         data:{
+             _token:'{{ csrf_token() }}'
+         },
+         success: function(dataResult){
+            window.location = "/citas";
+             var dataResult = JSON.parse(dataResult);
+             if(dataResult.statusCode==200){
+                 $ele.fadeOut().remove();
+             }
+            
+         }
+     });
+ });
+
     });
 
 

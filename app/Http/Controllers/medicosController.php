@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Response;
+use App\Models\medicos;
 use Illuminate\Http\Request;
 
 class medicosController extends Controller
@@ -13,7 +15,8 @@ class medicosController extends Controller
      */
     public function index()
     {
-        //
+        $medicos = medicos::paginate(6);
+        return view('pages.administrador.medicos')->with(compact('medicos'));
     }
 
     /**
