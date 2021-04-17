@@ -342,15 +342,26 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Eliminar medico</h4>
+            <h4 class="modal-title" id="myModalLabel">Eliminar medico</h4>
+            <form action="medicos" method="post" id="deleteForm">
+                {{ csrf_field()}}
+                {{method_field('DELETE')}}
+                <div class="modal-body">
+                    <input type="hidden" name="_method" id="idMedico" value="DELETE">
+                    <p class="text-center">
+                    Are you sure you want to delete this?
+                    </p>
+                </div>
+    
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger">Eliminar</button>
         </div>
+    </form>
       </div>
     </div>
   </div>
@@ -451,9 +462,9 @@
                                     </thead>
                                     @foreach ($medicos as $medico)
                                     <tbody>
-                                        <tr id="idtr" action="{{ $medico->idMedico}}">
+                                        <tr id="idtr" action="{{ $medico->idMedicos}}">
                                             <td id=" idCita" type="hidden" style="display:none;">
-                                                {{ $medico->idMedico}}</td>                                         
+                                                {{ $medico->idMedicos}}</td>                                         
                                             <td>{{ $medico->cedula }}</td>
                                             <td>{{ $medico->nombre }}</td>
                                             <td>{{ $medico->apellido }}</td>
@@ -466,18 +477,18 @@
                                             <td>{{ $medico->id_especializacion }}</td>
                                             <td>{{ $medico->id_consultorio }}</td>
                                             <td>{{ $medico->id_horario }}</td>  
-                                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#modificarModal">
+                                            <td><button type="button" class="btn btn-success" data-toggle="modal" data-target="#modificarModal" action="{{ $medico->idMedicos}}" onClick="action_modificar_click(this.action)">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                                   </svg>
                                             </button>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#eliminarModal">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{$medico->idMedicos}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
                                                         <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
                                                       </svg>    
                                                 </button></td> 
                                             
-                                            
+                                            @include('pages.administrador.delete')
                                         </tr>
                                     </tbody>
                                     @endforeach
@@ -565,6 +576,7 @@
     </div>
 </div>
 </div>
+
 
     <!-- main-panel ends -->
     <!-- page-body-wrapper ends -->

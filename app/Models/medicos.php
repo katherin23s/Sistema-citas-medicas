@@ -9,12 +9,12 @@ class medicos extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = "idMedico";
+    protected $primaryKey = "idMedicos";
     protected $table = 'medicos';
     public $timestamps = true;
 
     protected $fillable = [
-        'idMedico',
+        'idMedicos',
         'cedula',
         'nombre',
         'apellido',

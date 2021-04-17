@@ -80,8 +80,13 @@ class medicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idMedicos)
     {
-        //
+        // return $medico;
+        /*  medicos::find($idMedicos)->delete();*/
+
+        $eliminar = medicos::find($idMedicos);
+        $eliminar->delete();
+        return json_encode(array('statusCode' => 200));
     }
 }
