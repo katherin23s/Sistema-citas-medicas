@@ -37,7 +37,26 @@ class medicosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'cedula' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'apellidoM' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'edad' => 'required',
+            'email' => 'required',
+            'sexo' => 'required',
+            'fechaNacimiento' => 'required',
+            'registro' => 'required',
+            'id_especializacion' => 'required',
+            'id_consultorio' => 'required',
+            'id_horario' => 'required',
+            'status' => 'required',
+            'activo' => 'required',
+        ]);
+        $medicos = medicos::create($data);
+        return response()->json($medicos);
     }
 
     /**
@@ -46,9 +65,8 @@ class medicosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
     }
 
     /**
@@ -59,7 +77,8 @@ class medicosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $medicos = medicos::findOrFail($id);
+        return response()->json($medicos);
     }
 
     /**
@@ -71,7 +90,29 @@ class medicosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'cedula' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'apellidoM' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'edad' => 'required',
+            'email' => 'required',
+            'sexo' => 'required',
+            'fechaNacimiento' => 'required',
+            'registro' => 'required',
+            'id_especializacion' => 'required',
+            'id_consultorio' => 'required',
+            'id_horario' => 'required',
+            'status' => 'required',
+            'activo' => 'required',
+        ]);
+        //$noFolio = $request["noFolio"];
+        $medicosModificar = medicos::find($id);
+        $medicosModificar->update($data);
+        $medicosModificar->save();
+        return response()->json($medicosModificar);
     }
 
     /**
@@ -84,7 +125,6 @@ class medicosController extends Controller
     {
         // return $medico;
         /*  medicos::find($idMedicos)->delete();*/
-
         $eliminar = medicos::find($idMedicos);
         $eliminar->delete();
         return json_encode(array('statusCode' => 200));

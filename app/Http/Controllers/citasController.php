@@ -126,7 +126,6 @@ class citasController extends Controller
      */
     public function edit($id)
     {
-        //  $id = $request["id"];
         //Seleccionar la cita
         $cita = citas::findOrFail($id);
         return response()->json($cita);
