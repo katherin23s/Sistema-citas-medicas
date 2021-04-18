@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\pacientes;
 use Illuminate\Http\Request;
 
 class pacientesController extends Controller
@@ -11,9 +12,16 @@ class pacientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $texto = ($request->get('buscar'));
+        $pacientes = pacientes::where('idPaciente', 'LIKE', '%' . $texto . '%')
+            ->orWhere('nombre', 'LIKE', '%' . $texto . '%')
+            ->orderBy('idPaciente')
+            ->paginate(5);
+
+        return view('pages.administrador.pacientes', compact('pacientes', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

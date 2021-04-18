@@ -315,7 +315,7 @@
 
                             <div class="row m-0 d-flex">
                                 <div class="card col-12 col-xl-3 mt-3 mr-3 mb-3 ">
-                                    <form class="card-body pb-2" action="{{route('citas.index')}}" method="get">
+                                    <form class="card-body pb-2" action="{{route('medicos.index')}}" method="get">
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" name="buscar" placeholder="Browser"
                                                 aria-label="Browser" aria-describedby="basic-addon2">

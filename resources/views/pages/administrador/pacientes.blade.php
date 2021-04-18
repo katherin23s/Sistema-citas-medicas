@@ -26,100 +26,6 @@
 
 
 
-    <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
-
-    <div class="row ml-2 ">
-        <h4 id="minimum-setup">Patients Information</h4>
-        <div class="container-fluid p-0">
-
-            <!-- paciente y medico nombre -->
-            <div class="m-0 px-5">
-
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <div class="form-group row">
-                            <label for="exampleInputEmail1" class="col-form-label">Id Paciente</label>
-                            <div class="col input-group mb-3">
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-group row">
-                            <label for="exampleInputEmail1" class="col-form-label">Nombre</label>
-                            <div class="col input-group mb-3">
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <div class="form-group row">
-                            <label for="exampleInputEmail1" class="col-form-label">Apellido Parterno</label>
-                            <div class="col input-group mb-3">
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <div class="form-group row">
-                            <label for="exampleInputEmail1" class="col-form-label pr-4">Sexo </label>
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" value="">Option 1
-                                </label>
-                            </div>
-                            <div class="form-check-inline">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" value="">Option 2
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <!-- Fecha -->
-                        <div class="">
-                            <div class="form-group row">
-                                <label for="example-date-input" class="col-form-label">Date</label>
-                                <div class="col input-group mb-3">
-                                    <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <!-- Tiempo de duracion -->
-                        <div class="">
-                            <div class="form-group row">
-                                <label for="exampleSelect1" class="col-form-label">Status</label>
-                                <div class="col input-group mb-3">
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- -->
-
 
 
     <div class="row justify-content-center">
@@ -129,7 +35,120 @@
                     <div class="card">
 
                         <!---------- Division lineal de busqueda y agregar nuevas citas -------->
-                        <x-crud />
+                    <!---------- Division lineal de busqueda y agregar nuevas citas -------->
+
+<div class="row m-1 ">
+    <div class="col">
+        <hr class="borde">
+    </div>
+</div>
+
+<!-- -->
+
+<div class="card-body pt-0">
+    <div class="d-flex justify-content-between">
+        <h4 class="card-title mb-0">Citas</h4>
+        <a href="#"><small>Citas</small></a>
+    </div>
+
+    <!-- Buscador y Boton Agregar Responsivo -->
+
+    <div class="row m-0 d-flex">
+        <div class="card col-12 col-xl-3 mt-3 mr-3 mb-3 ">
+            <form class="card-body pb-2" action="{{route('pacientes.index')}}" method="get">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="buscar" placeholder="Browser"
+                        aria-label="Browser" aria-describedby="basic-addon2">
+                    <div class="input-group-append d-flex justify-content-end">
+                        <button class="btn btn-outline-primary" type="button">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Agregar Seleccionado -->
+        <button type="button" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto ">Añadir
+            seleccionado</button>
+        <!-- -->
+
+        <!-- CRUD de botones -->
+        <div class="row d-flex justify-content-end m-0 pr-5 border-0 ">
+            <div class="btn-group border-0" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary my-5 p-3">Left</button>
+                <button type="button" class="btn btn-secondary my-5">Middle</button>
+                <button type="button" class="btn btn-secondary my-5">Right</button>
+                <button type="button" class="btn btn-secondary my-5">Right</button>
+            </div>
+        </div>
+        <!-- -->
+        <div class="form-group col-2 mt-4 p-0">
+            <label for="exampleFormControlSelect1">Show</label>
+            <select class="form-control form-control-lg" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+
+    </div>
+
+
+    <!-- -->
+
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="bg-primary">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Apellido Materno</th>
+                    <th>direccion</th>
+                    <th>registro</th>
+                    <th>telefono</th>
+                    <th>edad</th>
+                    <th>emai</th>
+                    <th>sexo</th>
+                    <th>fechaNacimiento</th>
+                    <th>status</th>
+                    <th>activos</th>
+                </tr>
+            </thead>
+            @foreach ($pacientes as $paciente)
+            <tbody>
+                <tr id="idtr" action="{{ $paciente->idPaciente}}">
+                    <td id=" idCita" type="hidden" style="display:none;">
+                        {{ $paciente->idPaciente}}</td>
+                    <td>{{ ++$i }}</td>
+                    <td>{{ $paciente->nombre }}</td>
+                    <td>{{ $paciente->apellido }}</td>
+                    <td>{{ $paciente->apellidoM }}</td>
+                    <td>{{ $paciente->direccion }}</td>
+                    <td>{{ $paciente->registro }}</td>
+                    <td>{{ $paciente->telefono }}</td>
+                    <td>{{ $paciente->edad }}</td>
+                    <td>{{ $paciente->email }}</td>
+                    <td>{{ $paciente->sexo }}</td>
+                    <td>{{ $paciente->fechaNacimiento }}</td>
+                    <td>{{ $paciente->status }}</td>
+                    <td>{{ $paciente->activo }}</td>
+                </tr>
+            </tbody>
+            @endforeach
+       
+        </table>
+    </div>
+    <div class="row d-flex justify-content-end p-1">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-secondary">1</button>
+            <button type="button" class="btn btn-secondary">2</button>
+            <button type="button" class="btn btn-secondary">3</button>
+            <button type="button" class="btn btn-secondary">4</button>
+        </div>
+    </div>
+</div>   
                     </div>
                 </div>
 

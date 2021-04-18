@@ -13,10 +13,19 @@ class medicosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $medicos = medicos::paginate(6);
-        return view('pages.administrador.medicos')->with(compact('medicos'));
+        $texto = ($request->get('buscar'));
+        $medicos = medicos::where('cedula', 'LIKE', '%' . $texto . '%')
+            ->orWhere('nombre', 'LIKE', '%' . $texto . '%')
+            ->orderBy('cedula')
+            ->paginate(5);
+
+        return view('pages.administrador.medicos', compact('medicos', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+
+        //  $medicos = medicos::paginate(6);
+        //  return view('pages.administrador.medicos')->with(compact('medicos'));
     }
 
     /**

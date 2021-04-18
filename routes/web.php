@@ -78,11 +78,8 @@ Route::get('/main', function () {
 Route::post('citas', [citasController::class, 'editarCita']);
 Route::resources(['citas' => citasController::class]);
 Route::resources(['medicos' => medicosController::class]);
+Route::resources(['pacientes' => pacientesController::class]);
 
-
-Route::get('/pacientes', function () {
-    return view('pages.administrador.pacientes');
-});
 
 Route::get('/usuarios', function () {
     return view('pages.administrador.usuarios');
