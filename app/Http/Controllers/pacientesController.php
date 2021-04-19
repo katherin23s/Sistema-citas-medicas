@@ -66,7 +66,8 @@ class pacientesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $paciente = pacientes::findOrFail($id);
+        return view('pages.ventanas.EditarPaciente', compact('paciente'));
     }
 
     /**
@@ -78,7 +79,10 @@ class pacientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datosPaciente = request()->except(['_token', '_method']);
+        pacientes::where('idPaciente', '=', $id)->update($datosPaciente);
+        $paciente = pacientes::findOrFail($id);
+        return view('pages.ventanas.EditarPaciente', compact('paciente'));
     }
 
     /**

@@ -135,6 +135,9 @@
                     <td>{{ $paciente->status }}</td>
                     <td>{{ $paciente->activo }}</td>
                     <td>
+                    <a href="{{url('pacientes/'.$paciente->idPaciente.'/edit')}}">
+                    Modificar
+                    </a>
                     <form action="{{url('pacientes/'.$paciente->idPaciente)}}" method="POST">
                     @csrf
                     {{method_field('DELETE')}}
