@@ -31,7 +31,7 @@ class pacientesController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.ventanas.AltaPaciente');
     }
 
     /**
@@ -42,7 +42,9 @@ class pacientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pacientes = request()->except('_token');
+        pacientes::insert($pacientes);
+        return response()->json($pacientes);
     }
 
     /**
