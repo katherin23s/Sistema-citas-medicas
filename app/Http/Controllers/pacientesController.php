@@ -18,7 +18,7 @@ class pacientesController extends Controller
         $pacientes = pacientes::where('idPaciente', 'LIKE', '%' . $texto . '%')
             ->orWhere('nombre', 'LIKE', '%' . $texto . '%')
             ->orderBy('idPaciente')
-            ->paginate(5);
+            ->paginate(6);
 
         return view('pages.administrador.pacientes', compact('pacientes', 'texto'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -87,8 +87,9 @@ class pacientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idPaciente)
     {
-        //
+        pacientes::destroy($idPaciente);
+        return redirect('pacientes');
     }
 }
