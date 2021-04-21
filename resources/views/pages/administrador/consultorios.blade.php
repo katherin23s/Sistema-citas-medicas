@@ -120,8 +120,10 @@
                                     </form>
                                 </div>
                                 <!-- Agregar Seleccionado -->
-                                <button type="button" id="añadir" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto ">Añadir
+                                <button type="button" id="añadir" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto" id="agregar" data-toggle="modal" data-target="#altaModal">Añadir
                                     seleccionado</button>
+
+                                <button type="button" class="btn btn-primary my-5 p-3" id="agregar" data-toggle="modal" data-target="#altaModal">Altas</button>
                                 <!-- -->
 
                                 <!-- CRUD de botones -->
@@ -147,7 +149,7 @@
 
                             </div>
 
-
+                            @include('pages.modales.consultorioAlta');
                             <!-- -->
                             <div id="idTabla" class="table-responsive">
                                 <table class="table table-striped table-hover" id="tblMain">
@@ -259,10 +261,126 @@
                         <!-- -->
                     </div>
                 </div>
-
-
             </div>
         </div>
-
     </div>
+
+    <script>
+        //  jQuery(document).ready(function($){
+      
+      //----- Open model CREATE -----//
+          jQuery('#agregar').click(function () {
+          jQuery('#btn-save').val("add");
+          jQuery('#myFormAlta').trigger("reset");
+          jQuery('#altaModal').modal('show');
+      });
+      
+      // CREATE
+      $("#btn-save").click(function (e) {
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                  }
+              });
+          e.preventDefault();
+      
+                                         
+      
+          var formData = {         
+              noConsultorio: jQuery('#noConsultorio').val(),
+              status: jQuery('#status').val(),
+              activo: jQuery('#activo').val(),
+          };
+
+          console.log(formData);
+      
+          var state = jQuery('#btn-save').val();
+          var medico_id = jQuery('#medico_id').val();
+          
+          $.ajax({
+              type: "POST",
+              url: 'consultorios/create',
+              data: formData,
+              dataType: 'json',
+              success: function (data) {                                    
+                  console.log(data);
+              },
+              error: function (data) {
+                  console.log(data);
+              }
+          });
+      });
+      
+      
+      /*
+      function editTodo(ideditar) {
+      return alert(ideditar);
+      }
+      
+      
+      
+      */
+      //obtener el atributo id al dar click con jquery
+      //mandar el valor de la funcion dentro
+      //PARA MANDAR LA INFORMACION AL FORMULARIO AL HACER CLICK EN MODIFICAR BOTON DE LA TABLA
+      function goDoSomething(d){
+      
+      var id =d.getAttribute("data-id");
+              //obtener la cita del id total
+              $.ajax({
+                  url: "consultorios/"+id+"/edit",
+                  type: "GET",
+                  data: {
+                      _token: '{{csrf_token()}}',
+                      id: id
+                  },
+                  success: function(data) {
+                  //Mostrar registro en el crud
+                  console.log(data);       
+          //se debe llamar el data igual que los campos de la BASE DE DATOS
+       
+              $('#noConsultorio'+id).val(data.noConsultorio),
+              $('#status'+id).val(data.status),
+              $('#activo'+id).val(data.activo)
+                
+          }
+        });
+      } 
+      
+      //se investigo como obtener el valor del data-id
+      //y como poner dos funciones en un mismo onclick
+      //porque jquery no obtiene id dinamicos
+      //y porque no se pueden tener dos funciones al mismo tiempo
+      //En realidad solo ocupo tener el id del boton salvar
+      
+      
+      //MODIFICAR MÉDICO
+      function modificar(clicked_id2) {
+         // alert(clicked_id2.getAttribute("data-id"));
+      var valorid = clicked_id2.getAttribute("data-id");
+      
+       var formData2 = {
+        noConsultorio: jQuery('#noConsultorio').val(),
+        status: jQuery('#status').val(),
+        activo: jQuery('#activo').val(),          
+         };
+              console.log(formData2);
+              $.ajax({
+              url: "noConsultorio/"+valorid,
+              type: "PATCH",
+              data: {
+                  _token: '{{csrf_token()}}',
+              noConsultorio: jQuery('#noConsultorio').val(),
+              status: jQuery('#status').val(),
+              activo: jQuery('#activo').val(),
+              }, //name: name, email: email 
+              success: function (data) {
+              console.log(data+"si funcionooo");   
+              },
+              error: function (data) {
+                  console.log(data+"no funcionoo");
+              }
+              });
+      } 
+</script>
     @endsection

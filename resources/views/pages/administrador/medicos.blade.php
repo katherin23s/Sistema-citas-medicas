@@ -291,7 +291,6 @@
                     <div class="card">
 
                         <!---------- Division lineal de busqueda y agregar nuevas citas -------->
-                        <!---------- Division lineal de busqueda y agregar nuevas citas -------->
 
                         <div class="row m-1 ">
                             <div class="col">

@@ -42,7 +42,13 @@ class consultoriosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'noConsultorio' => 'required',
+            'status' => 'required',
+            'activo' => 'required'
+        ]);
+        $consultorio = consultorios::create($data);
+        return response()->json($consultorio);
     }
 
     /**
@@ -64,7 +70,8 @@ class consultoriosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $consultorio = consultorios::findOrFail($id);
+        return response()->json($consultorio);
     }
 
     /**
@@ -76,7 +83,17 @@ class consultoriosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'noConsultorio' => 'required',
+            'status' => 'required',
+            'activo' => 'required',
+
+        ]);
+        //$noFolio = $request["noFolio"];
+        $consultoriosModificar = consultorios::find($id);
+        $consultoriosModificar->update($data);
+        $consultoriosModificar->save();
+        return response()->json($consultoriosModificar);
     }
 
     /**
@@ -87,6 +104,9 @@ class consultoriosController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $eliminar = consultorios::find($id);
+        $eliminar->delete();
+        return json_encode(array('statusCode' => 200));
     }
 }
