@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class usuariosController extends Controller
@@ -11,9 +12,16 @@ class usuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $texto = ($request->get('buscar'));
+        $usuarios = User::where('id', 'LIKE', '%' . $texto . '%')
+            ->orWhere('name', 'LIKE', '%' . $texto . '%')
+            ->orderBy('id')
+            ->paginate(5);
+
+        return view('pages.administrador.usuarios', compact('usuarios', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

@@ -66,19 +66,10 @@
             </form>
         </div>
         <!-- Agregar Seleccionado -->
-        <button action="{{route('pacientes.index')}}" type="button" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto ">Añadir
-            seleccionado</button>
+        <a href="{{url('pacientes/create')}}" type="button" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto ">Añadir
+            seleccionado</a>
         <!-- -->
 
-        <!-- CRUD de botones -->
-        <div class="row d-flex justify-content-end m-0 pr-5 border-0 ">
-            <div class="btn-group border-0" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary my-5 p-3">Left</button>
-                <button type="button" class="btn btn-secondary my-5">Middle</button>
-                <button type="button" class="btn btn-secondary my-5">Right</button>
-                <button type="button" class="btn btn-secondary my-5">Right</button>
-            </div>
-        </div>
         <!-- -->
         <div class="form-group col-2 mt-4 p-0">
             <label for="exampleFormControlSelect1">Show</label>
@@ -113,7 +104,8 @@
                     <th>sexo</th>
                     <th>fechaNacimiento</th>
                     <th>status</th>
-                    <th>activos</th>
+                    <th>activo</th>
+                    <th>acciones</th>
                 </tr>
             </thead>
             @foreach ($pacientes as $paciente)
@@ -135,13 +127,13 @@
                     <td>{{ $paciente->status }}</td>
                     <td>{{ $paciente->activo }}</td>
                     <td>
-                    <a href="{{url('pacientes/'.$paciente->idPaciente.'/edit')}}">
+                    <a href="{{url('pacientes/'.$paciente->idPaciente.'/edit')}}" type="submit" class="btn btn-success">
                     Modificar
                     </a>
                     <form action="{{url('pacientes/'.$paciente->idPaciente)}}" method="POST">
                     @csrf
                     {{method_field('DELETE')}}
-                    <input type="submit" onclick="return confirm('quieres borrar?')" value="Borrar">
+                    <input type="submit" class="btn btn-danger" onclick="return confirm('quieres borrar?')" value="   Borrar   ">
                     </form>
                     </td> 
                 </tr>
@@ -149,14 +141,6 @@
             @endforeach
        
         </table>
-    </div>
-    <div class="row d-flex justify-content-end p-1">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary">1</button>
-            <button type="button" class="btn btn-secondary">2</button>
-            <button type="button" class="btn btn-secondary">3</button>
-            <button type="button" class="btn btn-secondary">4</button>
-        </div>
     </div>
 </div>   
                     </div>

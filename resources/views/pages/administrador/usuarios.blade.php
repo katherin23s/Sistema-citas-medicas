@@ -129,7 +129,50 @@
                 <div class="col-md-12 grid-margin p-4">
                     <div class="card">
 
-                        <x-crud />
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="bg-primary">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Apellido Materno</th>
+                                        <th>direccion</th>
+                                        <th>telefono</th>
+                                        <th>email</th>
+                                        <th>sexo</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                @foreach ($usuarios as $usuario)
+                                <tbody>
+                                    <tr id="idtr" action="{{ $usuario->id}}">
+                                        <td id=" idCita" type="hidden" style="display:none;">
+                                            {{ $usuario->id}}</td>
+                                        <td>{{ ++$i }}</td>
+                                        <td>{{ $usuario->name }}</td>
+                                        <td>{{ $usuario->apellido }}</td>
+                                        <td>{{ $usuario->apellidoM }}</td>
+                                        <td>{{ $usuario->direccion }}</td>
+                                        <td>{{ $usuario->telefono }}</td>
+                                        <td>{{ $usuario->email }}</td>
+                                        <td>{{ $usuario->sexo }}</td>
+                                        <td>
+                                        <a href="{{url('pacientes/'.$usuario->id.'/edit')}}" type="submit" class="btn btn-success">
+                                        Modificar
+                                        </a>
+                                        <form action="{{url('pacientes/'.$usuario->id)}}" method="POST">
+                                        @csrf
+                                        {{method_field('DELETE')}}
+                                        <input type="submit" class="btn btn-danger" onclick="return confirm('quieres borrar?')" value="   Borrar   ">
+                                        </form>
+                                        </td> 
+                                    </tr>
+                                </tbody>
+                                @endforeach
+                           
+                            </table>
+                        </div> 
 
                     </div>
                 </div>

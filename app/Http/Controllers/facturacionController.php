@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\consultorios;
+use App\Models\facturacion;
 use Illuminate\Http\Request;
 
-class consultoriosController extends Controller
+class facturacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,12 @@ class consultoriosController extends Controller
     public function index(Request $request)
     {
         $texto = ($request->get('buscar'));
-        $consultorios = consultorios::where('idConsultorio', 'LIKE', '%' . $texto . '%')
-            ->orWhere('noConsultorio', 'LIKE', '%' . $texto . '%')
-            ->orderBy('idConsultorio')
+        $facturaciones = facturacion::where('idFacturacion', 'LIKE', '%' . $texto . '%')
+            ->orWhere('clave', 'LIKE', '%' . $texto . '%')
+            ->orderBy('idFacturacion')
             ->paginate(6);
 
-        return view('pages.administrador.consultorios', compact('consultorios', 'texto'))
+        return view('pages.administrador.facturacion', compact('facturaciones', 'texto'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\especializacion;
 use Illuminate\Http\Request;
 
 class especializacionController extends Controller
@@ -11,9 +12,16 @@ class especializacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $texto = ($request->get('buscar'));
+        $especializaciones = especializacion::where('idEspecializacion', 'LIKE', '%' . $texto . '%')
+            ->orWhere('nombreEspecializacion', 'LIKE', '%' . $texto . '%')
+            ->orderBy('idEspecializacion')
+            ->paginate(6);
+
+        return view('pages.administrador.especializacion', compact('especializaciones', 'texto'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

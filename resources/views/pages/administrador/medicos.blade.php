@@ -538,7 +538,7 @@ $("#btn-save").click(function (e) {
     
     $.ajax({
         type: "POST",
-        url: 'medicos',
+        url: 'medicos/create',
         data: formData,
         dataType: 'json',
         success: function (data) {                                    
@@ -575,28 +575,28 @@ var id =d.getAttribute("data-id");
             },
             success: function(data) {
             //Mostrar registro en el crud
-            console.log(data);           
+            console.log(data);       
     //se debe llamar el data igual que los campos de la BASE DE DATOS
  
-        $('#cedula2').val(data.cedula),
-        $('#nombre2').val(data.nombre),
-        $('#apellido_paterno2').val(data.apellido),
-        $('#apellido_materno2').val(data.apellidoM),
-        $('#direccion2').val(data.direccion),
-        $('#telefono2').val(data.telefono),
-        $('#edad2').val(data.edad),
-        $('#email2').val(data.email),
-        $('#sexo2').val(data.sexo),
-        $('#fechaNacimiento2').val(data.fechaNacimiento),
-        $('#fechaRegistro2').val(data.registro),
-        $('#especializacion2').val(data.id_especializacion),
-        $('#consultorio2').val(data.id_consultorio),
-        $('#horario2').val(data.id_horario),
-        $('#status2').val(data.status),
-        $('#activo2').val(data.activo)      
+        $('#cedula2'+id).val(data.cedula),
+        $('#nombre2'+id).val(data.nombre),
+        $('#apellido_paterno2'+id).val(data.apellido),
+        $('#apellido_materno2'+id).val(data.apellidoM),
+        $('#direccion2'+id).val(data.direccion),
+        $('#telefono2'+id).val(data.telefono),
+        $('#edad2'+id).val(data.edad),
+        $('#email2'+id).val(data.email),
+        $('#sexo2'+id).val(data.sexo),
+        $('#fechaNacimiento2'+id).val(data.fechaNacimiento),
+        $('#fechaRegistro2'+id).val(data.registro),
+        $('#especializacion2'+id).val(data.id_especializacion),
+        $('#consultorio2'+id).val(data.id_consultorio),
+        $('#horario2'+id).val(data.id_horario),
+        $('#status2'+id).val(data.status),
+        $('#activo2'+id).val(data.activo)      
 
     }
-        });
+  });
 } 
 
 //se investigo como obtener el valor del data-id

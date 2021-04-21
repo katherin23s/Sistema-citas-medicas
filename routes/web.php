@@ -6,6 +6,7 @@ use App\Http\Controllers\especializacionController;
 use App\Http\Controllers\medicosController;
 use App\Http\Controllers\pacientesController;
 use App\Http\Controllers\usuariosController;
+use App\Http\Controllers\facturacionController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -79,27 +80,10 @@ Route::post('citas', [citasController::class, 'editarCita']);
 Route::resources(['citas' => citasController::class]);
 Route::resources(['medicos' => medicosController::class]);
 Route::resources(['pacientes' => pacientesController::class]);
-
-
-Route::get('/usuarios', function () {
-    return view('pages.administrador.usuarios');
-});
-
-Route::get('/configuracion', function () {
-    return view('pages.administrador.configuracion');
-});
-
-Route::get('/especializacion', function () {
-    return view('pages.administrador.especializacion');
-});
-
-Route::get('/consultorios', function () {
-    return view('pages.administrador.consultorios');
-});
-
-Route::get('/facturacion', function () {
-    return view('pages.administrador.facturacion');
-});
+Route::resources(['usuarios' => usuariosController::class]);
+Route::resources(['consultorios' => consultoriosController::class]);
+Route::resources(['especializacion' => especializacionController::class]);
+Route::resources(['facturacion' => facturacionController::class]);
 
 
 Route::get('/calendario', function () {

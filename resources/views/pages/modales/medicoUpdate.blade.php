@@ -33,7 +33,7 @@
                             <div class="form-group row">
                                 <label for="exampleInputEmail1" class="col-form-label">Cedula</label>
                                 <div class="col input-group mb-3">
-                                    <input type="email" class="form-control" id="cedula2" name="cedula"
+                                    <input type="email" class="form-control" id="cedula2{{$medico->idMedicos}}" name="cedula"
                                         aria-describedby="emailHelp" placeholder="Enter email" >
 
                                 </div>
@@ -43,7 +43,7 @@
                             <div class="form-group row">
                                 <label for="exampleInputEmail1" class="col-form-label">Nombre</label>
                                 <div class="col input-group mb-3">
-                                    <input type="email" class="form-control" id="nombre2" name="nombre"
+                                    <input type="email" class="form-control" id="nombre2{{$medico->idMedicos}}" name="nombre"
                                         aria-describedby="emailHelp" placeholder="Enter email">
 
                                 </div>
@@ -56,7 +56,7 @@
                             <div class="form-group row">
                                 <label for="exampleInputEmail1" class="col-form-label">Apellido Parterno</label>
                                 <div class="col input-group mb-3">
-                                    <input type="email" class="form-control" id="apellido_paterno2" name="apellido_paterno"
+                                    <input type="email" class="form-control" id="apellido_paterno2{{$medico->idMedicos}}" name="apellido_paterno"
                                         aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                             <div class="form-group row">
                                 <label for="exampleInputEmail1" class="col-form-label">Apellido Materno</label>
                                 <div class="col input-group mb-3">
-                                    <input type="email" class="form-control" id="apellido_materno2" name="apellido_materno"
+                                    <input type="email" class="form-control" id="apellido_materno2{{$medico->idMedicos}}" name="apellido_materno"
                                         aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                             <div class="form-group row">
                                 <label for="exampleInputEmail1" class="col-form-label">Direccion</label>
                                 <div class="col input-group mb-3">
-                                    <input type="email" class="form-control" id="direccion2" name="direccion"
+                                    <input type="email" class="form-control" id="direccion2{{$medico->idMedicos}}" name="direccion"
                                         aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                             <div class="form-group row">
                                 <label for="exampleInputEmail1" class="col-form-label">Teléfono</label>
                                 <div class="col input-group mb-3">
-                                    <input type="email" class="form-control" id="telefono2" name="telefono"
+                                    <input type="email" class="form-control" id="telefono2{{$medico->idMedicos}}" name="telefono"
                                         aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
                             <div class="form-group row">
                                 <label for="exampleInputEmail1" class="col-form-label">Edad</label>
                                 <div class="col input-group mb-3">
-                                    <input type="email" class="form-control" id="edad2" name="edad"
+                                    <input type="email" class="form-control" id="edad2{{$medico->idMedicos}}" name="edad"
                                         aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                             <div class="form-group row">
                                 <label for="exampleInputEmail1" class="col-form-label">Email</label>
                                 <div class="col input-group mb-3">
-                                    <input type="email" class="form-control" id="email2" name="email"
+                                    <input type="email" class="form-control" id="email2{{$medico->idMedicos}}" name="email"
                                         aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                 <div class="form-group row">
                                     <label for="example-date-input" class="col-form-label">Fecha Nacimiento</label>
                                     <div class="col input-group mb-3">
-                                        <input class="form-control" type="date" id="fechaNacimiento2" name="fechaNacimiento2">
+                                        <input class="form-control" type="date" id="fechaNacimiento2{{$medico->idMedicos}}" name="fechaNacimiento2">
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                 <div class="form-group row">
                                     <label for="example-date-input" class="col-form-label">Sexo</label>
                                     <div class="col input-group mb-3">
-                                        <input class="form-control" id="sexo2" name="sexo">
+                                        <input class="form-control" id="sexo2{{$medico->idMedicos}}" name="sexo">
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                             <div class="form-group row">
                                 <label for="example-date-input" class="col-form-label" >Registro</label>
                                 <div class="col input-group mb-3">
-                                    <input class="form-control" type="date" id="fechaRegistro2" name="fechaRegistro">
+                                    <input class="form-control" type="date" id="fechaRegistro2{{$medico->idMedicos}}" name="fechaRegistro">
                                 </div>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                             <div class="form-group row">
                                 <label for="exampleInputEmail1" class="col-form-label">especializacion</label>
                                 <div class="col input-group mb-3">
-                                    <input type="email" class="form-control" id="especializacion2" name="especializacion"
+                                    <input type="email" class="form-control" id="especializacion2{{$medico->idMedicos}}" name="especializacion"
                                         aria-describedby="emailHelp" placeholder="Enter status">
                                 </div>
                             </div>
@@ -171,7 +171,7 @@
                                 <div class="form-group row">
                                     <label for="exampleInputEmail1" class="col-form-label">Consultorio</label>
                                     <div class="col input-group mb-3">
-                                        <input type="email" class="form-control" id="consultorio2" name="consultorio"
+                                        <input type="email" class="form-control" id="consultorio2{{$medico->idMedicos}}" name="consultorio"
                                             aria-describedby="emailHelp" placeholder="Enter status">
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@
                                     <div class="form-group row">
                                         <label for="exampleInputEmail1" class="col-form-label">Horario</label>
                                         <div class="col input-group mb-3">
-                                            <input type="email" class="form-control" id="horario2" name="horario"
+                                            <input type="email" class="form-control" id="horario2{{$medico->idMedicos}}" name="horario"
                                                 aria-describedby="emailHelp" placeholder="Enter status">
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@
                         <div class="form-group row">
                             <label for="exampleInputEmail1" class="col-form-label">Status</label>
                             <div class="col input-group mb-3">
-                                <input type="email" class="form-control" id="status2" name="status"
+                                <input type="email" class="form-control" id="status2{{$medico->idMedicos}}" name="status"
                                     aria-describedby="emailHelp" placeholder="Enter status">
                             </div>
                         </div>
@@ -207,7 +207,7 @@
                         <div class="form-group row">
                             <label for="exampleInputEmail1" class="col-form-label">Activo</label>
                             <div class="col input-group mb-3">
-                                <input type="email" class="form-control" id="activo2" name="activo"
+                                <input type="email" class="form-control" id="activo2{{$medico->idMedicos}}" name="activo"
                                     aria-describedby="emailHelp" placeholder="Enter status">
                             </div>
                         </div>
