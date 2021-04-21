@@ -128,10 +128,10 @@
                                             <td>{{ $usuario->email }}</td>
                                             <td>{{ $usuario->sexo }}</td>
                                             <td>
-                                            <a href="{{url('pacientes/'.$usuario->id.'/edit')}}" type="submit" class="btn btn-success">
+                                            <a href="{{url('usuarios/'.$usuario->id.'/edit')}}" type="submit" class="btn btn-success">
                                             Modificar
                                             </a>
-                                            <form action="{{url('pacientes/'.$usuario->id)}}" method="POST">
+                                            <form action="{{url('usuarios/'.$usuario->id)}}" method="POST">
                                             @csrf
                                             {{method_field('DELETE')}}
                                             <input type="submit" class="btn btn-danger" onclick="return confirm('quieres borrar?')" value="   Borrar   ">
@@ -220,4 +220,5 @@
             </div>
         </div>
     </div>
+
     @endsection

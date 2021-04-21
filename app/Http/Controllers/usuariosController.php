@@ -66,7 +66,8 @@ class usuariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        return view('pages.ventanas.EditarUsuarios', compact('usuario'));
     }
 
     /**
@@ -78,7 +79,10 @@ class usuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $datosUsuario = request()->except(['_token', '_method']);
+        User::where('id', '=', $id)->update($datosUsuario);
+        $usuario = User::findOrFail($id);
+        return view('pages.ventanas.EditarUsuarios', compact('usuario'));
     }
 
     /**
