@@ -175,6 +175,7 @@
                                             <th>Importe</th>
                                             <th>Total</th>
                                             <th>Acciones</th>
+                                            
                                         </tr>
                                     </thead>
                                     @foreach ($facturaciones as $facturacion)

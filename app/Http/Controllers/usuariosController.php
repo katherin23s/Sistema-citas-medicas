@@ -31,7 +31,7 @@ class usuariosController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.ventanas.AltaUsuarios');
     }
 
     /**
@@ -42,7 +42,9 @@ class usuariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuarios = request()->except('_token');
+        User::insert($usuarios);
+        return response()->json($usuarios);
     }
 
     /**
