@@ -82,7 +82,17 @@ class especializacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'nombreEspecializacion' => 'required',
+            'descripcion' => 'required',
+            'activo' => 'required'
+
+        ]);
+        //$noFolio = $request["noFolio"];
+        $especializacionModificar = especializacion::find($id);
+        $especializacionModificar->update($data);
+        $especializacionModificar->save();
+        return response()->json($especializacionModificar);
     }
 
     /**
