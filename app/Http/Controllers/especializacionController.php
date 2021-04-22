@@ -103,6 +103,8 @@ class especializacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $eliminar = especializacion::find($id);
+        $eliminar->delete();
+        return json_encode(array('statusCode' => 200));
     }
 }
