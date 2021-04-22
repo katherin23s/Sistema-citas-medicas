@@ -28,63 +28,8 @@
 
     <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
 
-    <div class="row ml-2 ">
-        <h4 id="minimum-setup">Specialization Information</h4>
-        <div class="container-fluid p-0">
-
-            <!-- paciente y medico nombre -->
-            <div class="m-0 px-5">
-
-
-
-
-                <div class="row">
-                    <div class="col-12 col-sm-6">
-                        <div class="form-group row">
-                            <label for="exampleInputEmail1" class="col-form-label">Nombre</label>
-                            <div class="col input-group mb-3">
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="Enter email">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                        <!-- Tiempo de duracion -->
-                        <div class="">
-                            <div class="form-group row">
-                                <label for="exampleSelect1" class="col-form-label">Status</label>
-                                <div class="col input-group mb-3">
-                                    <select class="form-control" id="exampleSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- -->
-
-
-
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-12 grid-margin p-4">
-                    <div class="card">
-
-                        <!---------- Division lineal de busqueda y agregar nuevas citas -------->
-
-
-
+    
+    @include('pages.modales.especializacionAlta');
 <!----------------------------------------------------------------------------------------------------------->
 
     <div class="row justify-content-center">
@@ -178,13 +123,13 @@
                                             <td>{{ $especializacion->activo }}</td>
                               
                                             <td>
-                                                <button id="{{ $especializacion->idEspecializacion}}" data-id="{{ $especializacion->idEspecializacion}}" onclick="goDoSomething(this);" type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-update-{{$especializacion->idEspecializacion}}" action="{{ $especializacion->idEspecializacion}}">
+                                                <button id="{{ $especializacion->idEspecializacion}}" data-id="{{ $especializacion->idEspecializacion}}" onclick="goDoSomething(this);" type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-update-especializacion-{{$especializacion->idEspecializacion}}" action="{{ $especializacion->idEspecializacion}}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                                   </svg>
                                                 </button>
 
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{$especializacion->idEspecializacion}}">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-especializacion{{$especializacion->idEspecializacion}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
                                                         <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
                                                       </svg>    
@@ -280,4 +225,83 @@
         </div>
 
     </div>
+
+    <script>
+        //  jQuery(document).ready(function($){
+      
+      //----- Open model CREATE -----//
+          jQuery('#agregar').click(function () {
+          jQuery('#btn-save').val("add");
+          jQuery('#myFormAlta').trigger("reset");
+          jQuery('#altaModal').modal('show');
+      });
+      
+      // CREATE
+      $("#btn-save").click(function (e) {
+          $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                  }
+              });
+          e.preventDefault();
+      
+                                         
+      
+          var formData = {         
+              nombreEspecializacion: jQuery('#nombreEspecializacion').val(),
+              descripcion: jQuery('#descripcion').val(),
+              activo: jQuery('#activo').val(),
+          };
+
+          console.log(formData);
+      
+          var state = jQuery('#btn-save').val();
+          var medico_id = jQuery('#medico_id').val();
+          
+          $.ajax({
+              type: "POST",
+              url: 'especializacion',
+              data: formData,
+              dataType: 'json',
+              success: function (data) {                                    
+                  console.log(data);
+              },
+              error: function (data) {
+                  console.log(data);
+              }
+          });
+      });
+      
+
+      //MODIFICAR MÉDICO
+function modificar(clicked_id2) {
+
+var valorid = clicked_id2.getAttribute("data-id");
+console.log(valorid);
+ var formData2 = {
+    noConsultorio: jQuery('#noConsultorio'+valorid).val(),
+    status: jQuery('#status'+valorid).val(),
+    activo: jQuery('#activo'+valorid).val(),
+   };
+   console.log(formData2);
+        $.ajax({
+        url: "consultorios/"+valorid,
+        type: "PATCH",
+        data: {
+            _token: '{{csrf_token()}}',
+        noConsultorio: jQuery('#noConsultorio'+valorid).val(),
+        status: jQuery('#status'+valorid).val(),
+        activo: jQuery('#activo'+valorid).val(),
+  
+        }, //name: name, email: email 
+        success: function (data) {
+        console.log(data+"si funcionooo");   
+        },
+        error: function (data) {
+            console.log(data+"no funcionoo");
+        }
+        });
+} 
+      
+</script>
     @endsection

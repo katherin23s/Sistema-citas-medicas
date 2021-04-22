@@ -42,7 +42,13 @@ class especializacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nombreEspecializacion' => 'required',
+            'descripcion' => 'required',
+            'activo' => 'required'
+        ]);
+        $especializacion = especializacion::create($data);
+        return response()->json($especializacion);
     }
 
     /**
