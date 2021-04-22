@@ -342,7 +342,6 @@ console.log(valorid);
             console.log(data+"no funcionoo");
         }
         });
-     
 } 
       
 </script>
