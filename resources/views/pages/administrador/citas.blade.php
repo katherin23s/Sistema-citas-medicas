@@ -252,12 +252,19 @@
                                     <table class="table table-hover">
                                     <thead class="bg-primary">
                                         <tr>
-                                            <th>Invoice ID</th>
-                                            <th>Customer</th>
+                                            <th>#</th>
+                                            <th>NOfolio</th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Tipo Cita</th>
+                                            <th>id_paciente</th>
+                                            <th>id_Medico</th>
+                                            <th>Fecha_cita</th>
+                                            <th>HoraCita</th>
+                                            <th>HoraFinCita</th>
+                                            <th>Duracion</th>
                                             <th>Status</th>
-                                            <th>Due Date</th>
-                                            <th>Amount</th>
-                                            <th>Customer</th>
+                                            <th>Costo</th>
                                         </tr>
                                     </thead>
                                     @foreach ($citas as $cita)
@@ -270,6 +277,13 @@
                                             <td>{{ $cita->nombre }}</td>
                                             <td>{{ $cita->descripcion }}</td>
                                             <td>{{ $cita->tipoCita }}</td>
+                                            <td>{{ $cita->id_paciente }}</td>
+                                            <td>{{ $cita->id_medico }}</td>
+                                            <td>{{ $cita->fecha_cita }}</td>
+                                            <td>{{ $cita->horaCita }}</td>
+                                            <td>{{ $cita->horaFinCita }}</td>
+                                            <td>{{ $cita->duracion }}</td>
+                                            <td>{{ $cita->status }}</td>
                                             <td>{{ $cita->costo }}</td>
                                         </tr>
                                     </tbody>
@@ -393,8 +407,12 @@
 //CRUD Y SELECCION DE LA TABLA CITAS EN EL FORMULARIO
     $("#idTabla tbody tr").click(function() {
         var id1 = $(this).find("td:first-child").text();
-        var id = parseInt(id1)
+        var id = parseInt(id1);
+        var idPacientes = $(this).find("td:nth-child(7)").text();
+        var idMedicos = $(this).find("td:nth-child(8)").text();
         alert(id);
+        alert(idPacientes);
+        alert(idMedicos);
         document.getElementById('btn-update').disabled=false;   
         document.getElementById('btn-delete').disabled=false;
 
@@ -425,13 +443,26 @@
             },
             
         });
+
+    /*************************************************/
+    //Obtener nombre apellido y apellidoM de pacientes
+
+        //obtener la cita del id total en los inputs
+        $.ajax({
+            url: "api/pacientes/"+idPacientes,
+            type: "GET",
+            success: function(data) {
+                //Mostrar registro en el crud
+                console.log("PACIENTE ", data.apellido);           
+                //se debe llamar el data igual que los campos de la BASE DE DATOS
+               $("#idPacienteCita").val(data.nombre+" "+data.apellido+" "+data.apellidoM);     
+            },
+            
+        });
+
                //UPDATE
 
-  $("#btn-update").click(function (e) {
-    document.getElementById('btn-update').disabled=true;
-    /*Obtener el valor de pacientes y medicos input en id*/
-
-    
+ $("#btn-update").click(function (e) {
  var formData2 = {
        noFolio: jQuery('#noFolioinput').val(),
        nombre: jQuery('#idNombre').val(),
@@ -485,7 +516,7 @@
             
         },
         });
-});
+}); 
 
 //DELETE
 $("#btn-delete").click(function (e) {
@@ -509,8 +540,7 @@ $("#btn-delete").click(function (e) {
          }
      });
  });
-
-    });
+});
 
 /*************************************************/
 /*Al seleccionar un renglón de la tabla pacientes traer el valor al input pacientes en texto*/

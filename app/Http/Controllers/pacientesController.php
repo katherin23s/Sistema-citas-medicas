@@ -97,4 +97,12 @@ class pacientesController extends Controller
         pacientes::destroy($idPaciente);
         return redirect('pacientes');
     }
+
+    public function encontrarPaciente($idPaciente)
+    {
+        //busca al paciente por ID
+        $paciente = pacientes::findOrFail($idPaciente);
+        //lo regresa como json
+        return response()->json($paciente);
+    }
 }

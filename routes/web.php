@@ -71,8 +71,6 @@ Route::get('/graficas', function () {
     return view('pages.administrador.citas');
 });*/
 
-/*Route::get('citas', [citasController::class, 'index']);*/
-Route::post('citas', [citasController::class, 'editarCita']);
 Route::resources(['citas' => citasController::class]);
 Route::resources(['medicos' => medicosController::class]);
 Route::resources(['pacientes' => pacientesController::class]);
