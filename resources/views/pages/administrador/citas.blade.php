@@ -460,6 +460,22 @@
             
         });
 
+     /*************************************************/
+    //Obtener nombre apellido y apellidoM de medicos
+
+        //obtener la cita del id total en los inputs
+        $.ajax({
+            url: "api/medicos/"+idMedicos,
+            type: "GET",
+            success: function(data) {
+                //Mostrar registro en el crud
+                console.log("PACIENTE ", data.apellido);           
+                //se debe llamar el data igual que los campos de la BASE DE DATOS
+               $("#NombreMedico").val(data.nombre+" "+data.apellido+" "+data.apellidoM);     
+            },
+            
+        });
+
                //UPDATE
 
  $("#btn-update").click(function (e) {

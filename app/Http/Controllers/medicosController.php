@@ -133,9 +133,17 @@ class medicosController extends Controller
     public function destroy($idMedicos)
     {
         // return $medico;
-        /*  medicos::find($idMedicos)->delete();*/
         $eliminar = medicos::find($idMedicos);
         $eliminar->delete();
         return json_encode(array('statusCode' => 200));
+    }
+
+
+    public function encontrarMedico($idMedico)
+    {
+        //busca al paciente por ID
+        $medico = medicos::findOrFail($idMedico);
+        //lo regresa como json
+        return response()->json($medico);
     }
 }
