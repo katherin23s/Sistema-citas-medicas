@@ -178,4 +178,17 @@ class citasController extends Controller
         citas::find($id)->delete();
         return json_encode(array('statusCode' => 200));
     }
+
+
+    public function cancelarCita(Request $request, $id)
+    {
+        $data = $request->validate([
+            'status' => 'required',
+            'activo' => 'required',
+        ]);
+        $citasmodificar = citas::find($id);
+        $citasmodificar->update($data);
+        $citasmodificar->save();
+        return response()->json($citasmodificar);
+    }
 }

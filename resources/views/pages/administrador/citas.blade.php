@@ -52,7 +52,7 @@
                             <div class="form-group row ">
                                 <label for="example-time-input" class="col-2 col-form-label">Start time</label>
                                 <div class="col-10">
-                                    <input class="form-control" id="idHoracita" name="horaCita" type="time" value="13:45:00">
+                                    <input class="form-control" id="idHoracita" name="horaCita" type="time" value="13:45:00" >
                                 </div>
                             </div>
 
@@ -110,7 +110,7 @@
                         <div class="form-group row">
                             <label class="col-form-label">Paciente</label>
                             <div class="col input-group mb-3">
-                                <input class="form-control" id="idPacienteCita" name="paciente" placeholder="paciente">
+                                <input class="form-control" id="idPacienteCita" name="paciente" placeholder="paciente" disabled>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Button</button>
                                 </div>
@@ -122,7 +122,7 @@
                         <div class="form-group row">
                             <label class=" col-form-label">Medico</label>
                             <div class="col input-group mb-3">
-                                <input type="text" class="form-control" id="NombreMedico" name="medico"
+                                <input type="text" class="form-control" id="NombreMedico" name="medico" disabled
                                     placeholder="medico" aria-label="Recipient's username"
                                     aria-describedby="basic-addon2">
                                 <div class="input-group-append">
@@ -335,7 +335,7 @@
 
                         <div class="row d-flex justify-content-end p-1">
                             <div class=" mr-2" role="group" aria-label="First group">
-                                <button type="button" class="btn btn-primary">Anular</button>
+                                <button id="btn-cancelar" type="button" class="btn btn-primary">Anular</button>
                                 <button type="button" class="btn btn-primary">Marcar como
                                     confirmada</button>
                                 <button type="button" class="btn btn-success">Pagar</button>
@@ -556,6 +556,27 @@ $("#btn-delete").click(function (e) {
          }
      });
  });
+
+ $("#btn-cancelar").click(function (e) {
+    //cambiar la clase del boton
+     console.log("cancelar");
+     $(this).addClass("bg-danger border border-danger");
+    //Se cambia el estado de la cita a cancelado.
+
+     $.ajax({
+        url: "citas-cancelar/"+id,
+        type: "PATCH",
+        data: {
+            _token: '{{csrf_token()}}',
+            status: 1,
+            activo: 0,  
+        }, //name: name, email: email 
+        success: function (data) {
+        console.log(data);
+        window.location = "/citas";
+        },
+        });
+    });
 });
 
 /*************************************************/
