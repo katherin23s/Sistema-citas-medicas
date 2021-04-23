@@ -104,9 +104,6 @@
                             <label class="col-form-label">Folio</label>
                             <div class="col input-group mb-3">
                                 <input class="form-control" id="noFolioinput" name="folioinput" placeholder="folio">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">Button</button>
-                                </div>
                             </div>
                         </div>
 
@@ -116,7 +113,7 @@
                             <div class="col input-group mb-3">
                                 <input class="form-control" id="id_paciente" name="paciente" placeholder="paciente">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">Button</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Button</button>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +125,7 @@
                                     placeholder="medico" aria-label="Recipient's username"
                                     aria-describedby="basic-addon2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">Button</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalMedicoCitas">Button</button>
                                 </div>
                             </div>
                         </div>
@@ -139,9 +136,6 @@
                             <div class="col input-group mb-3">
                                 <input type="text" class="form-control" id="idNombre" name="nombre"
                                     aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">Button</button>
-                                </div>
                             </div>
                         </div>
 
@@ -151,10 +145,7 @@
                             <div class="col input-group mb-3">
                                 <input type="text" class="form-control" id="IdDescripcion" name="descripcion"
                                     placeholder="descripcion" aria-label="Recipient's username"
-                                    aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">Button</button>
-                                </div>
+                                    aria-describedby="basic-addon2">                          
                             </div>
                         </div>
                     </div>
@@ -162,6 +153,10 @@
             </div>
         </div>
     </form>
+
+
+    @include('pages.modales.citasSelectPacientes');
+    @include('pages.modales.medicosSelect');
     <!-- -->
     <div class="form-group d-flex justify-content-end px-4">
         <button id="btn-save" type="button" class="btn btn-outline-primary">Guardar</button>
@@ -300,29 +295,15 @@
                             <div class="col">
                                 <hr class="borde">
                             </div>
-                            <div class="col-auto">OR</div>
-                            <div class="col">
-                                <hr class="borde">
-                            </div>
                         </div>
 
                         <!-- -->
                         <!-- ======= Costos ===== -->
-                        <div class="form-group row m-0 p-0">
-                            <label for="exampleInputEmail1" class=" col-form-label pl-4 pr-5">Servicio</label>
-                            <div class="col input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Recipient's username"
-                                    aria-label="Recipient's username" aria-describedby="basic-addon2">
-
-                            </div>
-                        </div>
-
-
                         <div class="d-flex">
                             <div class="mr-auto p-2">
 
                                 <div class="form-group row mb-0">
-                                    <label for="exampleInputEmail1" class="col-form-label ml-4 pl-1">Medico</label>
+                                    <label for="exampleInputEmail1" class="col-form-label ml-4 pl-1">Precio</label>
                                     <div class="col input-group mb-3">
                                         <input type="text" class="form-control"  placeholder="Recipient's username"
                                             aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -330,23 +311,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="p-2">
-                                <div class="form-group row">
-                                    <label for="exampleSelect1" class=" col-form-label">Tipo
-                                        Cita</label>
-                                    <div class="col">
-                                        <select class="form-control" id="exampleSelect1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
-
                         </div>
                         <!-- -->
 

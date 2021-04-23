@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Response;
 use App\Models\citas;
+use App\Models\medicos;
+use App\Models\pacientes;
 use Illuminate\Support\Facades\DB;
 
 class citasController extends Controller
@@ -23,14 +25,12 @@ class citasController extends Controller
             ->orderBy('noFolio')
             ->paginate(5);
 
-        return view('pages.administrador.citas', compact('citas', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
-        //::latest()->paginate(5);
-        /*   $citas = citas::latest()->paginate(5);
-        return view('pages.administrador.citas', compact('citas',))
-            ->with('i', (request()->input('page', 1) - 1) * 5);*/
+        $pacientesModal = pacientes::all();
 
-        //  return view('pages.administrador.citas');
+        $medicosModal = medicos::all();
+
+        return view('pages.administrador.citas', compact('citas', 'texto', 'medicosModal', 'pacientesModal'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -73,8 +73,6 @@ class citasController extends Controller
         $citas = citas::create($data);
         return response()->json($citas);
     }
-
-
 
     public function editarCita(Request $request)
     {
