@@ -12,7 +12,7 @@
         <div class="modal-body">
           
             <!-- table -->
-            <table class="table table-hover">
+            <table id="idTablaPacienteCita" class="table table-hover">
                 <thead class="bg-primary">
                   <tr>
                     <th scope="col">#</th>
@@ -26,7 +26,8 @@
                   </tr>
                 </thead>
                 @foreach ($pacientesModal as $paciente)
-                <tbody>
+                <tbody data-dismiss="modal">
+                    <td>{{ $paciente->idPaciente }}</td>
                     <td>{{ $paciente->nombre }}</td>
                     <td>{{ $paciente->apellido }}</td>
                     <td>{{ $paciente->apellidoM }}</td>

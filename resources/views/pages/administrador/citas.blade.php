@@ -107,16 +107,18 @@
                             </div>
                         </div>
 
-
-                        <div class="form-group row">
+                          <div class="form-group row">
                             <label class="col-form-label">Paciente</label>
                             <div class="col input-group mb-3">
-                                <input class="form-control" id="id_paciente" name="paciente" placeholder="paciente">
+                                <input class="form-control" id="idPacienteCita" name="paciente" placeholder="paciente">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Button</button>
                                 </div>
                             </div>
                         </div>
+
+                        <input class="form-control"  type="hidden" id="id_paciente" name="paciente" placeholder="paciente">
+                           
 
                         <div class="form-group row">
                             <label class=" col-form-label">Medico</label>
@@ -243,8 +245,10 @@
                             <!-- -->
 
 
-                            <div id="idTabla" class="table-responsive">
-                                <table class="table table-striped table-hover" id="tblMain">
+                         <!--   <div id="idTabla" class="table-responsive">
+                                <table class="table table-striped table-hover" id="tblMain"> -->
+                                    <div id="idTabla" class="table-responsive">
+                                    <table class="table table-hover">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th>Invoice ID</th>
@@ -385,14 +389,16 @@
 
 
 
-//CITA CLIC EN TABLA
-    $("table tbody tr").click(function() {
+//CRUD Y SELECCION DE LA TABLA CITAS EN EL FORMULARIO
+    $("#idTabla tbody tr").click(function() {
         var id1 = $(this).find("td:first-child").text();
         var id = parseInt(id1)
         alert(id);
         document.getElementById('btn-update').disabled=false;   
         document.getElementById('btn-delete').disabled=false;
-        //obtener la cita del id total
+
+
+        //obtener la cita del id total en los inputs
         $.ajax({
             url: "citas/"+id+"/edit",
             type: "GET",
@@ -418,8 +424,6 @@
             },
             
         });
-
-
                //UPDATE
 
   $("#btn-update").click(function (e) {
@@ -510,6 +514,15 @@ $("#btn-delete").click(function (e) {
 /*************************************************/
 /*Al seleccionar un renglón de la tabla pacientes traer el valor al input pacientes en texto*/
 
+$("#idTablaPacienteCita tbody tr").click(function() {
+        var id1 = $(this).find("td:first-child").text();
+        var id = parseInt(id1);
+        var nombre = $(this).find("td:nth-child(2)").text();
+        var apellidoP = $(this).find("td:nth-child(3)").text();
+        var apellidoM = $(this).find("td:nth-child(4)").text();
+        $('#id_paciente').val(id);
+        $("#idPacienteCita").val(nombre+" "+apellidoP+" "+apellidoM); 
+    });
 
 
 </script>
