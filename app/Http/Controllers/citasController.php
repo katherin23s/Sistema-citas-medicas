@@ -203,4 +203,15 @@ class citasController extends Controller
         $citasmodificar->save();
         return response()->json($citasmodificar);
     }
+
+    public function pagadaCita(Request $request, $id)
+    {
+        $data = $request->validate([
+            'costo' => 'required',
+        ]);
+        $citasmodificar = citas::find($id);
+        $citasmodificar->update($data);
+        $citasmodificar->save();
+        return response()->json($citasmodificar);
+    }
 }

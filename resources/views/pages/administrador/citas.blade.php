@@ -160,11 +160,12 @@
 
     @include('pages.modales.citasSelectPacientes')
     @include('pages.modales.medicosSelect')
+    @include('pages.modales.citasPay')
     <!-- -->
     <div class="form-group d-flex justify-content-end px-4">
         <button id="btn-save" type="button" class="btn btn-outline-primary">Guardar</button>
         <button id="btn-update" type="button" class="btn btn-outline-secondary">Editar</button>
-        <button type="button" class="btn btn-outline-success">Buscar</button>
+        <button type="button" id="btn-search"class="btn btn-outline-success">Buscar</button>
         <button type="button" id="btn-delete" class="btn btn-outline-danger">Danger</button>
     </div>
 
@@ -337,7 +338,7 @@
                             <div class=" mr-2" role="group" aria-label="First group">
                                 <button id="btn-cancelar" type="button" class="btn btn-primary">Anular</button>
                                 <button id="btn-pendiente" type="button" class="btn btn-primary">Pendiente</button>
-                                <button type="button" class="btn btn-success">Pagar</button>
+                                <button id="btn-pagar" data-toggle="modal" data-target="#pagar-cita" type="button" class="btn btn-success">Pagar</button>
 
                             </div>
                         </div>
@@ -405,6 +406,12 @@
 
 //CRUD Y SELECCION DE LA TABLA CITAS EN EL FORMULARIO
     $("#idTabla tbody tr").click(function() {
+        document.getElementById('btn-update').disabled=false;   
+        document.getElementById('btn-delete').disabled=false;
+        
+        document.getElementById('btn-save').disabled=true;   
+        document.getElementById('btn-search').disabled=true;
+
         var id1 = $(this).find("td:first-child").text();
         var id = parseInt(id1);
         var idPacientes = $(this).find("td:nth-child(7)").text();
@@ -412,8 +419,6 @@
         alert(id);
         alert(idPacientes);
         alert(idMedicos);
-        document.getElementById('btn-update').disabled=false;   
-        document.getElementById('btn-delete').disabled=false;
 
 
         //obtener la cita del id total en los inputs
@@ -599,7 +604,34 @@ $("#btn-delete").click(function (e) {
         },
         });
     });
+
+
+    $("#btn-pagar-modal").click(function (e) {
+    //cambiar la clase del boton
+     console.log("pagar");
+     $(this).addClass("bg-success border border-success");
+    //Se cambia el estado de la cita a pagado.
+    //Toma el valor de input pagar
+    var pago = $("#pagar-citas-input").val();
+    console.log(pago);
+
+    $.ajax({
+        url: "cita-pagada/"+id,
+        type: "PATCH",
+        data: {
+            _token: '{{csrf_token()}}',
+            costo: pago,
+            status: 3,
+            activo: 1,  
+        }, //name: name, email: email 
+        success: function (data) {
+        console.log(data);
+        window.location = "/citas";
+        },
+        });
+    });
 });
+
 
 /*************************************************/
 /*Al seleccionar un renglón de la tabla pacientes traer el valor al input pacientes en texto*/
