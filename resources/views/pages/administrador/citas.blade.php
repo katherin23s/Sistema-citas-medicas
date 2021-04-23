@@ -107,7 +107,7 @@
                             </div>
                         </div>
 
-                          <div class="form-group row">
+                        <div class="form-group row">
                             <label class="col-form-label">Paciente</label>
                             <div class="col input-group mb-3">
                                 <input class="form-control" id="idPacienteCita" name="paciente" placeholder="paciente">
@@ -117,13 +117,12 @@
                             </div>
                         </div>
 
-                        <input class="form-control"  type="hidden" id="id_paciente" name="paciente" placeholder="paciente">
-                           
+                        <input class="form-control" type="hidden" id="id_paciente" name="paciente" placeholder="paciente">
 
                         <div class="form-group row">
                             <label class=" col-form-label">Medico</label>
                             <div class="col input-group mb-3">
-                                <input type="text" class="form-control" id="idMedico" name="medico"
+                                <input type="text" class="form-control" id="NombreMedico" name="medico"
                                     placeholder="medico" aria-label="Recipient's username"
                                     aria-describedby="basic-addon2">
                                 <div class="input-group-append">
@@ -131,6 +130,8 @@
                                 </div>
                             </div>
                         </div>
+                    
+                        <input type="hidden" class="form-control" id="idMedico" name="medico" placeholder="medico">
 
 
                         <div class="form-group row">
@@ -524,6 +525,18 @@ $("#idTablaPacienteCita tbody tr").click(function() {
         $("#idPacienteCita").val(nombre+" "+apellidoP+" "+apellidoM); 
     });
 
+/*************************************************/
+/*Al seleccionar un renglón de la tabla medicos traer el valor al input medicos en texto*/
+
+$("#idTablaMedicoCita tbody tr").click(function() {
+        var id = $(this).find("td:first-child").text();
+        var id2 = parseInt(id);
+        var nombreMedico = $(this).find("td:nth-child(2)").text();
+        var apellidoPMedico = $(this).find("td:nth-child(3)").text();
+        var apellidoMedico = $(this).find("td:nth-child(4)").text();
+        $('#id_medico').val(id2);
+        $("#NombreMedico").val(nombreMedico+" "+apellidoPMedico+" "+apellidoMedico); 
+    });
 
 </script>
     <!-- partial:../../partials/_footer.html -->
