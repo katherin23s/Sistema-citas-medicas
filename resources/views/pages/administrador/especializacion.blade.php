@@ -29,7 +29,7 @@
     <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
 
     
-    @include('pages.modales.especializacionAlta');
+    @include('pages.modales.especializacionAlta')
 <!----------------------------------------------------------------------------------------------------------->
 
     <div class="row justify-content-center">
@@ -135,8 +135,8 @@
                                                       </svg>    
                                                 </button></td>   
                                                 
-                                            @include('pages.modales.especializacionUpdate');
-                                            @include('pages.modales.especializacionDelete');                                       
+                                            @include('pages.modales.especializacionUpdate')
+                                            @include('pages.modales.especializacionDelete')                                       
                                         </tr>
                                     </tbody>
                                     @endforeach

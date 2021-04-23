@@ -61,8 +61,11 @@
         @stack('csscalendario')
         @yield('calendario')
         @stack('jscalendario')
+        <!-- Ventanas -->
         @endif
         @include('pages.administrador.foother')
+
+
 
         <!-- partial -->
     </div>

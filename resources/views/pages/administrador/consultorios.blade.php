@@ -149,7 +149,7 @@
 
                             </div>
 
-                            @include('pages.modales.consultorioAlta');
+                            @include('pages.modales.consultorioAlta')
                             <!-- -->
                             <div id="idTabla" class="table-responsive">
                                 <table class="table table-striped table-hover" id="tblMain">
@@ -182,8 +182,8 @@
                                                       </svg>    
                                                 </button></td>   
                                                 
-                                            @include('pages.modales.consultorioUpdate');
-                                            @include('pages.modales.consultorioDelete');                                    
+                                            @include('pages.modales.consultorioUpdate')
+                                            @include('pages.modales.consultorioDelete')                                    
                                         </tr>
                                     </tbody>
                                     @endforeach

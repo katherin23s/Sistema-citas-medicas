@@ -155,8 +155,8 @@
     </form>
 
 
-    @include('pages.modales.citasSelectPacientes');
-    @include('pages.modales.medicosSelect');
+    @include('pages.modales.citasSelectPacientes')
+    @include('pages.modales.medicosSelect')
     <!-- -->
     <div class="form-group d-flex justify-content-end px-4">
         <button id="btn-save" type="button" class="btn btn-outline-primary">Guardar</button>
@@ -424,6 +424,9 @@
 
   $("#btn-update").click(function (e) {
     document.getElementById('btn-update').disabled=true;
+    /*Obtener el valor de pacientes y medicos input en id*/
+
+    
  var formData2 = {
        noFolio: jQuery('#noFolioinput').val(),
        nombre: jQuery('#idNombre').val(),
@@ -504,7 +507,8 @@ $("#btn-delete").click(function (e) {
 
     });
 
-
+/*************************************************/
+/*Al seleccionar un renglón de la tabla pacientes traer el valor al input pacientes en texto*/
 
 
 
