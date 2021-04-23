@@ -87,11 +87,10 @@
                                 <label for="exampleSelect1" class="col-2 col-form-label">Tipo Cita</label>
                                 <div class="col-10">
                                     <select class="form-control" id="idTipoCita" name="tipoCita">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        <option>Cirujias</option>
+                                        <option>Tratamientos</option>
+                                        <option>Consulta</option>
+
                                     </select>
                                 </div>
                             </div>
@@ -258,8 +257,8 @@
                                             <th>Nombre</th>
                                             <th>Descripción</th>
                                             <th>Tipo Cita</th>
-                                            <th>id_paciente</th>
-                                            <th>id_Medico</th>
+                                            <th type="hidden" style="display:none;">id_paciente</th>
+                                            <th type="hidden" style="display:none;">id_Medico</th>
                                             <th>Fecha_cita</th>
                                             <th>HoraCita</th>
                                             <th>HoraFinCita</th>
@@ -278,8 +277,8 @@
                                             <td>{{ $cita->nombre }}</td>
                                             <td>{{ $cita->descripcion }}</td>
                                             <td>{{ $cita->tipoCita }}</td>
-                                            <td>{{ $cita->id_paciente }}</td>
-                                            <td>{{ $cita->id_medico }}</td>
+                                            <td type="hidden" style="display:none;">{{ $cita->id_paciente }}</td>
+                                            <td type="hidden" style="display:none;">{{ $cita->id_medico }}</td>
                                             <td>{{ $cita->fecha_cita }}</td>
                                             <td>{{ $cita->horaCita }}</td>
                                             <td>{{ $cita->horaFinCita }}</td>
