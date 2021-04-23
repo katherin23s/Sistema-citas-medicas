@@ -70,6 +70,7 @@ Route::get('/graficas', function () {
 /*Route::get('citas', function () {
     return view('pages.administrador.citas');
 });*/
+Route::patch('citas-pendiente/{id}', [citasController::class, 'pendienteCita']);
 Route::patch('citas-cancelar/{id}', [citasController::class, 'cancelarCita']);
 Route::resources(['citas' => citasController::class]);
 Route::resources(['medicos' => medicosController::class]);

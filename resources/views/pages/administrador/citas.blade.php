@@ -336,8 +336,7 @@
                         <div class="row d-flex justify-content-end p-1">
                             <div class=" mr-2" role="group" aria-label="First group">
                                 <button id="btn-cancelar" type="button" class="btn btn-primary">Anular</button>
-                                <button type="button" class="btn btn-primary">Marcar como
-                                    confirmada</button>
+                                <button id="btn-pendiente" type="button" class="btn btn-primary">Pendiente</button>
                                 <button type="button" class="btn btn-success">Pagar</button>
 
                             </div>
@@ -570,6 +569,29 @@ $("#btn-delete").click(function (e) {
             _token: '{{csrf_token()}}',
             status: 1,
             activo: 0,  
+        }, //name: name, email: email 
+        success: function (data) {
+        console.log(data);
+        window.location = "/citas";
+        },
+        });
+    });
+
+
+
+    $("#btn-pendiente").click(function (e) {
+    //cambiar la clase del boton
+     console.log("pendiente");
+     $(this).addClass("bg-success border border-success");
+    //Se cambia el estado de la cita a cancelado.
+
+     $.ajax({
+        url: "citas-pendiente/"+id,
+        type: "PATCH",
+        data: {
+            _token: '{{csrf_token()}}',
+            status: 2,
+            activo: 1,  
         }, //name: name, email: email 
         success: function (data) {
         console.log(data);

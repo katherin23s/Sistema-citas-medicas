@@ -191,4 +191,16 @@ class citasController extends Controller
         $citasmodificar->save();
         return response()->json($citasmodificar);
     }
+
+    public function pendienteCita(Request $request, $id)
+    {
+        $data = $request->validate([
+            'status' => 'required',
+            'activo' => 'required',
+        ]);
+        $citasmodificar = citas::find($id);
+        $citasmodificar->update($data);
+        $citasmodificar->save();
+        return response()->json($citasmodificar);
+    }
 }
