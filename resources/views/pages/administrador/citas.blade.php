@@ -27,7 +27,14 @@
         </div>
     </div>
 
-
+<div class="row d-flex justify-content-center">
+    <div id="advertencia" class="alert alert-warning alert-dismissible fade show container-lg m-0 text-center center-block" role="alert" style="display:none">
+        <strong>Advertencia! </strong> You should check in on some of those fields below. 
+        <button id="buttonAdvertencia" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span id="cross" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+</div>
 
     <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
     <form method="POST">
@@ -42,8 +49,7 @@
                             <div class="form-group row ml-2">
                                 <label class="col-2 col-form-label" name="fecha">Date</label>
                                 <div class="col-10">
-                                    <input class="form-control" id="idFechaCita" name="fechaCita"type="date" value="2011-08-19"
-                                        id="example-date-input">
+                                    <input class="form-control" id="idFechaCita" name="fechaCita"type="date" value="{{ old('fechaCita') }}" require>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +58,7 @@
                             <div class="form-group row ">
                                 <label for="example-time-input" class="col-2 col-form-label">Start time</label>
                                 <div class="col-10">
-                                    <input class="form-control" id="idHoracita" name="horaCita" type="time" value="13:45:00" >
+                                    <input class="form-control" id="idHoracita" name="horaCita" type="time" value="{{ old('horaCita') }}" require>
                                 </div>
                             </div>
 
@@ -62,7 +68,7 @@
                             <div class="form-group row ">
                                 <label for="example-time-input" class="col-2 col-form-label">End Time</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="time" id="idHorafincita" name="horaFinCita" value="13:45:00">
+                                    <input class="form-control" type="time" id="idHorafincita" name="horaFinCita" value="{{ old('horaFinCita') }}" require>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +77,7 @@
                             <div class="form-group row ">
                                 <label for="exampleSelect1" class="col-2 col-form-label">Time</label>
                                 <div class="col-10">
-                                    <select class="form-control" id="idDuracion" name="duracion">
+                                    <select class="form-control" id="idDuracion" name="duracion" value="{{ old('duracion') }}" require>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -86,7 +92,7 @@
                             <div class="form-group row">
                                 <label for="exampleSelect1" class="col-2 col-form-label">Tipo Cita</label>
                                 <div class="col-10">
-                                    <select class="form-control" id="idTipoCita" name="tipoCita">
+                                    <select class="form-control" id="idTipoCita" name="tipoCita" value="{{ old('tipoCita') }}" require>
                                         <option>Cirujias</option>
                                         <option>Tratamientos</option>
                                         <option>Consulta</option>
@@ -102,42 +108,42 @@
                         <div class="form-group row">
                             <label class="col-form-label">Folio</label>
                             <div class="col input-group mb-3">
-                                <input class="form-control" id="noFolioinput" name="folioinput" placeholder="folio">
+                                <input class="form-control" id="noFolioinput" name="folioinput" placeholder="folio" value="{{ old('folioinput') }}" require>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="col-form-label">Paciente</label>
                             <div class="col input-group mb-3">
-                                <input class="form-control" id="idPacienteCita" name="paciente" placeholder="paciente" disabled>
+                                <input class="form-control" id="idPacienteCita" name="paciente" placeholder="paciente" value="{{ old('paciente')}}" disabled require>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Button</button>
                                 </div>
                             </div>
                         </div>
 
-                        <input class="form-control" type="hidden" id="id_paciente" name="paciente" placeholder="paciente">
+                        <input type="hidden" class="form-control"  id="id_paciente" name="paciente" placeholder="paciente" value="{{ old('paciente')}}">
 
                         <div class="form-group row">
                             <label class=" col-form-label">Medico</label>
                             <div class="col input-group mb-3">
                                 <input type="text" class="form-control" id="NombreMedico" name="medico" disabled
                                     placeholder="medico" aria-label="Recipient's username"
-                                    aria-describedby="basic-addon2">
+                                    aria-describedby="basic-addon2" value="{{ old('medico')}}" require>
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalMedicoCitas">Button</button>
                                 </div>
                             </div>
                         </div>
                     
-                        <input type="hidden" class="form-control" id="idMedico" name="medico" placeholder="medico">
+                        <input type="hidden" class="form-control" id="id_medico" name="medico" placeholder="medico" value="{{ old('medico')}}">
 
 
                         <div class="form-group row">
-                            <label class=" col-form-label">Nombre paciente</label>
+                            <label class=" col-form-label">Titulo receta</label>
                             <div class="col input-group mb-3">
                                 <input type="text" class="form-control" id="idNombre" name="nombre"
-                                    aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2" value="{{ old('nombre')}}" require>
                             </div>
                         </div>
 
@@ -147,7 +153,7 @@
                             <div class="col input-group mb-3">
                                 <input type="text" class="form-control" id="IdDescripcion" name="descripcion"
                                     placeholder="descripcion" aria-label="Recipient's username"
-                                    aria-describedby="basic-addon2">                          
+                                    aria-describedby="basic-addon2" value="{{ old('descripcion')}}" require>                          
                             </div>
                         </div>
                     </div>
@@ -355,6 +361,8 @@
 <script>
  document.getElementById('btn-update').disabled=true;
  document.getElementById('btn-delete').disabled=true;
+ 
+
   // CREATE
   $("#btn-save").click(function (e) {
         $.ajaxSetup({
@@ -370,35 +378,83 @@
             descripcion: jQuery('#IdDescripcion').val(), 
             tipoCita: jQuery('#idTipoCita').val(),
             id_paciente: jQuery('#id_paciente').val(),
-            id_medico: jQuery('#idMedico').val(),    
+            id_medico: jQuery('#id_medico').val(),    
             fecha_cita: jQuery('#idFechaCita').val(),
             horaCita: jQuery('#idHoracita').val(),
             horaFinCita: jQuery('#idHorafincita').val(),
             duracion: jQuery('#idDuracion').val(),
             status: 1,
-            costo: 500,
+            costo: 0,
             activo: 1,  
         };
 
-        //verificar si se estan pasando los datos...
-        console.log(formData); // ... yes
 
-        //Mandar los datos al metodo store del controlador...
-        var type = "POST";
-        var ajaxurl = 'citas';
-        $.ajax({
-            type: type,
-            url: ajaxurl,
-            data: formData,
-            dataType: 'json',
-            success: function (data) {
-               console.log(data);
-               window.location = "/citas";
-            },
-            error: function (data) {
-                console.log(data);
-            }
-        });
+    //Obtener valor de formulario
+    let advertencia = document.getElementById("advertencia");
+    let fechaCita = jQuery('#idFechaCita').val()
+    let Horacita = jQuery('#idHoracita').val()
+    let horaFinCita = jQuery('#idHorafincita').val()
+    let duracion = jQuery('#idDuracion').val()
+    let tipoCita = jQuery('#tipoCita').val()
+    let folioinput = jQuery('#noFolioinput').val()
+    let paciente = jQuery('#idPacienteCita').val()
+    let NombreMedico = jQuery('#NombreMedico').val()
+    let titulo = jQuery('#idNombre').val()
+    let descripcion = jQuery('#IdDescripcion').val()
+
+    //Validar campos 
+  /*  if(jQuery('#noFolioinput').val() == "") {
+        
+        document.getElementById('advertencia').style.display='';
+        document.getElementById('buttonAdvertencia').style.display='';
+        document.getElementById('cross').style.display='';
+       // folioinput.classList.add("border border-warning");
+        //advertencia.innerHTML = "Llenar el campo Folio";
+        jQuery('#noFolioinput').addClass("border border-warning");
+    }*/
+
+    $("#noFolioinput, select").each(function() {
+   if($(this).val() === ""){
+       document.getElementById('advertencia').style.display='';
+       document.getElementById('buttonAdvertencia').style.display='';
+       document.getElementById('cross').style.display='';}
+    if(folioinput === ""){
+     jQuery('#noFolioinput').addClass("border border-warning");}
+
+     if(fechaCita === ""){
+     jQuery('#idFechaCita').addClass("border border-warning");}
+
+     if(Horacita === ""){
+     jQuery('#idHoracita').addClass("border border-warning");}
+
+     if(horaFinCita === ""){
+     jQuery('#idHorafincita').addClass("border border-warning");}
+
+     if(duracion === ""){
+     jQuery('#idDuracion').addClass("border border-warning");}
+
+     if(tipoCita === ""){
+     jQuery('#tipoCita').addClass("border border-warning");}
+
+     if(paciente === ""){
+     jQuery('#idPacienteCita').addClass("border border-warning");}
+     
+     if(NombreMedico === ""){
+     jQuery('#NombreMedico').addClass("border border-warning");}
+
+     if(titulo === ""){
+     jQuery('#idNombre').addClass("border border-warning");}
+
+     if(descripcion === ""){
+     jQuery('#IdDescripcion').addClass("border border-warning");}
+     
+
+    });
+
+    
+  
+
+      
     });
 
 
@@ -438,7 +494,7 @@
             $("#IdDescripcion").val(data.descripcion);
             $("#idTipoCita").val(data.tipoCita);
             $("#id_paciente").val(data.id_paciente);
-            $("#idMedico").val(data.id_medico);
+            $("#id_medico").val(data.id_medico);
             $("#idFechaCita").val(data.fecha_cita);
             $("#idHoracita").val(data.horaCita);
             $("#idHorafincita").val(data.horaFinCita);
@@ -488,7 +544,7 @@
        descripcion: jQuery('#IdDescripcion').val(), 
        tipoCita: jQuery('#idTipoCita').val(),
        id_paciente: jQuery('#id_paciente').val(),
-       id_medico: jQuery('#idMedico').val(),    
+       id_medico: jQuery('#id_medico').val(),    
        fecha_cita: jQuery('#idFechaCita').val(),
        horaCita: jQuery('#idHoracita').val(),
        horaFinCita: jQuery('#idHorafincita').val(),
@@ -508,7 +564,7 @@
             descripcion: jQuery('#IdDescripcion').val(), 
             tipoCita: jQuery('#idTipoCita').val(),
             id_paciente: jQuery('#id_paciente').val(),
-            id_medico: jQuery('#idMedico').val(),    
+            id_medico: jQuery('#id_medico').val(),    
             fecha_cita: jQuery('#idFechaCita').val(),
             horaCita: jQuery('#idHoracita').val(),
             horaFinCita: jQuery('#idHorafincita').val(),
@@ -524,7 +580,7 @@
         document.getElementById('IdDescripcion').value = '';
         document.getElementById('idTipoCita').value = '';
         document.getElementById('id_paciente').value = '';
-        document.getElementById('idMedico').value = '';
+        document.getElementById('id_medico').value = '';
         document.getElementById('idFechaCita').value = '';
         document.getElementById('idHoracita').value = '';
         document.getElementById('idHorafincita').value = '';
@@ -576,7 +632,7 @@ $("#btn-delete").click(function (e) {
         }, //name: name, email: email 
         success: function (data) {
         console.log(data);
-        window.location = "/citas";
+      //  window.location = "/citas";
         },
         });
     });
@@ -651,6 +707,7 @@ $("#idTablaPacienteCita tbody tr").click(function() {
 $("#idTablaMedicoCita tbody tr").click(function() {
         var id = $(this).find("td:first-child").text();
         var id2 = parseInt(id);
+        alert(id2)
         var nombreMedico = $(this).find("td:nth-child(2)").text();
         var apellidoPMedico = $(this).find("td:nth-child(3)").text();
         var apellidoMedico = $(this).find("td:nth-child(4)").text();

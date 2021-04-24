@@ -60,7 +60,7 @@ class citasController extends Controller
         //la parte izquierda representa el nombre de ajax
         //parece que los valores se deben llamar igual que los atributos de la BD!!!
         $data = $request->validate([
-            'noFolio' => 'required',
+            'noFolio' => 'required|unique:citas|max:255',
             'nombre' => 'required',
             'descripcion' => 'required',
             'tipoCita' => 'required',
@@ -146,7 +146,7 @@ class citasController extends Controller
         /* $modificarCita = citas::updateCita($id, $datos);
         return response()->json($modificarCita);*/
         $data = $request->validate([
-            'noFolio' => 'required',
+            'noFolio' => 'required|unique:citas|max:255',
             'nombre' => 'required',
             'descripcion' => 'required',
             'tipoCita' => 'required',
