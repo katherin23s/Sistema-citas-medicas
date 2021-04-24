@@ -70,6 +70,8 @@ Route::get('/graficas', function () {
 /*Route::get('citas', function () {
     return view('pages.administrador.citas');
 });*/
+
+Route::get('validar-duplicacion', [citasController::class, 'validarFolio']);
 Route::patch('cita-pagada/{id}', [citasController::class, 'pagadaCita']);
 Route::patch('citas-pendiente/{id}', [citasController::class, 'pendienteCita']);
 Route::patch('citas-cancelar/{id}', [citasController::class, 'cancelarCita']);

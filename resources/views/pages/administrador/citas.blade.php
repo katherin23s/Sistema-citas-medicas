@@ -276,7 +276,7 @@
                                     @foreach ($citas as $cita)
                                     <tbody>
                                         <tr id="idtr" action="{{ $cita->idCita}}">
-                                            <td id=" idCita" type="hidden" style="display:none;">
+                                            <td id="idCita" type="hidden" style="display:none;">
                                                 {{ $cita->idCita}}</td>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $cita->noFolio }}</td>
@@ -402,25 +402,15 @@
     let titulo = jQuery('#idNombre').val()
     let descripcion = jQuery('#IdDescripcion').val()
 
-    //Validar campos 
-  /*  if(jQuery('#noFolioinput').val() == "") {
-        
-        document.getElementById('advertencia').style.display='';
-        document.getElementById('buttonAdvertencia').style.display='';
-        document.getElementById('cross').style.display='';
-       // folioinput.classList.add("border border-warning");
-        //advertencia.innerHTML = "Llenar el campo Folio";
-        jQuery('#noFolioinput').addClass("border border-warning");
-    }*/
 
-    $("#noFolioinput, select").each(function() {
-   if($(this).val() === ""){
-       document.getElementById('advertencia').style.display='';
-       document.getElementById('buttonAdvertencia').style.display='';
-       document.getElementById('cross').style.display='';}
-    if(folioinput === ""){
-     jQuery('#noFolioinput').addClass("border border-warning");}
 
+    //Validar campos vacios
+  
+
+     //Validar el color del campo si esta vacio
+     if(folioinput === ""){
+     jQuery('#noFolioinput').addClass("border border-warning");
+     } 
      if(fechaCita === ""){
      jQuery('#idFechaCita').addClass("border border-warning");}
 
@@ -447,14 +437,62 @@
 
      if(descripcion === ""){
      jQuery('#IdDescripcion').addClass("border border-warning");}
-     
 
-    });
+     if(folioinput === "" || fechaCita === "" || Horacita === "" || horaFinCita === "" || duracion === "" || tipoCita === "" || paciente === "" || NombreMedico === "" || titulo === "" || descripcion === ""){
+        document.getElementById('advertencia').style.display='';
+       document.getElementById('buttonAdvertencia').style.display='';
+       document.getElementById('cross').style.display=''; 
+     }else{
+       
 
-    
-  
+        var validarFolio = {
+            noFolio: jQuery('#noFolioinput').val()}
+            
+        var type = "GET";
+        var ajaxurl = 'validar-duplicacion';
+        $.ajax({
+            type: type,
+            url: ajaxurl,
+            data: validarFolio,
+            dataType: 'json',
+            success: function (data) {
+                    if(data == false){
+                        //creame el registro
+                        $.ajax({
+                            type: "POST",
+                            url: 'citas',
+                            data: formData,
+                            dataType: 'json',
+                            success: function (data) {
+                            console.log(data);
+                            window.location = "/citas";
+                            },
+                            error: function (data) {
+                                console.log(data);
+                            }
+                        });
+                    
+                    }else{
+                        console.log(data);
+                        console.log("hay registro");
+                        //advertencia
+                        document.getElementById('advertencia').style.display='';
+                        document.getElementById('buttonAdvertencia').style.display='';
+                        document.getElementById('buttonAdvertencia').innerHTML = "Duplicacion!";
+                    // document.getElementById('cross').style.display='';
 
-      
+                        jQuery('#noFolioinput').addClass("border border-warning");
+                    }
+            //window.location = "/citas";
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+
+     }
+
+   
     });
 
 
