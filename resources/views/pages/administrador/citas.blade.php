@@ -15,6 +15,23 @@
         color: #1977cc;
 
     }
+
+    .fa-ban {
+      color: red;
+    }
+
+    .fa-clock {
+      color: orange;
+    }
+
+    .fa-hourglass-end {
+      color:#2196f3;
+    }
+
+   .fa-check{
+      color: #19d895;
+    }
+
     </style>
 
     <div class="row m-1 ">
@@ -224,28 +241,36 @@
                                 <button type="button" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto ">Añadir
                                     seleccionado</button>
                                 <!-- -->
-
-                                <!-- CRUD de botones -->
-                                <div class="row d-flex justify-content-end m-0 pr-5 border-0 ">
-                                    <div class="btn-group border-0" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-secondary my-5 p-3">Left</button>
-                                        <button type="button" class="btn btn-secondary my-5">Middle</button>
-                                        <button type="button" class="btn btn-secondary my-5">Right</button>
-                                        <button type="button" class="btn btn-secondary my-5">Right</button>
-                                    </div>
+                
+                                  <!-- -->
+                                  <div class="form-group col-2 mt-4 p-0 mr-4">
+                                    <label for="exampleFormControlSelect1">Fecha inicio</label>
+                                    <input class="form-control" id="idFechaCita" name="fechaCita"type="date" value="{{ old('fechaCita') }}" require>
                                 </div>
+                                    <!-- -->
+                                    <div class="form-group col-2 mt-4 p-0 mr-4">
+                                        <label for="exampleFormControlSelect1">Fecha final</label>
+                                        <input class="form-control" id="idFechaCita" name="fechaCita"type="date" value="{{ old('fechaCita') }}" require>
+                                    </div>
                                 <!-- -->
-                                <div class="form-group col-2 mt-4 p-0">
-                                    <label for="exampleFormControlSelect1">Show</label>
+                                <div class="form-group col-2 mt-4 p-0 mr-4">
+                                    <label for="exampleFormControlSelect1">Estado</label>
                                     <select class="form-control form-control-lg" id="exampleFormControlSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+                                        <option>Cancelado</option>
+                                        <option>pendiente</option>
+                                        <option>proceso</option>
+                                        <option>Finalizado</option>
                                     </select>
                                 </div>
 
+                                <div class="form-group mt-4">
+                                    <label for="exampleFormControlSelect1">Buscar</label>
+                                <button type="button" class="btn btn-primary form-control">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                      </svg>
+                                </button>
+                            </div>
                             </div>
 
 
@@ -259,18 +284,19 @@
                                     <thead class="bg-primary">
                                         <tr>
                                             <th>#</th>
-                                            <th>NOfolio</th>
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            <th>Tipo Cita</th>
-                                            <th type="hidden" style="display:none;">id_paciente</th>
-                                            <th type="hidden" style="display:none;">id_Medico</th>
-                                            <th>Fecha_cita</th>
-                                            <th>HoraCita</th>
-                                            <th>HoraFinCita</th>
-                                            <th>Duracion</th>
-                                            <th>Status</th>
-                                            <th>Costo</th>
+                                            <th class="text-white">NOfolio</th>
+                                            <th class="text-white">Nombre</th>
+                                            <th class="text-white">Descripción</th>
+                                            <th class="text-white">Tipo Cita</th>
+                                            <th class="text-white" type="hidden" style="display:none;">id_paciente</th>
+                                            <th class="text-white" type="hidden" style="display:none;">id_Medico</th>
+                                            <th class="text-white">Fecha_cita</th>
+                                            <th class="text-white">HoraCita</th>
+                                            <th class="text-white">HoraFinCita</th>
+                                            <th class="text-white">Duracion</th>
+                                            <th class="text-white">Status</th>
+                                            <th class="text-white">Costo</th>
+                                            <th class="text-white">Estado</th>
                                         </tr>
                                     </thead>
                                     @foreach ($citas as $cita)
@@ -280,8 +306,8 @@
                                                 {{ $cita->idCita}}</td>
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $cita->noFolio }}</td>
-                                            <td>{{ $cita->nombre }}</td>
-                                            <td>{{ $cita->descripcion }}</td>
+                                            <td>{{ $cita->paciente->nombre }}</td>
+                                            <td>{{ $cita->medico->nombre }}</td>
                                             <td>{{ $cita->tipoCita }}</td>
                                             <td type="hidden" style="display:none;">{{ $cita->id_paciente }}</td>
                                             <td type="hidden" style="display:none;">{{ $cita->id_medico }}</td>
@@ -291,6 +317,7 @@
                                             <td>{{ $cita->duracion }}</td>
                                             <td>{{ $cita->status }}</td>
                                             <td>{{ $cita->costo }}</td>
+                                            <td><i class="{{ $cita->statusIcon }}"></i></td>
                                         </tr>
                                     </tbody>
                                     @endforeach
@@ -509,11 +536,7 @@
         var id = parseInt(id1);
         var idPacientes = $(this).find("td:nth-child(7)").text();
         var idMedicos = $(this).find("td:nth-child(8)").text();
-        alert(id);
-        alert(idPacientes);
-        alert(idMedicos);
-
-
+   
         //obtener la cita del id total en los inputs
         $.ajax({
             url: "citas/"+id+"/edit",
@@ -536,7 +559,9 @@
             $("#idFechaCita").val(data.fecha_cita);
             $("#idHoracita").val(data.horaCita);
             $("#idHorafincita").val(data.horaFinCita);
-            $("#idDuracion").val(data.duracion);        
+            $("#idDuracion").val(data.duracion);  
+            $("#idPacienteCita").val(data.paciente.nombre+" "+data.paciente.apellido+" "+data.paciente.apellidoM);   
+            $("#NombreMedico").val(data.medico.nombre+" "+data.medico.apellido+" "+data.medico.apellidoM);           
             },
             
         });
@@ -545,7 +570,7 @@
     //Obtener nombre apellido y apellidoM de pacientes
 
         //obtener la cita del id total en los inputs
-        $.ajax({
+        /*$.ajax({
             url: "api/pacientes/"+idPacientes,
             type: "GET",
             success: function(data) {
@@ -555,13 +580,13 @@
                $("#idPacienteCita").val(data.nombre+" "+data.apellido+" "+data.apellidoM);     
             },
             
-        });
+        });*/
 
      /*************************************************/
     //Obtener nombre apellido y apellidoM de medicos
 
         //obtener la cita del id total en los inputs
-        $.ajax({
+     /*   $.ajax({
             url: "api/medicos/"+idMedicos,
             type: "GET",
             success: function(data) {
@@ -571,7 +596,7 @@
                $("#NombreMedico").val(data.nombre+" "+data.apellido+" "+data.apellidoM);     
             },
             
-        });
+        });*/
 
                //UPDATE
 
@@ -588,7 +613,7 @@
        horaFinCita: jQuery('#idHorafincita').val(),
        duracion: jQuery('#idDuracion').val(),
        status: 1,
-       costo: 500,
+       costo: 0,
        activo: 1,  
    };
         console.log(formData2);
@@ -597,7 +622,6 @@
         type: "PATCH",
         data: {
             _token: '{{csrf_token()}}',
-            noFolio: jQuery('#noFolioinput').val(),
             nombre: jQuery('#idNombre').val(),
             descripcion: jQuery('#IdDescripcion').val(), 
             tipoCita: jQuery('#idTipoCita').val(),
@@ -608,12 +632,11 @@
             horaFinCita: jQuery('#idHorafincita').val(),
             duracion: jQuery('#idDuracion').val(),
             status: 1,
-            costo: 500,
+            costo: 0,
             activo: 1,  
         }, //name: name, email: email 
         success: function (data) {
         console.log(data);
-        document.getElementById('noFolioinput').value = '';
         document.getElementById('idNombre').value = '';
         document.getElementById('IdDescripcion').value = '';
         document.getElementById('idTipoCita').value = '';

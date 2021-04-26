@@ -33,6 +33,15 @@ class citas extends Model
         'activo',
     ];
 
+    public function paciente()
+    {
+        return $this->hasOne(pacientes::class, "idPaciente", "id_paciente");
+    }
+
+    public function medico()
+    {
+        return $this->hasOne(medicos::class, "idMedicos", "id_medico");
+    }
 
 
     /*  public static function filtrarcitas($id)

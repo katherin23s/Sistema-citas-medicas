@@ -32,4 +32,9 @@ class medicos extends Model
         'status',
         'activo',
     ];
+
+    public function citas()
+    {
+        return $this->hasMany(citas::class, "idCita", "idMedicos");
+    }
 }

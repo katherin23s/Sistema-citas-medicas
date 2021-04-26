@@ -20,7 +20,7 @@ class citasController extends Controller
     {
 
         $texto = ($request->get('buscar'));
-        $citas = citas::where('noFolio', 'LIKE', '%' . $texto . '%')
+        $citas = citas::with('paciente', 'medico')->where('noFolio', 'LIKE', '%' . $texto . '%')
             ->orWhere('descripcion', 'LIKE', '%' . $texto . '%')
             ->orderBy('noFolio')
             ->paginate(5);
@@ -81,33 +81,6 @@ class citasController extends Controller
 
     public function editarCita(Request $request)
     {
-        /* $id = $request["id"];
-        $fechaCita = $request["fechaCita"];
-        $horaCita = $request["horaCita"];
-        $duracion = $request["duracion"];
-        $tipoCita = $request["tipoCita"];
-        $noFolio = $request["noFolio"];
-        $paciente = $request["paciente"];
-        $medico = $request["medico"];
-        $nombre = $request["nombre"];
-        $descripcion = $request["descripcion"];
-
-        $datos = array('id' => $id, 'fecha_cita' => $fechaCita, 'horaCita' => $horaCita, 'duracion' => $duracion, 'tipoCita' => $tipoCita, 'noFolio' => $noFolio, 'id_paciente' => $paciente, 'id_medico' => $medico, 'nombre' => $nombre, 'descripcion' => $descripcion);
-        $modificarCita = citas::updateCita($id, $datos);
-        return response()->json($modificarCita);*/
-
-        /*  $modificarCita = citas::find($request->id);
-        $modificarCita->fechaCita = $request->fechaCita;
-        $modificarCita->horaCita = $request->horaCita;
-        $modificarCita->duracion = $request->duracion;
-        $modificarCita->tipoCita = $request->tipoCita;
-        $modificarCita->noFolio = $request->noFolio;
-        $modificarCita->paciente = $request->paciente;
-        $modificarCita->medico = $request->medico;
-        $modificarCita->nombre = $request->nombre;
-        $modificarCita->descripcion = $request->descripcion;
-        $modificarCita->save();
-        return back()->with('cita_update', 'La cita ha sido  modificada exitosamente!');*/
     }
 
     /**
@@ -130,7 +103,7 @@ class citasController extends Controller
     public function edit($id)
     {
         //Seleccionar la cita
-        $cita = citas::findOrFail($id);
+        $cita = citas::with('paciente', 'medico')->findOrFail($id);
         return response()->json($cita);
     }
 
@@ -146,7 +119,6 @@ class citasController extends Controller
         /* $modificarCita = citas::updateCita($id, $datos);
         return response()->json($modificarCita);*/
         $data = $request->validate([
-            'noFolio' => 'required|unique:citas|max:255',
             'nombre' => 'required',
             'descripcion' => 'required',
             'tipoCita' => 'required',

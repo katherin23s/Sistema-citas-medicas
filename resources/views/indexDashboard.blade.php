@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="dash-board/assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" href="dash-board/assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="dash-board/assets/vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- endinject -->
     <!-- plugin css for this page -->

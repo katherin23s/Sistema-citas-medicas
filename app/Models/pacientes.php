@@ -27,4 +27,8 @@ class pacientes extends Model
         'status',
         'activo',
     ];
+    public function citas()
+    {
+        return $this->hasMany(citas::class, "idCita", "idPaciente");
+    }
 }

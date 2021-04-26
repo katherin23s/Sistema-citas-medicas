@@ -108,8 +108,9 @@
                     <th>acciones</th>
                 </tr>
             </thead>
-            @foreach ($pacientes as $paciente)
             <tbody>
+            @foreach ($pacientes as $paciente)
+           
                 <tr id="idtr" action="{{ $paciente->idPaciente}}">
                     <td id=" idCita" type="hidden" style="display:none;">
                         {{ $paciente->idPaciente}}</td>
@@ -137,8 +138,9 @@
                     </form>
                     </td> 
                 </tr>
-            </tbody>
             @endforeach
+        </tbody>
+
        
         </table>
     </div>
