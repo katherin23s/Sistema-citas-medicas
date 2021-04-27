@@ -224,10 +224,10 @@
                             </div>
 
                             <!-- Buscador y Boton Agregar Responsivo -->
-
+                        <form  action="{{route('citas.index')}}" method="GET">
                             <div class="row m-0 d-flex">
                                 <div class="card col-12 col-xl-3 mt-3 mr-3 mb-3 ">
-                                    <form class="card-body pb-2" action="{{route('citas.index')}}" method="get">
+                                  
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" name="buscar" placeholder="Browser"
                                                 aria-label="Browser" aria-describedby="basic-addon2">
@@ -235,23 +235,23 @@
                                                 <button class="btn btn-outline-primary" type="button">Buscar</button>
                                             </div>
                                         </div>
-                                    </form>
                                 </div>
                                 <!-- Agregar Seleccionado -->
-                                <button type="button" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto ">Añadir
-                                    seleccionado</button>
+                                <button type="button" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto " onclick="window.location='{{ route('citas.index') }}'">Mostrar todo </button>
                                 <!-- -->
-                
+                              
                                   <!-- -->
                                   <div class="form-group col-2 mt-4 p-0 mr-4">
                                     <label for="exampleFormControlSelect1">Fecha inicio</label>
-                                    <input class="form-control" id="idFechaCita" name="fechaCita"type="date" value="{{ old('fechaCita') }}" require>
+                                    <input class="form-control" id="idFechaCita" name="fechaCitaInicio" type="date" value="2013-01-08" require>
+                                
                                 </div>
                                     <!-- -->
                                     <div class="form-group col-2 mt-4 p-0 mr-4">
                                         <label for="exampleFormControlSelect1">Fecha final</label>
-                                        <input class="form-control" id="idFechaCita" name="fechaCita"type="date" value="{{ old('fechaCita') }}" require>
+                                        <input class="form-control" id="idFechaCita2" name="fechaCitaFinal" type="date" value="2022-01-08" require>
                                     </div>
+                                
                                 <!-- -->
                                 <div class="form-group col-2 mt-4 p-0 mr-4">
                                     <label for="exampleFormControlSelect1">Estado</label>
@@ -265,14 +265,14 @@
 
                                 <div class="form-group mt-4">
                                     <label for="exampleFormControlSelect1">Buscar</label>
-                                <button type="button" class="btn btn-primary form-control">
+                                <button type="submit" class="btn btn-primary form-control">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                                       </svg>
                                 </button>
                             </div>
                             </div>
-
+                        </form>
 
                             <!-- -->
 

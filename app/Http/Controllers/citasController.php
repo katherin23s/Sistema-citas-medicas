@@ -18,18 +18,21 @@ class citasController extends Controller
      */
     public function index(Request $request)
     {
-
-        $texto = ($request->get('buscar'));
-        $citas = citas::with('paciente', 'medico')->where('noFolio', 'LIKE', '%' . $texto . '%')
-            ->orWhere('descripcion', 'LIKE', '%' . $texto . '%')
-            ->orderBy('noFolio')
-            ->paginate(5);
+        $fechaInicio = $request->input('fechaCitaInicio');
+        $fechaFinal = $request->input('fechaCitaFinal');
+        $estado = 1; //($request->get('buscar'));
+        if ($fechaInicio != "") {
+            $citas = citas::with('paciente', 'medico')
+                ->whereBetween('fecha_cita', [$fechaInicio, $fechaFinal])
+                ->where('status', '=', $estado)->paginate(5);
+        } else {
+            $citas = citas::with('paciente', 'medico')->paginate(5);
+        }
 
         $pacientesModal = pacientes::all();
-
         $medicosModal = medicos::all();
 
-        return view('pages.administrador.citas', compact('citas', 'texto', 'medicosModal', 'pacientesModal'))
+        return view('pages.administrador.citas', compact('citas', 'medicosModal', 'pacientesModal'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -199,5 +202,22 @@ class citasController extends Controller
         } else {
             return "false";
         }
+    }
+
+    public function searchDate(Request $request)
+    {
+        $fechaInicio = $request->input('fechaCitaInicio');
+        $fechaFinal = $request->input('fechaCitaFinal');
+
+        $estado = 1; //($request->get('buscar'));
+        $citas = citas::with('paciente', 'medico')
+            ->whereBetween('fecha_cita', [$fechaInicio, $fechaFinal])
+            ->where('status', '=', $estado)->paginate(5);
+
+        $pacientesModal = pacientes::all();
+        $medicosModal = medicos::all();
+
+        return view('pages.administrador.citas', compact('citas', 'medicosModal', 'pacientesModal'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 }
