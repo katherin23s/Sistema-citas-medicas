@@ -254,15 +254,15 @@
                                 
                                 <!-- -->
                                 <div class="form-group col-2 mt-4 p-0 mr-4">
-                                    <label for="exampleFormControlSelect1">Estado</label>
-                                    <select class="form-control form-control-lg" id="exampleFormControlSelect1">
-                                        <option>Cancelado</option>
-                                        <option>pendiente</option>
-                                        <option>proceso</option>
-                                        <option>Finalizado</option>
+                                    <label for="exampleFormControlSelect1" >Estado</label>
+                                    <select class="form-control form-control-lg" id="idEstado" name="selecEstado" onchange='saveValue(this);'>
+                                        <option value="0">Cancelado</option>
+                                        <option value="1">pendiente</option>
+                                        <option value="2">proceso</option>
+                                        <option value="3">Finalizado</option>
                                     </select>
                                 </div>
-
+                                    <input type="hidden" name="estadoCita" id="estadoCita">
                                 <div class="form-group mt-4">
                                     <label for="exampleFormControlSelect1">Buscar</label>
                                 <button type="submit" class="btn btn-primary form-control">
@@ -775,6 +775,14 @@ $("#idTablaMedicoCita tbody tr").click(function() {
         $('#id_medico').val(id2);
         $("#NombreMedico").val(nombreMedico+" "+apellidoPMedico+" "+apellidoMedico); 
     });
+
+/*************************************************/
+//Obtener valor del estado
+$('#idEstado').on('change', function() {
+  var value = $(this).val();
+  $('#estadoCita').val(value);
+});
+
 
 </script>
     <!-- partial:../../partials/_footer.html -->
