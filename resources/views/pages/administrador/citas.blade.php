@@ -53,8 +53,12 @@
       </div>
 </div>
 
+<div class="card m-3" >
+    
+ 
+
     <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
-    <form method="POST">
+    <form method="POST" class="mt-2">
         @csrf
         <div class="row ml-2 ">
             <h4 id="minimum-setup">Choice Date</h4>
@@ -190,6 +194,7 @@
         <button type="button" id="btn-search"class="btn btn-outline-success">Buscar</button>
         <button type="button" id="btn-delete" class="btn btn-outline-danger">Danger</button>
     </div>
+</div>
 
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -216,13 +221,13 @@
                         </div>
 
                         <!-- -->
-
+                       
                         <div class="card-body pt-0">
                             <div class="d-flex justify-content-between">
                                 <h4 class="card-title mb-0">Citas</h4>
                                 <a href="#"><small>Citas</small></a>
                             </div>
-
+                
                             <!-- Buscador y Boton Agregar Responsivo -->
                         <form  action="{{route('citas.index')}}" method="GET">
                             <div class="row m-0 d-flex">
@@ -273,7 +278,7 @@
                             </div>
                             </div>
                         </form>
-
+                
                             <!-- -->
 
 

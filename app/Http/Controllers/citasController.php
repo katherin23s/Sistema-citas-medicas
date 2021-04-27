@@ -26,7 +26,7 @@ class citasController extends Controller
                 ->whereBetween('fecha_cita', [$fechaInicio, $fechaFinal])
                 ->where('status', '=', $estado)->paginate(2)->appends(request()->query());
         } else {
-            $citas = citas::with('paciente', 'medico')->paginate(5);
+            $citas = citas::with('paciente', 'medico')->paginate(20);
         }
 
         $pacientesModal = pacientes::all();
