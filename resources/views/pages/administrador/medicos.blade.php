@@ -341,6 +341,10 @@
                                 </div>
                                 <!-- -->
                       
+                                <div class="m-4">
+                                    <input id="buscadorTabla" type="text" class="form-control" name="buscar" placeholder="Browser" aria-label="Browser" aria-describedby="basic-addon2">
+                                </div> 
+
                                 <div class="form-group col-2 mt-4 p-0">
                                     <label for="exampleFormControlSelect1">Show</label>
                                     <select class="form-control form-control-lg" id="exampleFormControlSelect1">
@@ -664,7 +668,30 @@ var valorid = clicked_id2.getAttribute("data-id");
 
 /*********************************************/
 //Select Dropdown 
+$(document).ready(function(){
 
+fetch_customer_data();
+
+function fetch_customer_data(query = '')
+{
+ $.ajax({
+  url:"{{ route('busqueda.medicos.tabla') }}",
+  method:'GET',
+  data:{query:query},
+  dataType:'json',
+  success:function(data)
+  {
+   $('tbody').html(data.table_data);
+   $('#total_records').text(data.total_data);
+  }
+ })
+}
+
+$(document).on('keyup', '#search', function(){
+ var query = $(this).val();
+ fetch_customer_data(query);
+});
+});
     </script>
     @endsection
 
