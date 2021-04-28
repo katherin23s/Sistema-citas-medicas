@@ -303,7 +303,7 @@
   
                         <!-- -->
                         <div class="m-4">
-                        <input id="search" type="text" class="form-control" name="buscar" placeholder="Browser" aria-label="Browser" aria-describedby="basic-addon2">
+                        <input  type="text" class="form-control" name="buscar" placeholder="Browser" aria-label="Browser" aria-describedby="basic-addon2">
                         </div>        
 
                         <div class="card-body pt-0">
@@ -326,35 +326,24 @@
                                         </div>
                                     </form>
                                 </div>
-                                <!-- Agregar Seleccionado -->
-                                <button type="button" id="añadir" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto ">Añadir
-                                    seleccionado</button>
-                                <!-- -->
+                            
+   <!-- otro buscador -->
+   <div class="m-4">
+    <input id="buscadorTabla" type="text" class="form-control form-control-lg" name="buscar" aria-label="Large" placeholder="Browser"  aria-describedby="basic-addon2">
+   </div> 
+                            
 
-                                <!-- CRUD de botones -->
-                                <div class="row d-flex justify-content-end m-0 pr-5 border-0 ">
-                                    <div class="btn-group border-0" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-primary my-5 p-3" id="agregar" data-toggle="modal" data-target="#altaModal">Altas</button>
-                                        <button type="button" data-toggle="modal" data-target="#modificarModal" class="btn btn-success my-5">Modificacion</button>
-                                        <button type="button" class="btn btn-danger my-5" data-toggle="modal" data-target="#eliminarModal">Eliminacion</button>
-                                    </div>
-                                </div>
-                                <!-- -->
-                      
-                                <div class="m-4">
-                                    <input id="buscadorTabla" type="text" class="form-control" name="buscar" placeholder="Browser" aria-label="Browser" aria-describedby="basic-addon2">
-                                </div> 
+                                  <div class="input-group input-group-lg my-4">
+                                    <input id="search" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Escribe aquí." name="buscar">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-primary text-white" id="inputGroup-sizing-lg">Buscar</span>
+                                      </div>
+                                  </div>
+                              
+                             
+                     
 
-                                <div class="form-group col-2 mt-4 p-0">
-                                    <label for="exampleFormControlSelect1">Show</label>
-                                    <select class="form-control form-control-lg" id="exampleFormControlSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
-                                </div>
+                              
 
                             </div>
 
