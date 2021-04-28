@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="dash-board/assets/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="dash-board/assets/vendors/css/vendor.bundle.addons.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    
+    <!-- Select2 libreria -->
+    <link rel="stylesheet" href="{{asset('vendor/jquery-ui/jquery-ui.min.css')}}">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -110,8 +113,25 @@
     <script src="js/shared/chart.js"></script>
     <!-- End custom js for this page-->
     <script src="js/shared/jquery.cookie.js" type="text/javascript"></script>
-
-
+    <!-- buscador autocomplete -->
+    <script src="{{asset('vendor/jquery-ui/jquery-ui.min.js')}}"> </script>
+     <script> 
+     var medicos = ['medico1', 'medico2', 'medico3','medico4'];
+     $('#search').autocomplete({
+         source: function(request, response){
+             $.ajax({
+                 url:"{{route('search.medicos')}}",
+                 dataType: 'json',
+                 data:{
+                     term:request.term
+                 },
+                 success: function(data){
+                     response(data)
+                 }
+             })
+         }
+     });
+     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/ajax.js') }}" defer></script>
     <!-- <script src="/js/ajax.js"></script> -->

@@ -146,4 +146,20 @@ class medicosController extends Controller
         //lo regresa como json
         return response()->json($medico);
     }
+
+    public function buscarMedicos(Request $request)
+    {
+        $term = $request->get('term');
+        $querys = medicos::where('nombre', 'LIKE', '%' . $term)->get();
+        $data = [];
+        foreach ($querys as $query) {
+            #code ...
+            $data[] = [
+                'label' => $query->nombre
+            ];
+            return $data;
+        }
+
+        //return $term;
+    }
 }

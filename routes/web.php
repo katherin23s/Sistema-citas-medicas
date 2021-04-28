@@ -67,9 +67,11 @@ Route::get('/graficas', function () {
 });
 
 
+
 /*Route::get('citas', function () {
     return view('pages.administrador.citas');
 });*/
+Route::get('search/medicos', [medicosController::class, 'buscarMedicos'])->name('search.medicos');
 Route::get('searchs/', [citasController::class, 'index']);
 //Route::get('citas/', [citasController::class, 'searchDate'])->name('citas');
 Route::get('validar-duplicacion', [citasController::class, 'validarFolio']);

@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('pacientes/{id}', [pacientesController::class, 'encontrarPaciente']);
 Route::get('medicos/{id}', [medicosController::class, 'encontrarMedico']);
+Route::get('api/v1/cities/search', [medicosController::class, 'search'])->name('api.cities.search');

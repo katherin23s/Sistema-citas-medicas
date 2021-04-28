@@ -17,7 +17,6 @@
     }
     </style>
 
-
     <div class="container">
          <!-- Modal para alta -->
          <div class="modal fade" id="altaModal" tabindex="-1" role="dialog" aria-labelledby="altaModal" aria-hidden="true">
@@ -301,8 +300,11 @@
                                 <hr class="borde">
                             </div>
                         </div>
-
+  
                         <!-- -->
+                        <div class="m-4">
+                        <input id="search" type="text" class="form-control" name="buscar" placeholder="Browser" aria-label="Browser" aria-describedby="basic-addon2">
+                        </div>        
 
                         <div class="card-body pt-0">
                             <div class="d-flex justify-content-between">
@@ -358,23 +360,23 @@
                                 <table class="table table-striped table-hover" id="tblMain">
                                     <thead class="bg-primary">
                                         <tr>
-                                            <th>Cedula</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Apellido M.</th>
-                                            <th>Direccion</th>
-                                            <th>Teléfono</th>
-                                            <th>Edad</th>
-                                            <th>Email</th>
-                                            <th>registro</th>
-                                            <th>Especializacion</th>
-                                            <th>Consultorio</th>
-                                            <th>Horario</th>
-                                            <th>Acciones</th>
+                                            <th class="text-white">Cedula</th>
+                                            <th class="text-white">Nombre</th>
+                                            <th class="text-white">Apellido</th>
+                                            <th class="text-white">Apellido M.</th>
+                                            <th class="text-white">Direccion</th>
+                                            <th class="text-white">Teléfono</th>
+                                            <th class="text-white">Edad</th>
+                                            <th class="text-white">Email</th>
+                                            <th class="text-white">registro</th>
+                                            <th class="text-white">Especializacion</th>
+                                            <th class="text-white">Consultorio</th>
+                                            <th class="text-white">Horario</th>
+                                            <th class="text-white">Acciones</th>
                                         </tr>
                                     </thead>
-                                    @foreach ($medicos as $medico)
                                     <tbody id="medicos-list" name="medicos-list">
+                                    @foreach ($medicos as $medico)
                                         <tr id="medicos{{$medico->idMedico}}" action="{{ $medico->idMedicos}}">
                                             <td id=" idCita" type="hidden" style="display:none;">
                                                 {{ $medico->idMedicos}}</td>                                         
@@ -405,8 +407,8 @@
                                             @include('pages.modales.medicoUpdate')
                                             @include('pages.administrador.delete')
                                         </tr>
-                                    </tbody>
                                     @endforeach
+                                </tbody>
                                 </table>
                             </div>
                             <div class="row d-flex justify-content-end p-1">
@@ -659,6 +661,9 @@ var valorid = clicked_id2.getAttribute("data-id");
         }
         });
 } 
+
+/*********************************************/
+//Select Dropdown 
 
     </script>
     @endsection
