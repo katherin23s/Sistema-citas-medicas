@@ -71,6 +71,7 @@ Route::get('/graficas', function () {
 /*Route::get('citas', function () {
     return view('pages.administrador.citas');
 });*/
+Route::get('busqueda/usuarios', [usuariosController::class, 'buscarUsuarios'])->name('busqueda.usuarios');
 Route::get('busqueda/medicos', [medicosController::class, 'busquedaMedicosTabla'])->name('busqueda.medicos.tabla');
 Route::get('search/medicos', [medicosController::class, 'buscarMedicos'])->name('search.medicos');
 Route::get('searchs/', [citasController::class, 'index']);

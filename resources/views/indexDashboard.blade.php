@@ -120,7 +120,7 @@
      $('#search').autocomplete({
          source: function(request, response){
              $.ajax({
-                 url:"{{route('search.medicos')}}",
+                 url:"busqueda/usuarios",
                  dataType: 'json',
                  data:{
                      term:request.term

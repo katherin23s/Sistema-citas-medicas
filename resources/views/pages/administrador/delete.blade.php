@@ -1,6 +1,6 @@
 <!--------------------------------------------- Modal eliminar --------------------------------------->
 <!-- Modal medico eliminar -->
-<div class="modal fade" id="modal-delete-{{$medico->idMedicos}}" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
+<div class="modal fade" id="modal-delete-'{{$medico->idMedicos}}''" tabindex="-1" role="dialog" aria-labelledby="eliminarModal" aria-hidden="true">
     <form action="{{route('medicos.destroy',$medico->idMedicos)}}" method="POST" id="deleteForm">
         @csrf
         {{method_field('DELETE')}}

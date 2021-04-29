@@ -280,7 +280,10 @@
   </div>
 
 
-
+   <!-- otro buscador -->
+   <div class="m-4">
+    <input id="buscadorTabla" type="text" class="form-control form-control-lg" name="buscar" aria-label="Large" placeholder="Browser"  aria-describedby="basic-addon2">
+   </div>
 <!----------------------------------------------------------------------------------------------------------->
 
     <div class="row justify-content-center">
@@ -299,52 +302,19 @@
                             <div class="col">
                                 <hr class="borde">
                             </div>
-                        </div>
-  
-                        <!-- -->
-                        <div class="m-4">
-                        <input  type="text" class="form-control" name="buscar" placeholder="Browser" aria-label="Browser" aria-describedby="basic-addon2">
-                        </div>        
+                        </div>      
 
                         <div class="card-body pt-0">
                             <div class="d-flex justify-content-between">
                                 <h4 class="card-title mb-0">Citas</h4>
                                 <a href="#"><small>Citas</small></a>
-                            </div>
-
-                            <!-- Buscador y Boton Agregar Responsivo -->
-
-                            <div class="row m-0 d-flex">
-                                <div class="card col-12 col-xl-3 mt-3 mr-3 mb-3 ">
-                                    <form class="card-body pb-2" action="{{route('medicos.index')}}" method="get">
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" name="buscar" placeholder="Browser"
-                                                aria-label="Browser" aria-describedby="basic-addon2">
-                                            <div class="input-group-append d-flex justify-content-end">
-                                                <button class="btn btn-outline-primary" type="button">Buscar</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            
-   <!-- otro buscador -->
-   <div class="m-4">
-    <input id="buscadorTabla" type="text" class="form-control form-control-lg" name="buscar" aria-label="Large" placeholder="Browser"  aria-describedby="basic-addon2">
-   </div> 
-                            
-
+                            </div>                                                
                                   <div class="input-group input-group-lg my-4">
                                     <input id="search" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Escribe aquí." name="buscar">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-primary text-white" id="inputGroup-sizing-lg">Buscar</span>
                                       </div>
-                                  </div>
-                              
-                             
-                     
-
-                              
-
+                                  </div>                                                   
                             </div>
 
 
@@ -369,39 +339,11 @@
                                         </tr>
                                     </thead>
                                     <tbody id="medicos-list" name="medicos-list">
-                                    @foreach ($medicos as $medico)
-                                        <tr id="medicos{{$medico->idMedico}}" action="{{ $medico->idMedicos}}">
-                                            <td id=" idCita" type="hidden" style="display:none;">
-                                                {{ $medico->idMedicos}}</td>                                         
-                                            <td>{{ $medico->cedula }}</td>
-                                            <td>{{ $medico->nombre }}</td>
-                                            <td>{{ $medico->apellido }}</td>
-                                            <td>{{ $medico->apellidoM }}</td>
-                                            <td>{{ $medico->direccion }}</td>
-                                            <td>{{ $medico->telefono }}</td>
-                                            <td>{{ $medico->edad }}</td>
-                                            <td>{{ $medico->email }}</td>
-                                            <td>{{ $medico->registro }}</td>
-                                            <td>{{ $medico->id_especializacion }}</td>
-                                            <td>{{ $medico->id_consultorio }}</td>
-                                            <td>{{ $medico->id_horario }}</td>  
-                                            <td>
-                                                <button id="{{ $medico->idMedicos}}" data-id="{{ $medico->idMedicos}}" onclick="goDoSomething(this);" type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-update-{{$medico->idMedicos}}" action="{{ $medico->idMedicos}}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                                  </svg>
-                                                </button>
-
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{$medico->idMedicos}}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
-                                                        <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-                                                      </svg>    
-                                                </button></td> 
-                                            @include('pages.modales.medicoUpdate')
-                                            @include('pages.administrador.delete')
-                                        </tr>
-                                    @endforeach
-                                </tbody>
+                                        @foreach ($medicos as $medico)
+                                        @include('pages.modales.medicoUpdate ')
+                                        @include('pages.administrador.delete')
+                                        @endforeach
+                                   </tbody>
                                 </table>
                             </div>
                             <div class="row d-flex justify-content-end p-1">
@@ -422,60 +364,7 @@
                             color: #1977cc;
 
                         }
-                        </style>
-
-                        <div class="row m-1 ">
-                            <div class="col">
-                                <hr class="borde">
-                            </div>
-                            <div class="col">
-                                <hr class="borde">
-                            </div>
-                        </div>
-
-                        <!-- -->
-                        <!-- ======= Costos ===== -->
-                        <div class="form-group row m-0 p-0">
-                            <label for="exampleInputEmail1" class=" col-form-label pl-4 pr-5">Servicio</label>
-                            <div class="col input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Recipient's username"
-                                    aria-label="Recipient's username" aria-describedby="basic-addon2">
-
-                            </div>
-                        </div>
-
-
-                        <div class="d-flex">
-                            <div class="mr-auto p-2">
-
-                                <div class="form-group row mb-0">
-                                    <label for="exampleInputEmail1" class="col-form-label ml-4 pl-1">Medico</label>
-                                    <div class="col input-group mb-3">
-                                        <input type="text" class="form-control"  placeholder="Recipient's username"
-                                            aria-label="Recipient's username" aria-describedby="basic-addon2">
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-2">
-                                <div class="form-group row">
-                                    <label for="exampleSelect1" class=" col-form-label">Tipo
-                                        Cita</label>
-                                    <div class="col">
-                                        <select class="form-control" id="exampleSelect1">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- -->
+                        </style>                
                     </div>
                 </div>
             </div>

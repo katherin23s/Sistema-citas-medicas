@@ -97,7 +97,10 @@
 
                             </div>
 
-
+                            <div class="m-4">
+                                <input id="search" type="text" class="form-control form-control-lg" name="buscar" aria-label="Large" placeholder="Browser"  aria-describedby="basic-addon2">
+                               </div>
+                     
                             <!-- -->
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover">

@@ -150,7 +150,7 @@ class medicosController extends Controller
     public function buscarMedicos(Request $request)
     {
         $term = $request->get('term');
-        $querys = medicos::where('nombre', 'LIKE', '%' . $term)->get();
+        $querys = medicos::where('apellido', 'LIKE', '%' . $term)->get();
         $data = [];
         foreach ($querys as $query) {
             #code ...
@@ -159,8 +159,6 @@ class medicosController extends Controller
             ];
             return $data;
         }
-
-        //return $term;
     }
 
 
@@ -180,7 +178,7 @@ class medicosController extends Controller
                     ->orderBy('cedula', 'desc')
                     ->get();
             } else {
-                $data = medicos::orderBy('cedula', 'desc')
+                $data = medicos::orderBy('nombre', 'desc')
                     ->get();
             }
             $total_row = $data->count();
