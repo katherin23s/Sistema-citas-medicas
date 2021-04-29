@@ -10,8 +10,10 @@
              </button>
            </div>
         <div class="modal-body">
+
             <form id="myFormModificar" name="myFormModificar" class="form-horizontal" novalidate="">
             <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
+            
            <div class="row ml-2 ">
             <h4 id="minimum-setup">Doctors Information</h4>
             <div class="container-fluid p-0">
