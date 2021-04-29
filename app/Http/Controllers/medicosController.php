@@ -16,16 +16,10 @@ class medicosController extends Controller
     public function index(Request $request)
     {
         $texto = ($request->get('buscar'));
-        $medicos = medicos::where('cedula', 'LIKE', '%' . $texto . '%')
-            ->orWhere('nombre', 'LIKE', '%' . $texto . '%')
-            ->orderBy('cedula')
-            ->paginate(5);
+        $medicos = medicos::all();
 
         return view('pages.administrador.medicos', compact('medicos', 'texto'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
-
-        //  $medicos = medicos::paginate(6);
-        //  return view('pages.administrador.medicos')->with(compact('medicos'));
     }
 
     /**
@@ -164,7 +158,6 @@ class medicosController extends Controller
 
     public function busquedaMedicosTabla(Request $request)
     {
-
         if ($request->ajax()) {
             $output = '';
             $query = $request->get('query');
@@ -175,11 +168,9 @@ class medicosController extends Controller
                     ->orWhere('apellidoM', 'like', '%' . $query . '%')
                     ->orWhere('direccion', 'like', '%' . $query . '%')
                     ->orWhere('registro', 'like', '%' . $query . '%')
-                    ->orderBy('cedula', 'desc')
                     ->get();
             } else {
-                $data = medicos::orderBy('nombre', 'desc')
-                    ->get();
+                $data = medicos::all();
             }
             $total_row = $data->count();
             if ($total_row > 0) {

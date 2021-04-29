@@ -357,11 +357,10 @@
                         </div>
                             <div class="row d-flex justify-content-end p-1">
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    {!! $medicos->links() !!}
+                                 
                                 </div>
                             </div>
                         </div>
-
                         <!---------- /Division lineal de busqueda y agregar nuevas citas -------->
 
                         <style>
