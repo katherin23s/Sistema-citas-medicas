@@ -454,7 +454,6 @@ return alert(ideditar);
 //mandar el valor de la funcion dentro
 //PARA MANDAR LA INFORMACION AL FORMULARIO AL HACER CLICK EN MODIFICAR BOTON DE LA TABLA
 function goDoSomething(d){
-
 var id =d.getAttribute("data-id");
         //obtener la cita del id total
         $.ajax({
@@ -499,57 +498,28 @@ var id =d.getAttribute("data-id");
 
 //MODIFICAR MÉDICO
 function modificar(clicked_id2) {
-   // alert(clicked_id2.getAttribute("data-id"));
+// alert(clicked_id2.getAttribute("data-id"));
 var valorid = clicked_id2.getAttribute("data-id");
-
+console.log(valorid);
  var formData2 = {
-        cedula: jQuery('#cedula2').val(),
-        nombre: jQuery('#nombre2').val(),
-        apellido: jQuery('#apellido_paterno2').val(),
-        apellidoM: jQuery('#apellido_materno2').val(),
-        direccion: jQuery('#direccion2').val(),
-        telefono: jQuery('#telefono2').val(),
-        edad: jQuery('#edad2').val(),
-        email: jQuery('#email2').val(),
-        sexo: jQuery('#sexo2').val(),
-        fechaNacimiento: jQuery('#fechaNacimiento2').val(),
-        registro: jQuery('#fechaRegistro2').val(),
-        id_especializacion: jQuery('#especializacion2').val(),
-        id_consultorio: jQuery('#consultorio2').val(),
-        id_horario: jQuery('#horario2').val(),
-        status: jQuery('#status2').val(),
-        activo: jQuery('#activo2').val(),  
+        cedula: jQuery('#cedula2'+valorid).val(),
+        nombre: jQuery('#nombre2'+valorid).val(),
+        apellido: jQuery('#apellido_paterno2'+valorid).val(),
+        apellidoM: jQuery('#apellido_materno2'+valorid).val(),
+        direccion: jQuery('#direccion2'+valorid).val(),
+        telefono: jQuery('#telefono2'+valorid).val(),
+        edad: jQuery('#edad2'+valorid).val(),
+        email: jQuery('#email2'+valorid).val(),
+        sexo: jQuery('#sexo2'+valorid).val(),
+        fechaNacimiento: jQuery('#fechaNacimiento2'+valorid).val(),
+        registro: jQuery('#fechaRegistro2'+valorid).val(),
+        id_especializacion: jQuery('#especializacion2'+valorid).val(),
+        id_consultorio: jQuery('#consultorio2'+valorid).val(),
+        id_horario: jQuery('#horario2'+valorid).val(),
+        status: jQuery('#status2'+valorid).val(),
+        activo: jQuery('#activo2'+valorid).val(),  
    };
         console.log(formData2);
-        $.ajax({
-        url: "medicos/"+valorid,
-        type: "PATCH",
-        data: {
-            _token: '{{csrf_token()}}',
-        cedula: jQuery('#cedula2').val(),
-        nombre: jQuery('#nombre2').val(),
-        apellido: jQuery('#apellido_paterno2').val(),
-        apellidoM: jQuery('#apellido_materno2').val(),
-        direccion: jQuery('#direccion2').val(),
-        telefono: jQuery('#telefono2').val(),
-        edad: jQuery('#edad2').val(),
-        email: jQuery('#email2').val(),
-        sexo: jQuery('#sexo2').val(),
-        fechaNacimiento: jQuery('#fechaNacimiento2').val(),
-        registro: jQuery('#fechaRegistro2').val(),
-        id_especializacion: jQuery('#especializacion2').val(),
-        id_consultorio: jQuery('#consultorio2').val(),
-        id_horario: jQuery('#horario2').val(),
-        status: jQuery('#status2').val(),
-        activo: jQuery('#activo2').val(),   
-        }, //name: name, email: email 
-        success: function (data) {
-        console.log(data+"si funcionooo");   
-        },
-        error: function (data) {
-            console.log(data+"no funcionoo");
-        }
-        });
 } 
 
 /*********************************************/
