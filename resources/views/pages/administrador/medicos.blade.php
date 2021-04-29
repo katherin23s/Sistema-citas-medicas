@@ -551,7 +551,9 @@ console.log(valorid);
             console.log(data+"no funcionoo");
         }
         });
-} 
+}
+
+
 
 /*********************************************/
 //Select Dropdown 
