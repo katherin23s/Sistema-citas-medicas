@@ -303,9 +303,9 @@
                                   <div class="container-fluid ">
                                     <div class="row">
                                         <div class="col col-1">
-                                            <div class="row"
+                                            <div class="row pb-2">
                                             <h4 class="card-title mb-0 mr-4 pt-2">Médicos</h4>
-                                            <a href="" type="button" class="btn btn-primary  ">Añadir
+                                            <a href="" type="button" class="btn btn-primary" data-toggle="modal" data-target="#altaModal">Añadir
                                                 seleccionado</a> </div>
                                           </div>
                                         <div class="col">
@@ -326,7 +326,7 @@
 
 
                             <!-- -->
-                            <div class="mx-4">
+                        <div class="mx-4">
                             <div id="idTabla" class="table-responsive">
                                 <table class="table table-striped table-hover" id="tblMain">
                                     <thead class="bg-primary">
@@ -396,11 +396,10 @@
 // CREATE
 $("#btn-save").click(function (e) {
     $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    e.preventDefault();
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 
 
 
@@ -430,7 +429,7 @@ $("#btn-save").click(function (e) {
     
     $.ajax({
         type: "POST",
-        url: 'medicos/create',
+        url: 'medicos',
         data: formData,
         dataType: 'json',
         success: function (data) {                                    
