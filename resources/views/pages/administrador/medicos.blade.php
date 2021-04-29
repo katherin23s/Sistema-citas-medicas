@@ -279,11 +279,6 @@
     </div>
   </div>
 
-
-   <!-- otro buscador -->
-   <div class="m-4">
-    <input id="buscadorTabla" type="text" class="form-control form-control-lg" name="buscar" aria-label="Large" placeholder="Browser"  aria-describedby="basic-addon2">
-   </div>
 <!----------------------------------------------------------------------------------------------------------->
 
     <div class="row justify-content-center">
@@ -304,21 +299,34 @@
                             </div>
                         </div>      
 
-                        <div class="card-body pt-0">
-                            <div class="d-flex justify-content-between">
-                                <h4 class="card-title mb-0">Citas</h4>
-                                <a href="#"><small>Citas</small></a>
-                            </div>                                                
-                                  <div class="input-group input-group-lg my-4">
-                                    <input id="search" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Escribe aquí." name="buscar">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-primary text-white" id="inputGroup-sizing-lg">Buscar</span>
+                        <div class="card-body pt-0">             
+                                  <div class="container-fluid ">
+                                    <div class="row">
+                                        <div class="col col-1">
+                                            <div class="row"
+                                            <h4 class="card-title mb-0 mr-4 pt-2">Médicos</h4>
+                                            <a href="" type="button" class="btn btn-primary  ">Añadir
+                                                seleccionado</a> </div>
+                                          </div>
+                                        <div class="col">
+                                            <div class="input-group input-group-lg ">
+                                                <input id="search" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="Escribe aquí." name="buscar">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-primary text-white" id="inputGroup-sizing-lg">Buscar</span>
+                                                  </div>
+                                              </div> 
+                                        </div>
                                       </div>
-                                  </div>                                                   
+                                    </div>
                             </div>
 
 
+                       
+
+
+
                             <!-- -->
+                            <div class="mx-4">
                             <div id="idTabla" class="table-responsive">
                                 <table class="table table-striped table-hover" id="tblMain">
                                     <thead class="bg-primary">
@@ -346,6 +354,7 @@
                                    </tbody>
                                 </table>
                             </div>
+                        </div>
                             <div class="row d-flex justify-content-end p-1">
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
                                     {!! $medicos->links() !!}

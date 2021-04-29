@@ -103,8 +103,10 @@
     <script src="landingPage/assets/vendor/php-email-form/validate.js"></script>
     <script src="landingPage/assets/vendor/purecounter/purecounter.js"></script>
     <script src="landingPage/assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-
+    <script>
+    .item-purchase-banner { 
+        display:  none;
+    } </script>
     <!-- Template Main JS File -->
     <script src="landingPage/assets/js/main.js"></script>
 
