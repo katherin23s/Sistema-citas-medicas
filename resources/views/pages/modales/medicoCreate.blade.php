@@ -181,7 +181,7 @@
                             <!-- input Horario -->
                             <div class="col">
                                 <div class="input-group bg-primary">
-                                    <div class="input-group-prepend bg-primary">
+                                    <div class="input-group-prepend bg-primary" data-toggle="modal" data-target="#modalHorario">
                                         <span class="input-group-text text-white" id=""><i class="fa fa-clock" aria-hidden="true"></i></span>
                                     </div>
                                     <input type="time" class="form-control border border-primary">

@@ -16,6 +16,7 @@
     }
     </style>
    @include('pages.modales.medicoCreate')
+   @include('pages.modales.medicoHorario')
 <!----------------------------------------------------------------------------------------------------------->
 
     <div class="row justify-content-center">
