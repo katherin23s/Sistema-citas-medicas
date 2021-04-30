@@ -206,7 +206,7 @@
                     <!-- -->   
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button id="btn-save" type="button" class="btn btn-primary" value="add">Save changes</button>
+                        <button id="btn-save" type="button" class="btn btn-primary" value="add" data-dismiss="modal">Save changes</button>
                         <input type="hidden" id="medico_id" name="medico_id" value="0">
                       </div>
            </form>
