@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\consultorios;
 use App\Models\especializacion;
+use App\Models\horarios;
 use Response;
 use App\Models\medicos;
 use Illuminate\Http\Request;
@@ -22,7 +23,8 @@ class medicosController extends Controller
 
         $especializaciones = especializacion::all();
         $consultorios = consultorios::all();
-        return view('pages.administrador.medicos', compact('medicos', 'texto', 'especializaciones', 'consultorios'))
+        $horarios = horarios::all();
+        return view('pages.administrador.medicos', compact('horarios', 'medicos', 'texto', 'especializaciones', 'consultorios'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

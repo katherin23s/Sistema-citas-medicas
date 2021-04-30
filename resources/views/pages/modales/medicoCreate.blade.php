@@ -165,7 +165,7 @@
                                 <!-- Fecha Consultorio -->
                                 <div class="col">
                                     <div class="input-group mb-3">
-                                        <div class="input-group-prepend bg-primary">
+                                        <div class="input-group-prepend">
                                         <span class="input-group-text text-white" id="basic-addon1">Consultorio</span></span>
                                         </div>
                                             <select class="form-control border border-primary" id="consultorioSelect" name="consultorio">
@@ -181,7 +181,7 @@
                             <!-- input Horario -->
                             <div class="col">
                                 <div class="input-group bg-primary">
-                                    <div class="input-group-prepend bg-primary" data-toggle="modal" data-target="#modalHorario">
+                                    <div class="input-group-prepend bg-success" data-toggle="modal" data-target="#modalHorario">
                                         <span class="input-group-text text-white" id=""><i class="fa fa-clock" aria-hidden="true"></i></span>
                                     </div>
                                     <input type="time" class="form-control border border-primary">

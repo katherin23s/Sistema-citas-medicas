@@ -1,11 +1,11 @@
 
  <!-- Modal -->
- <div class="modal fade bd-example-modal-lg" id="modalHorario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade bd-example-modal-lg" id="modalHorario" tabindex="-1" role="dialog" aria-labelledby="modalHorario" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Horario</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modalHorario" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -21,8 +21,18 @@
                     <th scope="col">Días laborales</th>
                   </tr>
                 </thead>
-                @php $i=0; @endphp
               
+                <tbody data-dismiss="modal">
+                    @php $i=1 @endphp
+                @foreach ($horarios as $hora)
+                <tbody data-dismiss="modal">
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $hora->horaEntrada }}</td>
+                    <td>{{ $hora->horaSalida }}</td>
+                    <td>{{ $hora->diasLaborales }}</td>
+                </tbody>
+                @endforeach
+               </tbody>
               </table>
         </div>
         <div class="modal-footer">

@@ -305,7 +305,7 @@ function fetch_customer_data(query = '')
   dataType:'json',
   success:function(data)
   {
-   $('tbody').html(data.table_data);
+   $('#medicos-list').html(data.table_data);
    $('#total_records').text(data.total_data);
   }
  })
