@@ -45,18 +45,18 @@ class medicosController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'apellidoM' => 'required',
-            'direccion' => 'required',
+            'direccion' => 'nullable',
             'telefono' => 'required',
-            'edad' => 'required',
+            'edad' => 'nullable',
             'email' => 'required',
             'sexo' => 'required',
-            'fechaNacimiento' => 'required',
+            'fechaNacimiento' => 'nullable',
             'registro' => 'required',
-            'id_especializacion' => 'required',
-            'id_consultorio' => 'required',
-            'id_horario' => 'required',
-            'status' => 'required',
-            'activo' => 'required',
+            'id_especializacion' => 'nullable',
+            'id_consultorio' => 'nullable',
+            'id_horario' => 'nullable',
+            'status' => 'nullable',
+            'activo' => 'nullable',
         ]);
         $medicos = medicos::create($data);
         return response()->json($medicos);
@@ -109,7 +109,7 @@ class medicosController extends Controller
             'id_consultorio' => 'nullable',
             'id_horario' => 'nullable',
             'status' => 'nullable',
-            'activo' => 1,
+            'activo' => 'nullable',
         ]);
         //$noFolio = $request["noFolio"];
         $medicosModificar = medicos::find($id);
