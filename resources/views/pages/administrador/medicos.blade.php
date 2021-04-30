@@ -123,6 +123,8 @@
     jQuery('#altaModal').modal('show');
 });
 
+ 
+
 // CREATE
 $("#btn-save").click(function (e) {
     $.ajaxSetup({
@@ -130,6 +132,65 @@ $("#btn-save").click(function (e) {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+
+
+//Obtener valor de formulario
+    let cedula = jQuery('#cedula').val();
+    let nombre = jQuery('#nombre').val()
+    let apellido_paterno = jQuery('#apellido_paterno').val()
+    let apellido_materno = jQuery('#apellido_materno').val()
+    let edad = jQuery('#edad').val()
+    let sexo = jQuery('#sexo').val()
+    let fechaNacimiento = jQuery('#fechaNacimiento').val()
+    let telefono = jQuery('#telefono').val()
+    let email = jQuery('#email').val()
+
+    //Validar campos vacios 
+
+     //Validar el color del campo si esta vacio
+     if(cedula === ""){
+     jQuery('#cedula').removeClass("border border-primary");
+     jQuery('#cedula').addClass("border border-warning");
+     } 
+     if(nombre === ""){
+     jQuery('#nombre').removeClass("border border-primary");
+     jQuery('#nombre').addClass("border border-warning");}
+
+     if(apellido_paterno === ""){
+     jQuery('#apellido_paterno').removeClass("border border-primary");
+     jQuery('#apellido_paterno').addClass("border border-warning");}
+
+     if(apellido_materno === ""){
+     jQuery('#apellido_materno').removeClass("border border-primary");
+     jQuery('#apellido_materno').addClass("border border-warning");}
+
+     if(edad === ""){
+     jQuery('#edad').removeClass("border border-primary");    
+     jQuery('#edad').addClass("border border-warning");}
+
+     if(sexo === ""){
+     jQuery('#sexo').removeClass("border border-primary");
+     jQuery('#sexo').addClass("border border-warning");}
+
+     if(fechaNacimiento === ""){
+     jQuery('#fechaNacimiento').removeClass("border border-primary");
+     jQuery('#fechaNacimiento').addClass("border border-warning");}
+     
+     if(telefono === ""){
+     jQuery('#telefono').removeClass("border border-primary");
+     jQuery('#telefono').addClass("border border-warning");}
+
+     if(email === ""){
+     jQuery('#email').removeClass("border border-primary");
+     jQuery('#email').addClass("border border-warning");}
+
+ 
+
+     if(cedula === "" || nombre === "" || apellido_paterno === "" || apellido_materno === "" || edad === "" || sexo === "" || fechaNacimiento === "" || telefono === "" || email === ""){
+        document.getElementById('advertencia').style.display='';
+        document.getElementById('buttonAdvertencia').style.display='';
+        document.getElementById('cross').style.display=''; 
+     }
 
 
 /******************************************/
@@ -140,20 +201,12 @@ var valor2;
 //Obtener valor del "especialización"
 $('#especializacionSelect').on('change', function() {
   var valueEspe = $(this).val();
-  //$('#estadoCita').val(value);+
- //console.log(value);
 });
 
 //Obtener valor del "consultorio"
 $('#consultorioSelect').on('change', function() {
   var valueConsul = $(this).val();
-  //$('#estadoCita').val(value);
-  //console.log(value);
 });
-
-
-
-
     var formData = {
         cedula: jQuery('#cedula').val(),
         nombre: jQuery('#nombre').val(),
@@ -171,21 +224,9 @@ $('#consultorioSelect').on('change', function() {
         id_horario: jQuery('#horarioID').val(),
         status: 1,
         activo: 1,
-     
     };
 
-    $.ajax({
-        type: "POST",
-        url: 'medicos',
-        data: formData,
-        dataType: 'json',
-        success: function (data) {                                    
-            console.log(data);
-        },
-        error: function (data) {
-            console.log(data);
-        }
-    });
+
 });
 
 
@@ -330,7 +371,6 @@ $(document).on('keyup', '#search', function(){
 });
 });
 
-
-    </script>
+</script>
     @endsection
 

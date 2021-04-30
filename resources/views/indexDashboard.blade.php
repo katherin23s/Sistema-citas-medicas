@@ -19,7 +19,6 @@
     <!-- Select2 libreria -->
     <link rel="stylesheet" href="{{asset('vendor/jquery-ui/jquery-ui.min.css')}}">
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- endinject -->
     <!-- plugin css for this page -->

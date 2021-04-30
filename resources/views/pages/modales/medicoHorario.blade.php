@@ -54,6 +54,6 @@
    $('#horarioID').val(idHoraCell);
    $("#horaEntrada").val(horaEntrada); 
    $("#horaSalida").val(horaSalida); 
-
 });
-    </script>
+
+</script>

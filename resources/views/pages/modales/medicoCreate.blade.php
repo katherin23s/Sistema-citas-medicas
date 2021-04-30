@@ -12,6 +12,14 @@
            </div>
            <div class="modal-body">
                <form id="myFormAlta" name="myFormAlta" class="form-horizontal" novalidate="">
+                <div class="row d-flex justify-content-center">
+                    <div id="advertencia" class="alert alert-warning alert-dismissible fade show container-lg m-0 text-center center-block" role="alert" style="display:none">
+                        <strong>Advertencia! </strong> You should check in on some of those fields below. 
+                        <button id="buttonAdvertencia" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span id="cross" aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                </div>
                <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
                     <div class="row ml-2 ">
                         <div class="row" style="color:#32C4FF">
@@ -25,7 +33,7 @@
                                     <div class="input-group-prepend bg-primary">
                                     <span class="input-group-text text-white" id="basic-addon1"> <i class="fa fa-address-book" aria-hidden="true"></i> </span>
                                     </div>
-                                    <input type="text" class="form-control border border-primary" id="cedula" name="cedula" placeholder="Cédula" aria-label="Cédula" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control border border-primary" id="cedula" name="cedula" placeholder="Cédula" aria-label="Cédula" aria-describedby="basic-addon1" required="true">
                                 </div>
 
                                 
@@ -36,7 +44,7 @@
                                         <div class="input-group-prepend bg-primary">
                                         <span class="input-group-text text-white" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
                                         </div>
-                                        <input type="text" class="form-control border border-primary" id="nombre" name="nombre" placeholder="Nombre" aria-label="nombre" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control border border-primary" id="nombre" name="nombre" placeholder="Nombre" aria-label="nombre" aria-describedby="basic-addon1" required="true">
                                     </div>
                                 </div>
                                     <!-- input apellido -->
@@ -45,7 +53,7 @@
                                         <div class="input-group-prepend bg-primary">
                                         <span class="input-group-text text-white" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
                                         </div>
-                                        <input type="text" class="form-control border border-primary" id="apellido_paterno" name="apellido_paterno" placeholder="Apellido Paterno" aria-label="Apellido Paterno" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control border border-primary" id="apellido_paterno" name="apellido_paterno" placeholder="Apellido Paterno" aria-label="Apellido Paterno" aria-describedby="basic-addon1" required="true">
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +65,7 @@
                                     <div class="input-group-prepend bg-primary">
                                     <span class="input-group-text text-white" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
                                     </div>
-                                    <input type="text" class="form-control border border-primary" id="apellido_materno" name="apellido_materno" placeholder="Apellido Materno" aria-label="Apellido Materno" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control border border-primary" id="apellido_materno" name="apellido_materno" placeholder="Apellido Materno" aria-label="Apellido Materno" aria-describedby="basic-addon1" required="true">
                                 </div>
                             </div>
                                 <!-- input Edad -->
@@ -78,7 +86,7 @@
                                 <div class="input-group-prepend bg-primary">
                                 <span class="input-group-text text-white" id="basic-addon1">Sexo</span></span>
                                 </div>
-                                <select class="form-control border border-primary" id="sexo" name="sexo" value="Sexo">                          
+                                <select class="form-control border border-primary" id="sexo" name="sexo" value="Sexo" required="true">                          
                                     <option>Mujer</option>
                                     <option>Hombre</option>
                                     </select>
@@ -91,7 +99,7 @@
                                 <div class="input-group-prepend bg-primary">
                                 <span class="input-group-text text-white" id="basic-addon1"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="date" class="form-control border border-primary" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha Nacimiento" aria-label="Fecha Nacimiento" aria-describedby="basic-addon1">
+                                <input type="date" class="form-control border border-primary" id="fechaNacimiento" name="fechaNacimiento" placeholder="Fecha Nacimiento" aria-label="Fecha Nacimiento" aria-describedby="basic-addon1" required="true">
                             </div>
                         </div>
                     </div>
@@ -123,7 +131,7 @@
                                 <div class="input-group-prepend bg-primary">
                                 <span class="input-group-text text-white" id="basic-addon1"><i class="fa fa-phone-square" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="text" class="form-control border border-primary" id="telefono" name="telefono" placeholder="Teléfono" aria-label="Teléfono" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control border border-primary" id="telefono" name="telefono" placeholder="Teléfono" aria-label="Teléfono" aria-describedby="basic-addon1" required="true">
                             </div>
                         </div>
                     <!-- input Email -->
@@ -132,7 +140,7 @@
                                 <div class="input-group-prepend bg-primary">
                                 <span class="input-group-text text-white" id="basic-addon1"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="email" class="form-control border border-primary" id="email" name="email" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                                <input type="email" class="form-control border border-primary" id="email" name="email" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1" required="true">
                             </div>
                             </div>
                         </div>
@@ -195,7 +203,7 @@
                                     <div class="input-group-prepend bg-primary">
                                     <span class="input-group-text text-white" id="basic-addon1"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                     </div>
-                                    <input type="date" class="form-control border border-primary" id="fechaRegistro" name="fechaRegistro" placeholder="Fecha Nacimiento" aria-label="Fecha Nacimiento"  value ="@php echo date("Y-m-d"); @endphp" aria-describedby="basic-addon1">         
+                                    <input type="date" class="form-control border border-primary" id="fechaRegistro" name="fechaRegistro" placeholder="Fecha Nacimiento" aria-label="Fecha Nacimiento"  value ="@php echo date("Y-m-d"); @endphp" aria-describedby="basic-addon1" required="true">         
                                 </div>
                             </div>
                         </div>
@@ -206,7 +214,7 @@
                     <!-- -->   
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button id="btn-save" type="button" class="btn btn-primary" value="add" data-dismiss="modal">Save changes</button>
+                        <button id="btn-save" type="button" class="btn btn-primary" value="add" >Save changes</button>
                         <input type="hidden" id="medico_id" name="medico_id" value="0">
                       </div>
            </form>
