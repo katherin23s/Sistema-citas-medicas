@@ -152,14 +152,14 @@
                                     <div class="input-group-prepend bg-primary">
                                     <span class="input-group-text text-white" id="basic-addon1">Especialización</span></span>
                                     </div>
-                                    <select class="form-control border border-primary" id="especializacion" name="especializacion">
+                                    <select class="form-control border border-primary" id="especializacionSelect" name="especializacion">
                                     
                                             @foreach ($especializaciones as $especializacion)
                                       <option value="{{ $especializacion->idEspecializacion }}">
                                             {{ $especializacion->nombreEspecializacion }}
                                        </option>
                                              @endforeach
-                                        </select>
+                                        </select>    
                                 </div>
                             </div>
                                 <!-- Fecha Consultorio -->
@@ -168,7 +168,7 @@
                                         <div class="input-group-prepend bg-primary">
                                         <span class="input-group-text text-white" id="basic-addon1">Consultorio</span></span>
                                         </div>
-                                        <select class="form-control border border-primary" id="consultorio" name="consultorio">
+                                            <select class="form-control border border-primary" id="consultorioSelect" name="consultorio">
                                                 @foreach ($consultorios as $consultorio)
                                                <option value="{{ $consultorio->idConsultorio }}">{{ $consultorio->noConsultorio }}</option>
                                                 @endforeach

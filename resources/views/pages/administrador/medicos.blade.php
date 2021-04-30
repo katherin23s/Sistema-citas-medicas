@@ -131,6 +131,25 @@ $("#btn-save").click(function (e) {
 });
 
 
+/******************************************/
+
+var valor1;
+var valor2;
+
+//Obtener valor del especialización
+$('#especializacionSelect').on('change', function() {
+  var valueEspe = $(this).val();
+  //$('#estadoCita').val(value);+
+ //console.log(value);
+});
+
+//Obtener valor del consultorio
+$('#consultorioSelect').on('change', function() {
+  var valueConsul = $(this).val();
+  //$('#estadoCita').val(value);
+  //console.log(value);
+});
+
 
     var formData = {
         cedula: jQuery('#cedula').val(),
@@ -144,8 +163,8 @@ $("#btn-save").click(function (e) {
         sexo: jQuery('#sexo').val(),
         fechaNacimiento: jQuery('#fechaNacimiento').val(),
         registro: jQuery('#fechaRegistro').val(),
-        id_especializacion: jQuery('#especializacion').val(),
-        id_consultorio: jQuery('#consultorio').val(),
+        id_especializacion: jQuery('#especializacionSelect').val(),
+        id_consultorio: jQuery('#consultorioSelect').val(),
         id_horario: jQuery('#horario').val(),
         status: 1,
         activo: 1,
@@ -153,21 +172,6 @@ $("#btn-save").click(function (e) {
     };
     console.log(formData);
 
-    var state = jQuery('#btn-save').val();
-    var medico_id = jQuery('#medico_id').val();
-    
-    $.ajax({
-        type: "POST",
-        url: 'medicos',
-        data: formData,
-        dataType: 'json',
-        success: function (data) {                                    
-            console.log(data);
-        },
-        error: function (data) {
-            console.log(data);
-        }
-    });
 });
 
 
@@ -311,6 +315,9 @@ $(document).on('keyup', '#search', function(){
  fetch_customer_data(query);
 });
 });
+
+
+
     </script>
     @endsection
 
