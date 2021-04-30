@@ -147,8 +147,8 @@ $("#btn-save").click(function (e) {
         id_especializacion: jQuery('#especializacion').val(),
         id_consultorio: jQuery('#consultorio').val(),
         id_horario: jQuery('#horario').val(),
-        status: jQuery('#status').val(),
-        activo: jQuery('#activo').val(),
+        status: 1,
+        activo: 1,
      
     };
     console.log(formData);

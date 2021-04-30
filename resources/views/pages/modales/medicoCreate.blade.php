@@ -126,7 +126,7 @@
                                 <div class="input-group-prepend bg-primary">
                                 <span class="input-group-text text-white" id="basic-addon1"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                                 </div>
-                                <input type="email" class="form-control border border-primary" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+                                <input type="email" class="form-control border border-primary" id="email" name="email" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
                             </div>
                             </div>
                         </div>
@@ -143,15 +143,15 @@
                             <!-- input Especialización -->
                             <div class="col">
                             <select class="form-control border border-primary" id="especializacion" name="especializacion">
-                                <option>Especialización 1</option>
-                                <option>Especialización 2</option>
+                                <option>1</option>
+                                <option>2</option>
                                 </select>
                             </div>
                                 <!-- Fecha Consultorio -->
                                 <div class="col">
                                     <select class="form-control border border-primary" id="consultorio" name="consultorio">
-                                        <option>Consultorio 1</option>
-                                        <option>Consultorio 2</option>
+                                        <option>1</option>
+                                        <option>2</option>
                                         </select>
                                     </div>
                                 </div>
@@ -163,10 +163,11 @@
                                     <div class="input-group-prepend bg-primary">
                                         <span class="input-group-text text-white"" id=""><i class="fa fa-clock" aria-hidden="true"></i></span>
                                     </div>
-                                    <input type="time" class="form-control border border-primary"  id="horario" name="horario">
+                                    <input type="time" class="form-control border border-primary">
                                     <input type="time" class="form-control border border-primary">
                                     </div>
                             </div>
+                            <input class="form-control border border-primary"  id="horario" name="horario" value="1">
                                 <!-- Fecha Registro -->
                             <div class="col">
                                 <div class="input-group mb-3">
