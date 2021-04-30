@@ -165,7 +165,7 @@
                                 <!-- Fecha Consultorio -->
                                 <div class="col">
                                     <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
+                                        <div class="input-group-prepend bg-primary text-white">
                                         <span class="input-group-text text-white" id="basic-addon1">Consultorio</span></span>
                                         </div>
                                             <select class="form-control border border-primary" id="consultorioSelect" name="consultorio">
@@ -175,7 +175,7 @@
                                             </select>
                                     </div>
                                 </div>
-                        </div>
+                           </div>
 
                         <div class="row mt-4">
                             <!-- input Horario -->
@@ -184,14 +184,13 @@
                                     <div class="input-group-prepend bg-success" data-toggle="modal" data-target="#modalHorario">
                                         <span class="input-group-text text-white" id=""><i class="fa fa-clock" aria-hidden="true"></i></span>
                                     </div>
-                                    <input type="time" class="form-control border border-primary">
-                                    <input type="time" class="form-control border border-primary">
+                                    <input id="horaEntrada" type="time" class="form-control border border-primary">
+                                    <input id="horaSalida" type="time" class="form-control border border-primary">
                                     </div>
                             </div>
-                            <input class="form-control border border-primary"  id="horario" name="horario" value="1">
+                            <input id="horarioID" class="form-control border border-primary" name="horario">
                                 <!-- Fecha Registro -->
                             <div class="col">
-                                <h5> Fecha Registro </h5>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend bg-primary">
                                     <span class="input-group-text text-white" id="basic-addon1"><i class="fa fa-calendar" aria-hidden="true"></i></span>

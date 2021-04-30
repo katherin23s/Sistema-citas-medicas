@@ -137,19 +137,21 @@ $("#btn-save").click(function (e) {
 var valor1;
 var valor2;
 
-//Obtener valor del especialización
+//Obtener valor del "especialización"
 $('#especializacionSelect').on('change', function() {
   var valueEspe = $(this).val();
   //$('#estadoCita').val(value);+
  //console.log(value);
 });
 
-//Obtener valor del consultorio
+//Obtener valor del "consultorio"
 $('#consultorioSelect').on('change', function() {
   var valueConsul = $(this).val();
   //$('#estadoCita').val(value);
   //console.log(value);
 });
+
+
 
 
     var formData = {
@@ -166,13 +168,24 @@ $('#consultorioSelect').on('change', function() {
         registro: jQuery('#fechaRegistro').val(),
         id_especializacion: jQuery('#especializacionSelect').val(),
         id_consultorio: jQuery('#consultorioSelect').val(),
-        id_horario: jQuery('#horario').val(),
+        id_horario: jQuery('#horarioID').val(),
         status: 1,
         activo: 1,
      
     };
-    console.log(formData);
 
+    $.ajax({
+        type: "POST",
+        url: 'medicos',
+        data: formData,
+        dataType: 'json',
+        success: function (data) {                                    
+            console.log(data);
+        },
+        error: function (data) {
+            console.log(data);
+        }
+    });
 });
 
 
@@ -316,7 +329,6 @@ $(document).on('keyup', '#search', function(){
  fetch_customer_data(query);
 });
 });
-
 
 
     </script>

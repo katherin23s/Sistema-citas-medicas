@@ -25,8 +25,8 @@
                     <th scope="col">Sexo</th>
                   </tr>
                 </thead>
-                @foreach ($pacientesModal as $paciente)
                 <tbody data-dismiss="modal">
+                @foreach ($pacientesModal as $paciente)
                     <td>{{ $paciente->idPaciente }}</td>
                     <td>{{ $paciente->nombre }}</td>
                     <td>{{ $paciente->apellido }}</td>
@@ -35,8 +35,8 @@
                     <td>{{ $paciente->edad }}</td>
                     <td>{{ $paciente->email }}</td>
                     <td>{{ $paciente->sexo }}</td>
-                </tbody>
                 @endforeach
+              </tbody>
               </table>
         </div>
         <div class="modal-footer">

@@ -15,6 +15,7 @@
             <table id="idTablaHorario" class="table table-hover">
                 <thead class="bg-primary">
                   <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">#</th>
                     <th scope="col">Hora Entrada</th>
                     <th scope="col">Hora Salida </th>
@@ -25,12 +26,11 @@
                 <tbody data-dismiss="modal">
                     @php $i=1 @endphp
                 @foreach ($horarios as $hora)
-                <tbody data-dismiss="modal">
+                    <td type="hidden">{{ $hora->idHorario }}</td>
                     <td>{{ $i++ }}</td>
                     <td>{{ $hora->horaEntrada }}</td>
                     <td>{{ $hora->horaSalida }}</td>
-                    <td>{{ $hora->diasLaborales }}</td>
-                </tbody>
+                    <td>{{ $hora->diasLaborales }}</td>            
                 @endforeach
                </tbody>
               </table>
@@ -42,3 +42,18 @@
       </div>
     </div>
   </div>
+
+<script>
+    //Obtener valor id Horario al dar click a registro de "horarios"
+ $("#idTablaHorario tbody tr").click(function() {
+   //obtener el primer valor de la celda
+   var idHoraCell = $(this).find("td:first-child").text();
+   var horaEntrada = $(this).find("td:nth-child(3)").text();
+   var horaSalida = $(this).find("td:nth-child(4)").text();
+ 
+   $('#horarioID').val(idHoraCell);
+   $("#horaEntrada").val(horaEntrada); 
+   $("#horaSalida").val(horaSalida); 
+
+});
+    </script>
