@@ -74,10 +74,16 @@
                     <div class="row">
                         <!-- input sexo -->
                         <div class="col">
-                        <select class="form-control border border-primary" id="sexo" name="sexo">
-                            <option>Mujer</option>
-                            <option>Hombre</option>
-                            </select>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend bg-primary">
+                                <span class="input-group-text text-white" id="basic-addon1">Sexo</span></span>
+                                </div>
+                                <select class="form-control border border-primary" id="sexo" name="sexo" value="Sexo">                          
+                                    <option>Mujer</option>
+                                    <option>Hombre</option>
+                                    </select>
+                            </div>
+ 
                         </div>
                             <!-- Fecha Nacimiento -->
                         <div class="col">
@@ -142,26 +148,36 @@
                         <div class="row">
                             <!-- input Especialización -->
                             <div class="col">
-                            <select class="form-control border border-primary" id="especializacion" name="especializacion">
-                                <option>1</option>
-                                <option>2</option>
-                                </select>
-                            </div>
-                                <!-- Fecha Consultorio -->
-                                <div class="col">
-                                    <select class="form-control border border-primary" id="consultorio" name="consultorio">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend bg-primary">
+                                    <span class="input-group-text text-white" id="basic-addon1">Especialización</span></span>
+                                    </div>
+                                    <select class="form-control border border-primary" id="especializacion" name="especializacion">
                                         <option>1</option>
                                         <option>2</option>
                                         </select>
+                                </div>
+                            </div>
+                                <!-- Fecha Consultorio -->
+                                <div class="col">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend bg-primary">
+                                        <span class="input-group-text text-white" id="basic-addon1">Consultorio</span></span>
+                                        </div>
+                                        <select class="form-control border border-primary" id="consultorio" name="consultorio">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            </select>
                                     </div>
                                 </div>
+                        </div>
 
                         <div class="row mt-4">
                             <!-- input Horario -->
                             <div class="col">
                                 <div class="input-group bg-primary">
                                     <div class="input-group-prepend bg-primary">
-                                        <span class="input-group-text text-white"" id=""><i class="fa fa-clock" aria-hidden="true"></i></span>
+                                        <span class="input-group-text text-white" id=""><i class="fa fa-clock" aria-hidden="true"></i></span>
                                     </div>
                                     <input type="time" class="form-control border border-primary">
                                     <input type="time" class="form-control border border-primary">
@@ -170,11 +186,12 @@
                             <input class="form-control border border-primary"  id="horario" name="horario" value="1">
                                 <!-- Fecha Registro -->
                             <div class="col">
+                                <h5> Fecha Registro </h5>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend bg-primary">
                                     <span class="input-group-text text-white" id="basic-addon1"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                     </div>
-                                    <input type="date" class="form-control border border-primary" id="fechaRegistro" name="fechaRegistro" placeholder="Fecha Nacimiento" aria-label="Fecha Nacimiento" aria-describedby="basic-addon1">
+                                    <input type="date" class="form-control border border-primary" id="fechaRegistro" name="fechaRegistro" placeholder="Fecha Nacimiento" aria-label="Fecha Nacimiento"  value ="@php echo date("Y-m-d"); @endphp" aria-describedby="basic-addon1">         
                                 </div>
                             </div>
                         </div>
