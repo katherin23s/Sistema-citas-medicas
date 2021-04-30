@@ -38,4 +38,14 @@ class medicos extends Model
     {
         return $this->hasMany(citas::class, "idCita", "idMedicos");
     }
+
+    public function consultorios()
+    {
+        return $this->hasOne(consultorios::class, "idConsultorio", "id_consultorio");
+    }
+
+    public function especializacion()
+    {
+        return $this->hasOne(medicos::class, "idEspecializacion", "id_especializacion");
+    }
 }

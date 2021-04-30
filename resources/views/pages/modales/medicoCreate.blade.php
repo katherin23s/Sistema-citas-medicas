@@ -153,8 +153,12 @@
                                     <span class="input-group-text text-white" id="basic-addon1">Especialización</span></span>
                                     </div>
                                     <select class="form-control border border-primary" id="especializacion" name="especializacion">
-                                        <option>1</option>
-                                        <option>2</option>
+                                    
+                                            @foreach ($especializaciones as $especializacion)
+                                      <option value="{{ $especializacion->idEspecializacion }}">
+                                            {{ $especializacion->nombreEspecializacion }}
+                                       </option>
+                                             @endforeach
                                         </select>
                                 </div>
                             </div>
@@ -165,8 +169,9 @@
                                         <span class="input-group-text text-white" id="basic-addon1">Consultorio</span></span>
                                         </div>
                                         <select class="form-control border border-primary" id="consultorio" name="consultorio">
-                                            <option>1</option>
-                                            <option>2</option>
+                                                @foreach ($consultorios as $consultorio)
+                                               <option value="{{ $consultorio->idConsultorio }}">{{ $consultorio->noConsultorio }}</option>
+                                                @endforeach
                                             </select>
                                     </div>
                                 </div>
