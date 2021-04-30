@@ -225,4 +225,17 @@ class medicosController extends Controller
             echo json_encode($data);
         }
     }
+
+    public function validarCedula(Request $request)
+    {
+        $data = $request->validate([
+            'cedula' => 'required',
+        ]);
+
+        if (medicos::where('cedula', $data)->count() > 0) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
 }

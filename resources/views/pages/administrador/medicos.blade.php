@@ -190,8 +190,7 @@ $("#btn-save").click(function (e) {
         document.getElementById('advertencia').style.display='';
         document.getElementById('buttonAdvertencia').style.display='';
         document.getElementById('cross').style.display=''; 
-     }
-
+     }else{
 
 /******************************************/
 
@@ -225,8 +224,47 @@ $('#consultorioSelect').on('change', function() {
         status: 1,
         activo: 1,
     };
+    var validarCedula = {
+        cedula: jQuery('#cedula').val()}
+            
+       $.ajax({
+           type: 'GET',
+           url: 'validar-duplicacion-medicos',
+           data: validarCedula,
+           dataType: 'json',
+           success: function (data) {
+                   if(data == false){
+                       //creame el registro
+                       $.ajax({
+                            type: "POST",
+                            url: 'medicos',
+                            data: formData,
+                            dataType: 'json',
+                            success: function (data) {                                    
+                                console.log(data);
+                            },
+                            error: function (data) {
+                                console.log(data);
+                            }
+                        });
+                   }else{
+                       console.log(data);
+                       console.log("hay registro");
+                       //advertencia
+                       document.getElementById('advertencia').style.display='';
+                       document.getElementById('buttonAdvertencia').style.display='';
+                       document.getElementById('buttonAdvertencia').innerHTML = "Duplicacion!";
+                   // document.getElementById('cross').style.display='';
+                       jQuery('#noFolioinput').addClass("border border-warning");
+                   }
+           //window.location = "/citas";
+           },
+           error: function (data) {
+               console.log(data);
+           }
+       });
 
-
+    }
 });
 
 

@@ -71,6 +71,9 @@ Route::get('/graficas', function () {
 /*Route::get('citas', function () {
     return view('pages.administrador.citas');
 });*/
+
+
+Route::get('validar-duplicacion-medicos', [medicosController::class, 'validarCedula']);
 Route::get('medicos/especializaciones', [especializacionController::class, 'especializacionMedicos']);
 Route::get('medicos/consultorios', [consultoriosController::class, 'consultoriosMedicos']);
 
