@@ -17,8 +17,8 @@
     </style>
    @include('pages.modales.medicoCreate')
    @include('pages.modales.medicoHorario')
+   @include('pages.modales.medicoHorario2')
 <!----------------------------------------------------------------------------------------------------------->
-
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="row">
@@ -79,8 +79,9 @@
                                         </tr>
                                     </thead>
                                     <tbody id="medicos-list" name="medicos-list">
+                                      
                                         @foreach ($medicos as $medico)
-                                        @include('pages.modales.medicoUpdate ')
+                                        @include('pages.modales.medicoUpdate')
                                         @include('pages.administrador.delete')
                                         @endforeach
                                    </tbody>
