@@ -1,6 +1,5 @@
-
- <!-- Modal -->
-  <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal -->
+  <div class="modal fade bd-example-modal-lg" id="modalPacientes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -27,6 +26,7 @@
                 </thead>
                 <tbody data-dismiss="modal">
                 @foreach ($pacientesModal as $paciente)
+                <tr>
                     <td>{{ $paciente->idPaciente }}</td>
                     <td>{{ $paciente->nombre }}</td>
                     <td>{{ $paciente->apellido }}</td>
@@ -35,6 +35,7 @@
                     <td>{{ $paciente->edad }}</td>
                     <td>{{ $paciente->email }}</td>
                     <td>{{ $paciente->sexo }}</td>
+                </tr>
                 @endforeach
               </tbody>
               </table>

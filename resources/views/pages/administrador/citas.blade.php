@@ -138,7 +138,7 @@
                             <div class="col input-group mb-3">
                                 <input class="form-control" id="idPacienteCita" name="paciente" placeholder="paciente" value="{{ old('paciente')}}" disabled require>
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal">Button</button>
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalPacientes">Button</button>
                                 </div>
                             </div>
                         </div>
@@ -284,8 +284,8 @@
 
                          <!--   <div id="idTabla" class="table-responsive">
                                 <table class="table table-striped table-hover" id="tblMain"> -->
-                                    <div id="idTabla" class="table-responsive">
-                                    <table class="table table-hover">
+                              <div id="idTabla" class="table-responsive">
+                                 <table class="table table-hover">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th>#</th>

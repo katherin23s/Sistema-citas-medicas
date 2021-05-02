@@ -82,7 +82,7 @@
                                       
                                         @foreach ($medicos as $medico)
                                         @include('pages.modales.medicoUpdate')
-                                        @include('pages.administrador.delete')
+                                        @include('pages.administrador.delete')                                  
                                         @endforeach
                                    </tbody>
                                 </table>

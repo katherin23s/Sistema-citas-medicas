@@ -9,7 +9,6 @@
           </button>
         </div>
         <div class="modal-body">
-          
             <!-- table -->
             <table id="idTablaHorario2" class="table table-hover">
                 <thead class="bg-primary">
@@ -32,7 +31,7 @@
                     <td>{{ $hora->diasLaborales }}</td>            
                 @endforeach
                </tbody>
-              </table>
+            </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -42,16 +41,3 @@
     </div>
   </div>
 
-<script>
-    //Obtener valor id Horario al dar click a registro de "horarios"
- $("#idTablaHorario2 tbody tr").click(function() {
-   //obtener el primer valor de la celda
-   var idHoraCell = $(this).find("td:first-child").text();
-   var horaEntrada = $(this).find("td:nth-child(3)").text();
-   var horaSalida = $(this).find("td:nth-child(4)").text();
- 
-   $('#horarioID').val(idHoraCell);
-   $("#horaEntrada").val(horaEntrada); 
-   $("#horaSalida").val(horaSalida); 
-});
-</script>

@@ -11,6 +11,7 @@
                     </button>
                 </div>
                     <div class="modal-body">
+                        <input id="idModalHorario" type="hidden" value="{{$medico->idMedicos}}">
                        <form id="myFormAlta" name="myFormAlta" class="form-horizontal" novalidate="">
                             <div class="row d-flex justify-content-center">
                                 <div id="advertencia" class="alert alert-warning alert-dismissible fade show container-lg m-0 text-center center-block" role="alert" style="display:none">
@@ -192,11 +193,11 @@
                                                     <div class="input-group-prepend bg-success" data-toggle="modal" data-target="#modalHorario2">
                                                         <span class="input-group-text text-white" id=""><i class="fa fa-clock" aria-hidden="true"></i></span>
                                                     </div>
-                                                    <input id="horaEntrada" type="time" class="form-control border border-primary">
-                                                    <input id="horaSalida" type="time" class="form-control border border-primary">
-                                                    </div>
+                                                        <input id="horaEntrada2{{$medico->idMedicos}}" type="time" class="form-control border border-primary">
+                                                        <input id="horaSalida2{{$medico->idMedicos}}" type="time" class="form-control border border-primary">
+                                                 </div>
                                             </div>
-                                            <input type="hidden" id="horarioID" class="form-control border border-primary" id="horario2{{$medico->idMedicos}}" name="horario">
+                                            <input type="hidden" id="horarioID2{{$medico->idMedicos}}" class="form-control border border-primary" id="horario2{{$medico->idMedicos}}" name="horario">
                                                 <!-- Fecha Registro -->
                                             <div class="col">
                                                 <div class="input-group mb-3">
@@ -221,3 +222,22 @@
            </div>
     </div>
 </div>
+<script>
+    //Obtener valor id Horario al dar click a registro de "horarios"
+ $("#idTablaHorario2 tbody tr").click(function() {
+   //obtener el primer valor de la celda
+   var idHoraCell = $(this).find("td:first-child").text();
+   var horaEntrada = $(this).find("td:nth-child(3)").text();
+   var horaSalida = $(this).find("td:nth-child(4)").text();
+   var idModalHorarios =  $('#idModalHorario').val(); 
+   console.log(idModalHorarios);
+   console.log('click en el renglon');
+   $('#horarioID2'+idModalHorarios).val(idHoraCell);
+   $("#horaEntrada2"+idModalHorarios).val(horaEntrada); 
+   $("#horaSalida2"+idModalHorarios).val(horaSalida); 
+   console.log(idHoraCell+idModalHorarios);
+   console.log(horaEntrada+idModalHorarios);
+   console.log(horaSalida+idModalHorarios);
+});
+</script>
+
