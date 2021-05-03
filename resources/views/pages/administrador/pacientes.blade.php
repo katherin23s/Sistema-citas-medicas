@@ -15,6 +15,9 @@
 
         </style>
 
+        @php
+            echo '<i class=" fa fa-ban" aria-hidden="true"></i>';
+        @endphp
         <div class="row m-1 ">
             <div class="col">
                 <hr class="borde">
@@ -36,8 +39,6 @@
                         <div class="card">
 
                             <!---------- Division lineal de busqueda y agregar nuevas citas -------->
-                            <!---------- Division lineal de busqueda y agregar nuevas citas -------->
-
                             <div class="row m-1 ">
                                 <div class="col">
                                     <hr class="borde">
@@ -53,7 +54,53 @@
                                 </div>
 
 
-                                <div>
+
+
+                                <!-- Buscador y Boton Agregar Responsivo -->
+
+                                <div class="row m-0 d-flex">
+                                    <!-- Agregar Seleccionado -->
+                                    <a href="{{ url('pacientes/create') }}" type="button"
+                                        class="btn btn-primary col-12 col-xl-1 mr-auto my-4 pt-3">Añadir
+                                        seleccionado</a>
+                                    <!-- -->
+
+                                    <form action="{{ route('pacientes.index') }}" method="GET" role="search">
+
+                                        <div class="input-group">
+                                            <span class="input-group-btn mt-4 mr-4 d-flex justify-content-center">
+                                                <button class="btn btn-info my-4" type="submit" title="Search projects">
+                                                    <span class="fas fa-search"></span>
+                                                </button>
+                                            </span>
+                                            <!-- -->
+                                            <div class="form-group col mt-4 p-0">
+                                                Fecha Date
+                                                <input class="form-control" id="FechaRegistro" name="FechaRegistro"
+                                                    type="date">
+                                            </div>
+
+                                            <div class="form-group col mt-4 p-0">
+                                                <label for="exampleFormControlSelect1">Status</label>
+                                                <select class="form-control form-control-lg" id="estado" name="estado">
+                                                    <option value="1">Activo</option>
+                                                    <option value="0">Inactivo</option>
+                                                </select>
+                                            </div>
+
+                                            <a href="{{ route('pacientes.index') }}" class=" mt-4">
+                                                <span class="input-group-btn my-4">
+                                                    <button class="btn btn-danger d-flex justify-content-center my-4"
+                                                        type="button" title="Refresh page">
+                                                        <span class="fas fa-sync-alt"></span>
+                                                    </button>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="mb-3">
                                     <div class="mx-auto pull-right">
                                         <div class="">
                                             <form action="{{ route('pacientes.index') }}" method="GET" role="search">
@@ -80,83 +127,27 @@
                                     </div>
                                 </div>
 
-                                <!-- Buscador y Boton Agregar Responsivo -->
-
-                                <div class="row m-0 d-flex">
-                                    <div class="card col-12 col-xl-3 mt-3 mr-3 mb-3 ">
-                                        <form class="card-body pb-2" action="{{ route('pacientes.index') }}" method="get">
-                                            <div class="input-group mb-3">
-                                                <input type="text" class="form-control" name="buscar" placeholder="Browser"
-                                                    aria-label="Browser" aria-describedby="basic-addon2">
-                                                <div class="input-group-append d-flex justify-content-end">
-                                                    <button class="btn btn-outline-primary" type="button">Buscar</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <!-- Agregar Seleccionado -->
-                                    <a href="{{ url('pacientes/create') }}" type="button"
-                                        class="btn btn-primary col-12 col-xl-1 my-5 mr-auto ">Añadir
-                                        seleccionado</a>
-                                    <!-- -->
-
-                                    <form action="{{ route('pacientes.index') }}" method="GET" role="search">
-
-                                        <div class="input-group">
-                                            <span class="input-group-btn mr-5 mt-1">
-                                                <button class="btn btn-info" type="submit" title="Search projects">
-                                                    <span class="fas fa-search"></span>
-                                                </button>
-                                            </span>
-
-                                            <!-- -->
-                                            <div class="form-group col-2 mt-4 p-0">
-                                                Fecha Date
-                                                <input class="form-control" id="FechaRegistro" name="FechaRegistro"
-                                                    type="date">
-                                            </div>
-
-                                            <div class="form-group col-2 mt-4 p-0">
-                                                <label for="exampleFormControlSelect1">Status</label>
-                                                <select class="form-control form-control-lg" id="estado" name="estado">
-                                                    <option value="1">Activo</option>
-                                                    <option value="0">Inactivo</option>
-                                                </select>
-                                            </div>
-
-                                            <a href="{{ route('pacientes.index') }}" class=" mt-1">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-danger" type="button" title="Refresh page">
-                                                        <span class="fas fa-sync-alt"></span>
-                                                    </button>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </form>
-                                </div>
-
-
                                 <!-- -->
 
 
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover">
+                                    <table class="table table-hover">
                                         <thead class="bg-primary">
                                             <tr>
-                                                <th>Id</th>
-                                                <th>Nombre</th>
-                                                <th>Apellido</th>
-                                                <th>Apellido Materno</th>
-                                                <th>direccion</th>
-                                                <th>registro</th>
-                                                <th>telefono</th>
-                                                <th>edad</th>
-                                                <th>emai</th>
-                                                <th>sexo</th>
-                                                <th>fechaNacimiento</th>
-                                                <th>status</th>
-                                                <th>activo</th>
-                                                <th>acciones</th>
+                                                <th class="text-white">Id</th>
+                                                <th class="text-white">Nombre</th>
+                                                <th class="text-white">Apellido</th>
+                                                <th class="text-white">Apellido Materno</th>
+                                                <th class="text-white">direccion</th>
+                                                <th class="text-white">registro</th>
+                                                <th class="text-white">telefono</th>
+                                                <th class="text-white">edad</th>
+                                                <th class="text-white">emai</th>
+                                                <th class="text-white">sexo</th>
+                                                <th class="text-white">fechaNacimiento</th>
+                                                <th class="text-white">status</th>
+                                                <th class="text-white">activo</th>
+                                                <th class="text-white">acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -179,18 +170,34 @@
                                                     <td>{{ $paciente->status }}</td>
                                                     <td>{{ $paciente->activo }}</td>
                                                     <td>
-                                                        <a href="{{ url('pacientes/' . $paciente->idPaciente . '/edit') }}"
-                                                            type="submit" class="btn btn-success">
-                                                            Modificar
-                                                        </a>
-                                                        <form action="{{ url('pacientes/' . $paciente->idPaciente) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            {{ method_field('DELETE') }}
-                                                            <input type="submit" class="btn btn-danger"
-                                                                onclick="return confirm('quieres borrar?')"
-                                                                value="   Borrar   ">
-                                                        </form>
+                                                        <div class="row">
+
+                                                            <a href="{{ url('pacientes/' . $paciente->idPaciente . '/edit') }}"
+                                                                type="submit" class="btn btn-success">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-pencil"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                                                </svg>
+                                                            </a>
+
+
+                                                            <form
+                                                                action="{{ url('pacientes/' . $paciente->idPaciente) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                {{ method_field('DELETE') }}
+                                                                <div class="input-container">
+                                                                    <a type="submit" class="btn btn-danger"
+                                                                        onclick="return confirm('quieres borrar?')" value>
+                                                                        <i class=" fa fa-ban text-white"
+                                                                            aria-hidden="true"></i>
+                                                                        <a>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
