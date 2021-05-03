@@ -14,13 +14,32 @@ class pacientesController extends Controller
      */
     public function index(Request $request)
     {
-        $texto = ($request->get('buscar'));
-        $pacientes = pacientes::where('idPaciente', 'LIKE', '%' . $texto . '%')
-            ->orWhere('nombre', 'LIKE', '%' . $texto . '%')
-            ->orderBy('idPaciente')
-            ->paginate(6);
+        $fechaRegistro = $request->input('FechaRegistro');
+        $estado = $request->input('estado');
 
-        return view('pages.administrador.pacientes', compact('pacientes', 'texto'))
+
+        if ($estado != "") {
+            $pacientes = pacientes::where('activo', '=', $estado)
+                ->where('registro', '=', $fechaRegistro)->get();
+        } else {
+            $pacientes = pacientes::where([
+                ['nombre', '!=', Null],
+                [function ($query) use ($request) {
+                    if (($term = $request->term)) {
+                        $query->orWhere('nombre', 'LIKE', '%' . $term . '%')
+                            ->orWhere('apellido', 'LIKE', '%' . $term . '%')
+                            ->orWhere('apellidoM', 'LIKE', '%' . $term . '%')
+                            ->get();
+                    }
+                }]
+            ])->orderBy("idPaciente", "desc")
+                ->paginate(10);
+        }
+
+
+
+
+        return view('pages.administrador.pacientes', compact('pacientes'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 

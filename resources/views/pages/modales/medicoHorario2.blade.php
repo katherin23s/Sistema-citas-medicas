@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="modalHorario2" tabindex="-1" role="dialog"
+<div class="modal fade bd-example-modal-lg" id="modalHorario2{{ $medico->idMedicos }}" tabindex="-1" role="dialog"
     aria-labelledby="modalHorario" aria-hidden="true" style="z-index: 2000;">
     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -41,3 +41,19 @@
         </div>
     </div>
 </div>
+<script>
+    //Obtener valor id Horario al dar click a registro de "horarios"
+    $("#idTablaHorario2 tbody tr").click(function() {
+        //obtener el primer valor de la celda
+        var idHoraCell = $(this).find("td:first-child").text();
+        var horaEntrada = $(this).find("td:nth-child(3)").text();
+        var horaSalida = $(this).find("td:nth-child(4)").text();
+        var idModalHorarios = $('#idModalHorario').val();
+
+        console.log(idHoraCell);
+        console.log(horaEntrada);
+        console.log(horaSalida);
+        // console.log();
+    });
+
+</script>

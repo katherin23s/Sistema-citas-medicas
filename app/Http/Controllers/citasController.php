@@ -20,7 +20,8 @@ class citasController extends Controller
     {
         $fechaInicio = $request->input('fechaCitaInicio');
         $fechaFinal = $request->input('fechaCitaFinal');
-        $estado = $request->input('estadoCita'); //($request->get('buscar'));
+        $estado = $request->input('estadoCita');
+        //($request->get('buscar'));
         if ($fechaInicio != "") {
             $citas = citas::with('paciente', 'medico')
                 ->whereBetween('fecha_cita', [$fechaInicio, $fechaFinal])
