@@ -1,5 +1,5 @@
 @extends('indexDashboard')
-@section('pacientes')
+@section('content')
     <div class="main-panel">
         <!----------------------------------------- CONTENIDO  -------------------------------------------------->
 
@@ -14,10 +14,6 @@
             }
 
         </style>
-
-        @php
-            echo '<i class=" fa fa-ban" aria-hidden="true"></i>';
-        @endphp
         <div class="row m-1 ">
             <div class="col">
                 <hr class="borde">
@@ -27,35 +23,12 @@
                 <hr class="borde">
             </div>
         </div>
-
-
-
-
-
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12 grid-margin p-4">
                         <div class="card">
-
-                            <!---------- Division lineal de busqueda y agregar nuevas citas -------->
-                            <div class="row m-1 ">
-                                <div class="col">
-                                    <hr class="borde">
-                                </div>
-                            </div>
-
-                            <!-- -->
-
                             <div class="card-body pt-0">
-                                <div class="d-flex justify-content-between">
-                                    <h4 class="card-title mb-0">Citas</h4>
-                                    <a href="#"><small>Citas</small></a>
-                                </div>
-
-
-
-
                                 <!-- Buscador y Boton Agregar Responsivo -->
 
                                 <div class="row m-0 d-flex">

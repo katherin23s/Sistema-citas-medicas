@@ -1,5 +1,5 @@
 @extends('indexDashboard')
-@section('citas')
+@section('content')
 
 
     <!-- partial -->
@@ -303,7 +303,7 @@
 
 
                                 <!--   <div id="idTabla" class="table-responsive">
-                                        <table class="table table-striped table-hover" id="tblMain"> -->
+                                            <table class="table table-striped table-hover" id="tblMain"> -->
                                 <div id="idTabla" class="table-responsive">
                                     <table class="table table-hover">
                                         <thead class="bg-primary">

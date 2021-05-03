@@ -9,11 +9,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Star Admin Premium Bootstrap Admin dash-board Template</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="dash-board/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="dash-board/assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-    <link rel="stylesheet" href="dash-board/assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="dash-board/assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="dash-board/assets/vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet"
+        href="{{ asset('dash-board/assets') }}/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="{{ asset('dash-board/assets') }}/vendors/iconfonts/ionicons/dist/css/ionicons.css">
+    <link rel="stylesheet"
+        href="{{ asset('dash-board/assets') }}/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{{ asset('dash-board/assets') }}/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="{{ asset('dash-board/assets') }}/vendors/css/vendor.bundle.addons.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
@@ -25,55 +27,24 @@
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="dash-board/assets/css/shared/style.css">
+    <link rel="stylesheet" href="{{ asset('dash-board/assets') }}/css/shared/style.css">
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="dash-board/assets/css/demo_1/style.css">
+    <link rel="stylesheet" href="{{ asset('dash-board/assets') }}/css/demo_1/style.css">
     <!-- End Layout styles -->
-    <link rel="shortcut icon" href="dash-board/assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="{{ asset('dash-board/assets') }}/images/favicon.ico" />
 
 
 </head>
 
 <body>
     <div class="container-scroller">
-
-
         @include('pages.administrador.header')
         <!-- si el nombre de la ruta -->
         <!-- la ruta indica al hijo -->
-
-        @if (Request::is('main'))
-            @yield('content')
-        @elseif(Request::is('citas'))
-            @yield('citas')
-        @elseif(Request::is('medicos'))
-            @yield('medicos')
-        @elseif(Request::is('configuracion'))
-            @yield('configuracion')
-        @elseif(Request::is('consultorios'))
-            @yield('consultorios')
-        @elseif(Request::is('especializacion'))
-            @yield('especializacion')
-        @elseif(Request::is('usuarios'))
-            @yield('usuarios')
-        @elseif(Request::is('facturacion'))
-            @yield('facturacion')
-        @elseif(Request::is('pacientes'))
-            @yield('pacientes')
-        @elseif(Request::is('receta'))
-            @yield('receta')
-            @stack('jsreceta')
-        @elseif(Request::is('calendario'))
-            @stack('csscalendario')
-            @yield('calendario')
-            @stack('jscalendario')
-            <!-- Ventanas -->
-        @endif
+        @yield('content')
+        <!-- Ventanas -->
         @include('pages.administrador.foother')
-
-
-
         <!-- partial -->
     </div>
     <!-- main-panel ends -->
@@ -82,40 +53,40 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="dash-board/assets/vendors/js/vendor.bundle.base.js"></script>
-    <script src="dash-board/assets/vendors/js/vendor.bundle.addons.js"></script>
+    <script src="{{ asset('dash-board/assets') }}/vendors/js/vendor.bundle.base.js"></script>
+    <script src="{{ asset('dash-board/assets') }}/vendors/js/vendor.bundle.addons.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="dash-board/assets/js/shared/off-canvas.js"></script>
-    <script src="dash-board/assets/js/shared/misc.js"></script>
+    <script src="{{ asset('dash-board/assets') }}/js/shared/off-canvas.js"></script>
+    <script src="{{ asset('dash-board/assets') }}/js/shared/misc.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="dash-board/assets/js/demo_1/dash-board.js"></script>
+    <script src="{{ asset('dash-board/assets') }}/js/demo_1/dash-board.js"></script>
     <!-- End custom js for this page-->
-    <script src="dash-board/assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
+    <script src="{{ asset('dash-board/assets') }}/js/shared/jquery.cookie.js" type="text/javascript"></script>
 
 
 
 
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="vendors/js/vendor.bundle.base.js"></script>
-    <script src="vendors/js/vendor.bundle.addons.js"></script>
+    <script src="{{ asset('vendors') }}/js/vendor.bundle.base.js"></script>
+    <script src="{{ asset('vendors') }}/js/vendor.bundle.addons.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="js/shared/off-canvas.js"></script>
-    <script src="js/shared/misc.js"></script>
+    <script src="{{ asset('js') }}/shared/off-canvas.js"></script>
+    <script src="{{ asset('js') }}/shared/misc.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="js/shared/chart.js"></script>
+    <script src="{{ asset('js') }}/shared/chart.js"></script>
     <!-- End custom js for this page-->
-    <script src="js/shared/jquery.cookie.js" type="text/javascript"></script>
+    <script src="{{ asset('js') }}/shared/jquery.cookie.js" type="text/javascript"></script>
     <!-- buscador autocomplete -->
-    <script src="{{ asset('vendor/jquery-ui/jquery-ui.min.js') }}"> </script>
+    <script src="{{ asset('vendors') }}/jquery-ui/jquery-ui.min.js'"> </script>
     <script>
         var medicos = ['medico1', 'medico2', 'medico3', 'medico4'];
         $('#search').autocomplete({

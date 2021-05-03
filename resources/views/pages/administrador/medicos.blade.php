@@ -1,6 +1,6 @@
 @extends('indexDashboard')
 
-@section('medicos')
+@section('content')
 
 
     <div class="main-panel">
