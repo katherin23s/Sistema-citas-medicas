@@ -187,7 +187,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="citas">
+                    <a class="nav-link" href="{{ url('citas/') }}">
                         <i class="menu-icon typcn typcn-coffee"></i>
                         <span class="menu-title">Citas</span>
                     </a>
@@ -195,55 +195,55 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="medicos">
+                    <a class="nav-link" href="{{ url('medicos/') }}">
                         <i class="menu-icon typcn typcn-shopping-bag"></i>
                         <span class="menu-title">Medicos</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pacientes">
+                    <a class="nav-link" href="{{ url('pacientes/') }}">
                         <i class="menu-icon typcn typcn-document-add"></i>
                         <span class="menu-title">Pacientes</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="usuarios">
+                    <a class="nav-link" href="{{ url('usuarios/') }}">
                         <i class="menu-icon typcn typcn-shopping-bag"></i>
                         <span class="menu-title">Usuarios</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="configuracion">
+                    <a class="nav-link" href="{{ url('configuracion/') }}">
                         <i class="menu-icon typcn typcn-th-large-outline"></i>
                         <span class="menu-title">Configuracion</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="consultorios">
+                    <a class="nav-link" href="{{ url('consultorios/') }}">
                         <i class="menu-icon typcn typcn-bell"></i>
                         <span class="menu-title">Consultorios</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="especializacion">
+                    <a class="nav-link" href="{{ url('especializacion/') }}">
                         <i class="menu-icon typcn typcn-user-outline"></i>
                         <span class="menu-title">Especializacion</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="facturacion">
+                    <a class="nav-link" href="{{ url('facturacion/') }}">
                         <i class="menu-icon typcn typcn-document-add"></i>
                         <span class="menu-title">Facturacion</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="receta">
+                    <a class="nav-link" href="{{ url('receta/') }}">
                         <i class="menu-icon typcn typcn-document-add"></i>
                         <span class="menu-title">Receta</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="calendario">
+                    <a class="nav-link" href="{{ url('calendario/') }}">
                         <i class="menu-icon typcn typcn-document-add"></i>
                         <span class="menu-title">Calendario</span>
                     </a>
