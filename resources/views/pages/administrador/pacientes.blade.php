@@ -175,16 +175,18 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
-
-
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-end p-1">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                {!! $pacientes->links() !!}
             </div>
         </div>
     </div>
