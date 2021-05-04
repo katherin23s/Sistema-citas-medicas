@@ -194,8 +194,8 @@
                         return {
                             results: $.map(data, function(data) {
                                 return {
-                                    text: $('<img src="dash-board/assets/images/usuarios/foto.png" >' +
-                                        data.name),
+                                    text: $('<img src="dash-board/assets/images/usuarios/foto.png" > <p>' +
+                                        data.name + '</p>'),
                                     id: data.id
                                 }
                             })
