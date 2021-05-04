@@ -162,11 +162,11 @@
                                                                 @csrf
                                                                 {{ method_field('DELETE') }}
                                                                 <div class="input-container">
-                                                                    <a type="submit" class="btn btn-danger"
+                                                                    <button type="submit" class="btn btn-danger"
                                                                         onclick="return confirm('quieres borrar?')" value>
                                                                         <i class=" fa fa-ban text-white"
                                                                             aria-hidden="true"></i>
-                                                                        <a>
+                                                                    </button>
                                                                 </div>
                                                             </form>
 

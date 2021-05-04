@@ -103,6 +103,7 @@ class pacientesController extends Controller
         pacientes::where('idPaciente', '=', $id)->update($datosPaciente);
         $paciente = pacientes::findOrFail($id);
         return view('pages.ventanas.EditarPaciente', compact('paciente'));
+        //  return redirect('pacientes', compact('paciente'));
     }
 
     /**
