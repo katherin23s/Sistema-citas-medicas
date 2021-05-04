@@ -170,13 +170,17 @@
         </div>
 
 
-        <body class="mt-5">
-            <div class="container">
-                <h2>Laravel AJAX Autocomplete Demo</h2>
+        <div class="container">
+            <h2>Laravel AJAX Autocomplete Demo</h2>
+            <select class="autosearch form-control" name="autosearch"></select>
+        </div>
 
-                <select class="autosearch form-control" name="autosearch"></select>
-            </div>
-        </body>
+        <div>
+            <select id="cmbIdioma" style="width: 200px;">
+                <option value="Spain" selected>Spain</option>
+                <option value="United_Kingdom">United Kingdom</option>
+            </select>
+        </div>
 
 
         <script type="text/javascript">
@@ -190,13 +194,24 @@
                         return {
                             results: $.map(data, function(data) {
                                 return {
-                                    text: data.name,
+                                    text: $('<img src="dash-board/assets/images/usuarios/foto.png" >' +
+                                        data.name),
                                     id: data.id
                                 }
                             })
                         };
                     },
                     cache: true
+                }
+            });
+
+
+
+            $("#cmbIdioma").select2({
+                templateResult: function(idioma) {
+                    var $span = $("<span><img src='https://www.free-country-flags.com/countries/" + idioma.id +
+                        "/1/tiny/" + idioma.id + ".png'/> " + idioma.text + "</span>");
+                    return $span;
                 }
             });
 
