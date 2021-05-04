@@ -19,10 +19,15 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
-    <!-- Select2 libreria -->
-    <link rel="stylesheet" href="{{ asset('vendor/jquery-ui/jquery-ui.min.css') }}">
+    <!-- Select2 -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <!-- libreria UI-->
+    <link rel="stylesheet" href="{{ asset('vendor/jquery-ui/jquery-ui.min.css') }}">
+
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
@@ -86,7 +91,7 @@
     <!-- End custom js for this page-->
     <script src="{{ asset('js') }}/shared/jquery.cookie.js" type="text/javascript"></script>
     <!-- buscador autocomplete -->
-    <script src="{{ asset('vendors') }}/jquery-ui/jquery-ui.min.js'"> </script>
+    <script src="vendors/jquery-ui/jquery-ui.min.js"> </script>
     <script>
         var medicos = ['medico1', 'medico2', 'medico3', 'medico4'];
         $('#search').autocomplete({

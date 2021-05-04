@@ -15,19 +15,6 @@
             }
 
         </style>
-
-        <div class="row m-1 ">
-            <div class="col">
-                <hr class="borde">
-            </div>
-            <h3 class="col-auto minimum-setup" id="minimum-setup">Users</h3>
-            <div class="col">
-                <hr class="borde">
-            </div>
-        </div>
-
-
-
         <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
         <!----------------------------------------------------------------------------------------------------------->
         <!-- Buscador y Boton Agregar Responsivo -->
@@ -123,8 +110,8 @@
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
-                                        @foreach ($usuarios as $usuario)
-                                            <tbody>
+                                        <tbody>
+                                            @foreach ($usuarios as $usuario)
                                                 <tr id="idtr" action="{{ $usuario->id }}">
                                                     <td id=" idCita" type="hidden" style="display:none;">
                                                         {{ $usuario->id }}</td>
@@ -137,11 +124,12 @@
                                                     <td>{{ $usuario->email }}</td>
                                                     <td>{{ $usuario->sexo }}</td>
                                                     <td>
-                                                        <a href="{{ url('usuarios/' . $usuario->id . '/edit') }}" type="submit"
-                                                            class="btn btn-success">
+                                                        <a href="{{ url('usuarios/' . $usuario->id . '/edit') }}"
+                                                            type="submit" class="btn btn-success">
                                                             Modificar
                                                         </a>
-                                                        <form action="{{ url('usuarios/' . $usuario->id) }}" method="POST">
+                                                        <form action="{{ url('usuarios/' . $usuario->id) }}"
+                                                            method="POST">
                                                             @csrf
                                                             {{ method_field('DELETE') }}
                                                             <input type="submit" class="btn btn-danger"
@@ -150,9 +138,8 @@
                                                         </form>
                                                     </td>
                                                 </tr>
-                                            </tbody>
-                                        @endforeach
-
+                                            @endforeach
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div class="row d-flex justify-content-end p-1">
@@ -175,58 +162,6 @@
                                 }
 
                             </style>
-
-                            <div class="row m-1 ">
-                                <div class="col">
-                                    <hr class="borde">
-                                </div>
-                                <div class="col">
-                                    <hr class="borde">
-                                </div>
-                            </div>
-
-                            <!-- -->
-                            <!-- ======= Costos ===== -->
-                            <div class="form-group row m-0 p-0">
-                                <label for="exampleInputEmail1" class=" col-form-label pl-4 pr-5">Servicio</label>
-                                <div class="col input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Recipient's username"
-                                        aria-label="Recipient's username" aria-describedby="basic-addon2">
-
-                                </div>
-                            </div>
-
-
-                            <div class="d-flex">
-                                <div class="mr-auto p-2">
-
-                                    <div class="form-group row mb-0">
-                                        <label for="exampleInputEmail1" class="col-form-label ml-4 pl-1">Medico</label>
-                                        <div class="col input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Recipient's username"
-                                                aria-label="Recipient's username" aria-describedby="basic-addon2">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="p-2">
-                                    <div class="form-group row">
-                                        <label for="exampleSelect1" class=" col-form-label">Tipo
-                                            Cita</label>
-                                        <div class="col">
-                                            <select class="form-control" id="exampleSelect1">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
                             <!-- -->
                         </div>
                     </div>
@@ -234,4 +169,36 @@
             </div>
         </div>
 
+
+        <body class="mt-5">
+            <div class="container">
+                <h2>Laravel AJAX Autocomplete Demo</h2>
+
+                <select class="autosearch form-control" name="autosearch"></select>
+            </div>
+        </body>
+
+
+        <script type="text/javascript">
+            $('.autosearch').select2({
+                placeholder: 'Select Books',
+                ajax: {
+                    url: 'buscar-usuarios-auto',
+                    dataType: 'json',
+                    delay: 220,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data, function(data) {
+                                return {
+                                    text: data.name,
+                                    id: data.id
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+        </script>
     @endsection

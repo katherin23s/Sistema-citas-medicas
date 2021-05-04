@@ -73,6 +73,7 @@ Route::get('/graficas', function () {
 });*/
 
 
+Route::get('buscar-usuarios-auto', [usuariosController::class, 'userSearch']);
 Route::get('validar-duplicacion-medicos', [medicosController::class, 'validarCedula']);
 Route::get('medicos/especializaciones', [especializacionController::class, 'especializacionMedicos']);
 Route::get('medicos/consultorios', [consultoriosController::class, 'consultoriosMedicos']);

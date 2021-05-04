@@ -176,4 +176,17 @@ class usuariosController extends Controller
             echo json_encode($data);
         }
     }
+
+    public function userSearch(Request $request)
+    {
+        $usuarios = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $usuarios = user::select("id", "name")
+                ->where('name', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($usuarios);
+    }
 }
