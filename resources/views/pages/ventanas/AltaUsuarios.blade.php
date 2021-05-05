@@ -141,7 +141,8 @@
 
                                         <input class="form-control border-0" style="background:#f7f7f7"
                                             id="email_verified_at" name="email_verified_at"
-                                            value="<?php echo date('Y-m-d'); ?>" required>
+                                            value="<?php echo date('Y-m-d'); ?>" required
+                                            disabled>
 
 
 
