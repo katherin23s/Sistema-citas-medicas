@@ -183,7 +183,7 @@ class usuariosController extends Controller
 
         if ($request->has('q')) {
             $search = $request->q;
-            $usuarios = user::select("id", "name")
+            $usuarios = user::select("id", "name", "apellido", "apellidoM")
                 ->where('name', 'LIKE', "%$search%")
                 ->get();
         }

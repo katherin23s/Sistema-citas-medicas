@@ -169,6 +169,12 @@
             </div>
         </div>
 
+        <div class="container">
+            <h2>Laravel AJAX Autocomplete Demo</h2>
+            <select class="autosearch form-control" name="autosearch" id="js-example-templating"></select>
+        </div>
+
+
 
         <div class="container">
             <h2>Laravel AJAX Autocomplete Demo</h2>
@@ -184,8 +190,10 @@
 
 
         <script type="text/javascript">
+            let ruta = "dash-board/assets/images/usuarios/foto.png";
             $('.autosearch').select2({
                 placeholder: 'Select Books',
+                templateResult: formatState,
                 ajax: {
                     url: 'buscar-usuarios-auto',
                     dataType: 'json',
@@ -194,26 +202,39 @@
                         return {
                             results: $.map(data, function(data) {
                                 return {
-                                    text: $('<img src="dash-board/assets/images/usuarios/foto.png" > <p>' +
-                                        data.name + '</p>'),
-                                    id: data.id
+                                    text: data.name + " " + data.apellido + " " + data.apellidoM,
+                                    id: data.id,
+
                                 }
                             })
                         };
                     },
+                    //   templateResult: formatData,
                     cache: true
                 }
             });
 
 
 
-            $("#cmbIdioma").select2({
-                templateResult: function(idioma) {
-                    var $span = $("<span><img src='https://www.free-country-flags.com/countries/" + idioma.id +
-                        "/1/tiny/" + idioma.id + ".png'/> " + idioma.text + "</span>");
-                    return $span;
+            /******************************************************************************************************/
+
+
+            function formatState(state) {
+                if (!state.id) {
+                    return state.text;
                 }
+                var $state = $(
+                    '<span><img src="dash-board/assets/images/usuarios/foto.png" class="img-flag" width="50" height="50"/>' +
+                    state.text + ' </span>'
+                );
+                return $state;
+            };
+
+            $("#js-example-templating3").select2({
+                templateResult: formatState
             });
+
+            /*************************************************************************/
 
         </script>
     @endsection
