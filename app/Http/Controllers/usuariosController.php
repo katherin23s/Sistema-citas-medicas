@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class usuariosController extends Controller
 {
@@ -43,8 +44,20 @@ class usuariosController extends Controller
     public function store(Request $request)
     {
         $usuarios = request()->except('_token');
-        User::insert($usuarios);
+        // User::insert($usuarios);
         // return response()->json($usuarios);
+
+        User::create([
+            'name' => $request->name,
+            'apellido' => $request->apellido,
+            'apellidoM' => $request->apellidoM,
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'email' => $request->email,
+            'sexo' => $request->sexo,
+            'email_verified_at' => $request->email_verified_at,
+            'password' => Hash::make($request->password),
+        ]);
         return redirect('usuarios');
     }
 
