@@ -132,11 +132,17 @@
                                                     <label for="example-date-input" class="col-form-label">Password</label>
                                                     <div class="col input-group mb-3">
                                                         <input class="form-control border-0" style="background:#f7f7f7"
-                                                            id="password" name="password">
+                                                            id="password" name="password" required>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                        <input class="form-control border-0" style="background:#f7f7f7"
+                                            id="email_verified_at" name="email_verified_at"
+                                            value="<?php echo date('Y-m-d'); ?>" required>
+
 
 
                                         <input type="submit" id="Enviar">
