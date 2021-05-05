@@ -97,12 +97,10 @@
             var $state = $(
                 '<div class="row m-0 p-0 font-weight-light"> <div class="col-auto mr-auto"> <span><img src="dash-board/assets/images/usuarios/foto.png" class="img-flag" width="50" height="50"/>' +
                 " " + state.text + ' </span></div>  <div class="col-auto"> <a href="usuarios/' + state.id +
-                '/edit" type="submit" class="btn btn-success">Modificar' +
-                '</a>  <a href="usuarios/' + state.id +
-                '/edit" type="submit" id="btn-delete" class="btn btn-danger">Eliminar </a> </div></div>' +
-                '<form action = "usuarios/' + state.id +
+                '/edit" type="submit" class="btn btn-success">Modificar </a>' +
+                '</div> <form action = "usuarios/' + state.id +
                 '" method = "POST" > @csrf {{ method_field('DELETE') }} <input type = "submit" class = "btn btn-danger"' +
-                'onclick = "return confirm("quieres borrar")" value = "   Borrar   " > </form>'
+                'onclick = "return confirm("quieres borrar")" value = "   Borrar   " > </form> </div>'
             );
             return $state;
         };
