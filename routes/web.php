@@ -117,9 +117,9 @@ Route::get('/login1', function () {
     return view('pages.samples.login');
 });
 
-Route::get('/register', function () {
+/*Route::get('/register', function () {
     return view('pages.samples.register');
-});
+});*/
 
 Route::get('/error-404', function () {
     return view('pages.samples.error-404');
