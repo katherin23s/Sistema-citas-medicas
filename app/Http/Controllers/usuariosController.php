@@ -44,7 +44,8 @@ class usuariosController extends Controller
     {
         $usuarios = request()->except('_token');
         User::insert($usuarios);
-        return response()->json($usuarios);
+        // return response()->json($usuarios);
+        return redirect('usuarios');
     }
 
     /**
