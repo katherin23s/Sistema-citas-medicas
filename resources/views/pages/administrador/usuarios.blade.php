@@ -43,6 +43,13 @@
                                     <a href="#"><small>Citas</small></a>
                                 </div>
 
+
+
+                                <div class="container">
+                                    <h2>Laravel AJAX Autocomplete Demo</h2>
+                                    <select class="autosearch form-control" name="autosearch"
+                                        id="js-example-templating"></select>
+                                </div>
                                 <!-- Buscador y Boton Agregar Responsivo -->
 
                                 <div class="row m-0 d-flex">
@@ -169,10 +176,6 @@
             </div>
         </div>
 
-        <div class="container">
-            <h2>Laravel AJAX Autocomplete Demo</h2>
-            <select class="autosearch form-control" name="autosearch" id="js-example-templating"></select>
-        </div>
 
 
 
@@ -218,22 +221,19 @@
 
             /******************************************************************************************************/
 
-
             function formatState(state) {
                 if (!state.id) {
                     return state.text;
                 }
                 var $state = $(
-                    '<span><img src="dash-board/assets/images/usuarios/foto.png" class="img-flag" width="50" height="50"/>' +
-                    state.text + ' </span>'
+                    '<div class="row m-0 p-0"> <div class="col-auto mr-auto"> <span><img src="dash-board/assets/images/usuarios/foto.png" class="img-flag" width="50" height="50"/>' +
+                    " " + state.text + ' </span></div>  <div class="col-auto"> <a href="usuarios/' + state.id +
+                    '/edit" type="submit" class="btn btn-success">Modificar' +
+                    '</a>  <a href="usuarios/' + state.id +
+                    '/edit" type="submit" class="btn btn-danger">Eliminar </a> </div></div>'
                 );
                 return $state;
             };
-
-            $("#js-example-templating3").select2({
-                templateResult: formatState
-            });
-
             /*************************************************************************/
 
         </script>
