@@ -99,7 +99,10 @@
                 " " + state.text + ' </span></div>  <div class="col-auto"> <a href="usuarios/' + state.id +
                 '/edit" type="submit" class="btn btn-success">Modificar' +
                 '</a>  <a href="usuarios/' + state.id +
-                '/edit" type="submit" class="btn btn-danger">Eliminar </a> </div></div>'
+                '/edit" type="submit" id="btn-delete" class="btn btn-danger">Eliminar </a> </div></div>' +
+                '<form action = "usuarios/' + state.id +
+                '" method = "POST" > @csrf {{ method_field('DELETE') }} <input type = "submit" class = "btn btn-danger"' +
+                'onclick = "return confirm("quieres borrar")" value = "   Borrar   " > </form>'
             );
             return $state;
         };
