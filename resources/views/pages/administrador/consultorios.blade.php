@@ -38,6 +38,180 @@
                 <div class="m-0 px-5">
 
 
+                    <table id="example" class="display">
+                        <thead>
+                            <tr>
+                                <th>idConsultorio</th>
+                                <th>noConsultorio</th>
+                                <th>status</th>
+                                <th>Activo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        @foreach ($consultorios as $consultorio)
+                            <tbody id="medicos-list" name="medicos-list">
+                                <tr id="medicos{{ $consultorio->idConsultorio }}"
+                                    action="{{ $consultorio->idConsultorio }}">
+                                    <td>{{ $consultorio->idConsultorio }}</td>
+                                    <td>{{ $consultorio->noConsultorio }}</td>
+                                    <td>{{ $consultorio->status }}</td>
+                                    <td>{{ $consultorio->activo }}</td>
+                                    <td>
+                                        <button id="{{ $consultorio->idConsultorio }}"
+                                            data-id="{{ $consultorio->idConsultorio }}" type="button"
+                                            class="btn btn-success" data-toggle="modal"
+                                            data-target="#modal-update-consultorio-{{ $consultorio->idConsultorio }}"
+                                            action="{{ $consultorio->idConsultorio }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                            </svg>
+                                        </button>
+
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#modal-delete-consultorio-{{ $consultorio->idConsultorio }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                                            </svg>
+                                        </button>
+                                    </td>
+
+                                    @include('pages.modales.consultorioUpdate')
+                                    @include('pages.modales.consultorioDelete')
+                                </tr>
+                            </tbody>
+                        @endforeach
+                    </table>
+
+                    <!-- Data table -->
+
+                    <!--                 <div class="hero-callout">
+                                                    <div id="example_wrapper" class="dataTables_wrapper">
+
+                                                        <table id="example" class="display nowrap dataTable dtr-inline collapsed" style="width: 100%;"
+                                                            role="grid" aria-describedby="example_info">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="example" rowspan="1"
+                                                                        colspan="1" style="width: 119px;" aria-sort="ascending"
+                                                                        aria-label="Name: activate to sort column descending">Name</th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 190px;" aria-label="Position: activate to sort column ascending">
+                                                                        Position</th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 88px;" aria-label="Office: activate to sort column ascending">
+                                                                        Office</th>
+                                                                    <th class="dt-body-right sorting" tabindex="0" aria-controls="example" rowspan="1"
+                                                                        colspan="1" style="width: 34px;"
+                                                                        aria-label="Age: activate to sort column ascending">Age</th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1"
+                                                                        style="width: 79px;" aria-label="Start date: activate to sort column ascending">
+                                                                        Start date</th>
+                                                                    <th class="dt-body-right sorting" tabindex="0" aria-controls="example" rowspan="1"
+                                                                        colspan="1" style="width: 0px; display: none;"
+                                                                        aria-label="Salary: activate to sort column ascending">Salary</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr class="odd">
+                                                                    <td tabindex="0" class="sorting_1">Airi Satou</td>
+                                                                    <td>Accountant</td>
+                                                                    <td>Tokyo</td>
+                                                                    <td class=" dt-body-right">33</td>
+                                                                    <td>2008/11/28</td>
+                                                                    <td class=" dt-body-right" style="display: none;">$162,700</td>
+                                                                </tr>
+                                                                <tr class="even">
+                                                                    <td class="sorting_1" tabindex="0">Angelica Ramos</td>
+                                                                    <td>Chief Executive Officer (CEO)</td>
+                                                                    <td>London</td>
+                                                                    <td class=" dt-body-right">47</td>
+                                                                    <td>2009/10/09</td>
+                                                                    <td class=" dt-body-right" style="display: none;">$1,200,000</td>
+                                                                </tr>
+                                                                <tr class="odd">
+                                                                    <td tabindex="0" class="sorting_1">Ashton Cox</td>
+                                                                    <td>Junior Technical Author</td>
+                                                                    <td>San Francisco</td>
+                                                                    <td class=" dt-body-right">66</td>
+                                                                    <td>2009/01/12</td>
+                                                                    <td class=" dt-body-right" style="display: none;">$86,000</td>
+                                                                </tr>
+                                                                <tr class="even">
+                                                                    <td class="sorting_1" tabindex="0">Bradley Greer</td>
+                                                                    <td>Software Engineer</td>
+                                                                    <td>London</td>
+                                                                    <td class=" dt-body-right">41</td>
+                                                                    <td>2012/10/13</td>
+                                                                    <td class=" dt-body-right" style="display: none;">$132,000</td>
+                                                                </tr>
+                                                                <tr class="odd">
+                                                                    <td class="sorting_1" tabindex="0">Brenden Wagner</td>
+                                                                    <td>Software Engineer</td>
+                                                                    <td>San Francisco</td>
+                                                                    <td class=" dt-body-right">28</td>
+                                                                    <td>2011/06/07</td>
+                                                                    <td class=" dt-body-right" style="display: none;">$206,850</td>
+                                                                </tr>
+                                                                <tr class="even">
+                                                                    <td tabindex="0" class="sorting_1">Brielle Williamson</td>
+                                                                    <td>Integration Specialist</td>
+                                                                    <td>New York</td>
+                                                                    <td class=" dt-body-right">61</td>
+                                                                    <td>2012/12/02</td>
+                                                                    <td class=" dt-body-right" style="display: none;">$372,000</td>
+                                                                </tr>
+                                                                <tr class="odd">
+                                                                    <td class="sorting_1" tabindex="0">Bruno Nash</td>
+                                                                    <td>Software Engineer</td>
+                                                                    <td>London</td>
+                                                                    <td class=" dt-body-right">38</td>
+                                                                    <td>2011/05/03</td>
+                                                                    <td class=" dt-body-right" style="display: none;">$163,500</td>
+                                                                </tr>
+                                                                <tr class="even">
+                                                                    <td class="sorting_1" tabindex="0">Caesar Vance</td>
+                                                                    <td>Pre-Sales Support</td>
+                                                                    <td>New York</td>
+                                                                    <td class=" dt-body-right">21</td>
+                                                                    <td>2011/12/12</td>
+                                                                    <td class=" dt-body-right" style="display: none;">$106,450</td>
+                                                                </tr>
+                                                                <tr class="odd">
+                                                                    <td class="sorting_1" tabindex="0">Cara Stevens</td>
+                                                                    <td>Sales Assistant</td>
+                                                                    <td>New York</td>
+                                                                    <td class=" dt-body-right">46</td>
+                                                                    <td>2011/12/06</td>
+                                                                    <td class=" dt-body-right" style="display: none;">$145,600</td>
+                                                                </tr>
+                                                                <tr class="even">
+                                                                    <td tabindex="0" class="sorting_1">Cedric Kelly</td>
+                                                                    <td>Senior Javascript Developer</td>
+                                                                    <td>Edinburgh</td>
+                                                                    <td class=" dt-body-right">22</td>
+                                                                    <td>2012/03/29</td>
+                                                                    <td class=" dt-body-right" style="display: none;">$433,060</td>
+                                                                </tr>
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr>
+                                                                    <th rowspan="1" colspan="1">Name</th>
+                                                                    <th rowspan="1" colspan="1">Position</th>
+                                                                    <th rowspan="1" colspan="1">Office</th>
+                                                                    <th class="dt-body-right" rowspan="1" colspan="1">Age</th>
+                                                                    <th rowspan="1" colspan="1">Start date</th>
+                                                                    <th class="dt-body-right" rowspan="1" colspan="1" style="display: none;">Salary</th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+
+                                                    </div> -->
+
+                    <!-- cierre data table -->
 
 
                     <div class="row">
@@ -288,6 +462,27 @@
         </div>
 
         <script>
+            /*     $(document).ready(function() {
+                                                                            $('#table_id').DataTable();
+                                                                        });*/
+
+            var table = $('#example').DataTable();
+
+
+
+
+            /*    $(document).ready(function() {
+                    $('#example')
+                        .addClass('nowrap')
+                        .dataTable({
+                            responsive: true,
+                            columnDefs: [{
+                                targets: [-1, -3],
+                                className: 'dt-body-right'
+                            }]
+                        });
+                });*/
+
             //  jQuery(document).ready(function($){
 
             //----- Open model CREATE -----//
