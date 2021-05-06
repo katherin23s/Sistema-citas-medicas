@@ -23,7 +23,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <input type="submit" name="_method" id="idConsultorio" value="DELETE" data-dismiss="modal">
+                    <input type="submit" name="_method" id="idConsultorio" value="DELETE">
                 </div>
 
             </div>

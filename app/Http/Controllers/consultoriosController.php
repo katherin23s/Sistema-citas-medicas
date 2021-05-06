@@ -151,6 +151,9 @@ class consultoriosController extends Controller
 
         $eliminar = consultorios::find($id);
         $eliminar->delete();
-        return json_encode(array('statusCode' => 200));
+        return redirect('consultorios');
+        //return json_encode(array('statusCode' => 200));
+        /*consultorios::destroy($id);
+        return redirect('consultorios');*/
     }
 }
