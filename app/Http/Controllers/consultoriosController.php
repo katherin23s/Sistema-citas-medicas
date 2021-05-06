@@ -14,15 +14,18 @@ class consultoriosController extends Controller
      */
     public function index(Request $request)
     {
-        $texto = ($request->get('buscar'));
-        $consultorios = consultorios::where('idConsultorio', 'LIKE', '%' . $texto . '%')
-            ->orWhere('noConsultorio', 'LIKE', '%' . $texto . '%')
-            ->orderBy('idConsultorio')
-            ->paginate(6);
-
-        return view('pages.administrador.consultorios', compact('consultorios', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        // $consultorios = consultorios::all();
+        return view('pages.administrador.consultorios');
     }
+
+    public function datableConsulta()
+    {
+        /*return datatables()
+            ->eloquent(consultorios::query())
+            ->toJson();*/
+        return datatables()->eloquent(consultorios::query())->toJson();
+    }
+
 
     public function consultoriosMedicos()
     {
