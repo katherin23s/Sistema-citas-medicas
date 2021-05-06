@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\consultorios;
 use Illuminate\Http\Request;
+use DataTables;
 
 class consultoriosController extends Controller
 {
@@ -18,12 +19,29 @@ class consultoriosController extends Controller
         return view('pages.administrador.consultorios');
     }
 
-    public function datableConsulta()
+    public function datableConsulta(Request $request)
     {
         /*return datatables()
             ->eloquent(consultorios::query())
             ->toJson();*/
-        return datatables()->eloquent(consultorios::query())->toJson();
+        //return datatables()->eloquent(consultorios::query())->toJson();
+        if ($request->ajax()) {
+            $data = consultorios::select('*');
+            return datatables($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+
+                    $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">View</a>';
+                    $btn = $btn . '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
+                    $btn = $btn . '<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
+
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('users');
     }
 
 
