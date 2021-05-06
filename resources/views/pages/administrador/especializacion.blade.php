@@ -25,6 +25,13 @@
             </div>
         </div>
 
+        <body class="mt-5">
+            <div class="container">
+                <h2>Laravel AJAX Autocomplete Demo</h2>
+
+                <select class="autosearch form-control" name="autosearch"></select>
+            </div>
+        </body>
 
 
         <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
@@ -248,7 +255,27 @@
 
     </div>
 
-    <script>
+    <script type="text/javascript">
+        $('.autosearch').select2({
+            placeholder: 'Especialización',
+            ajax: {
+                url: 'buscar/especializacion/auto',
+                dataType: 'json',
+                delay: 220,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(data) {
+                            return {
+                                text: data.nombreEspecializacion,
+                                id: data.idEspecializacion
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
         //  jQuery(document).ready(function($){
 
         //----- Open model CREATE -----//

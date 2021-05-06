@@ -62,10 +62,9 @@
     </div>
     </div>
     <script type="text/javascript">
-        let ruta = "dash-board/assets/images/usuarios/foto.png";
         $('.autosearch').select2({
             placeholder: 'Usuarios',
-            templateResult: formatState,
+            // templateResult: formatState,
             closeOnSelect: false,
             ajax: {
                 url: 'buscar-usuarios-auto',

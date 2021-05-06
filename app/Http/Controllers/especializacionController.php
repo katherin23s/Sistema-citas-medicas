@@ -113,4 +113,17 @@ class especializacionController extends Controller
         $eliminar->delete();
         return json_encode(array('statusCode' => 200));
     }
+
+    public function buscarEspecializacion(Request $request)
+    {
+        $especializacion = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $especializacion = especializacion::select("idEspecializacion", "nombreEspecializacion")
+                ->where('nombreEspecializacion', 'LIKE', "%$search%")
+                ->get();
+        }
+        return response()->json($especializacion);
+    }
 }

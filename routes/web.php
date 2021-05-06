@@ -93,6 +93,8 @@ Route::resources(['pacientes' => pacientesController::class]);
 Route::resources(['usuarios' => usuariosController::class]);
 Route::get('consultorios-registros', [consultoriosController::class, 'datableConsulta']);
 Route::resources(['consultorios' => consultoriosController::class]);
+
+Route::get('buscar/especializacion/auto', [especializacionController::class, 'buscarEspecializacion']);
 Route::resources(['especializacion' => especializacionController::class]);
 Route::resources(['facturacion' => facturacionController::class]);
 

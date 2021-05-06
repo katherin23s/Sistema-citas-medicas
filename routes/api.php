@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\medicosController;
 use App\Http\Controllers\pacientesController;
+use App\Http\Controllers\especializacionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('pacientes/{id}', [pacientesController::class, 'encontrarPaciente']);
 Route::get('medicos/{id}', [medicosController::class, 'encontrarMedico']);
 Route::get('api/v1/cities/search', [medicosController::class, 'search'])->name('api.cities.search');
+//Route::get('buscar/especializacion/auto', [especializacionController::class, 'buscarEspecializacion']);
