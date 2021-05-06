@@ -1,9 +1,9 @@
 @extends('indexDashboard')
 @section('content')
     <!-- partial -->
+
     <div class="main-panel">
         <!----------------------------------------- CONTENIDO  -------------------------------------------------->
-
         <style>
             .borde {
                 margin-top: 1rem;
@@ -27,11 +27,16 @@
         </div>
 
 
-
+        @include('pages.modales.consultorioAlta')
         <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
 
         <div class="row ml-2 ">
             <h4 id="minimum-setup">Consulting Information</h4>
+            <!-- Agregar Seleccionado -->
+            <button type="button" id="añadir" class="btn btn-primary col-12 col-xl-1 my-5 mr-auto" id="agregar"
+                data-toggle="modal" data-target="#altaModal">Añadir
+                seleccionado</button>
+
             <div class="container-fluid p-0">
 
                 <!-- paciente y medico nombre -->
@@ -53,7 +58,10 @@
             </div>
         </div>
 
-
+        @foreach ($consultorios as $consultorio)
+            @include('pages.modales.consultorioUpdate')
+            @include('pages.modales.consultorioDelete')
+        @endforeach
 
         <script>
             $('#example').DataTable({
