@@ -14,14 +14,8 @@ class especializacionController extends Controller
      */
     public function index(Request $request)
     {
-        $texto = ($request->get('buscar'));
-        $especializaciones = especializacion::where('idEspecializacion', 'LIKE', '%' . $texto . '%')
-            ->orWhere('nombreEspecializacion', 'LIKE', '%' . $texto . '%')
-            ->orderBy('idEspecializacion')
-            ->paginate(6);
-
-        return view('pages.administrador.especializacion', compact('especializaciones', 'texto'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        $especializaciones = especializacion::all();
+        return view('pages.administrador.especializacion', compact('especializaciones'));
     }
 
     public function especializacionMedicos()

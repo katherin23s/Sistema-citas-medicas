@@ -64,7 +64,7 @@
     <script type="text/javascript">
         $('.autosearch').select2({
             placeholder: 'Usuarios',
-            // templateResult: formatState,
+            templateResult: formatState,
             closeOnSelect: false,
             ajax: {
                 url: 'buscar-usuarios-auto',
