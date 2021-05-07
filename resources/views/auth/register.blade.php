@@ -44,9 +44,6 @@
                     name="password_confirmation" required />
             </div>
 
-            <input type="hidden" id="email_verified_at" name="email_verified_at"
-                value="<?php echo date('Y-m-d'); ?>">
-
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}

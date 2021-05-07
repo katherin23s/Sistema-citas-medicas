@@ -65,7 +65,8 @@ class medicosController extends Controller
             'activo' => 'nullable',
         ]);
         $medicos = medicos::create($data);
-        return response()->json($medicos);
+        //return response()->json($medicos);
+        return redirect('medicos');
     }
 
     /**
@@ -135,7 +136,7 @@ class medicosController extends Controller
         // return $medico;
         $eliminar = medicos::find($idMedicos);
         $eliminar->delete();
-        return json_encode(array('statusCode' => 200));
+        return redirect('medicos');
     }
 
 

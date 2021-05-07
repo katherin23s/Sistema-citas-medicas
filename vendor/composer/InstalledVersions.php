@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '888479cfed0e2642e4a62878ef364f2e618a4b6b',
+    'reference' => 'd3dfdcb27dee1c98462a40393c7267c590209d51',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -454,12 +454,12 @@ private static $installed = array (
     ),
     'laravel/breeze' => 
     array (
-      'pretty_version' => 'v1.0.2',
-      'version' => '1.0.2.0',
+      'pretty_version' => 'v1.1.6',
+      'version' => '1.1.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '24cf5acc5a77020465f304ce2d7f6b702f845d57',
+      'reference' => '222889eecf49bb02ea91e2122c9ab9f8379c0c45',
     ),
     'laravel/framework' => 
     array (
@@ -477,7 +477,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '888479cfed0e2642e4a62878ef364f2e618a4b6b',
+      'reference' => 'd3dfdcb27dee1c98462a40393c7267c590209d51',
     ),
     'laravel/sail' => 
     array (
@@ -505,6 +505,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'daae1c43f1300fe88c05d83db6f3d8f76677ad88',
+    ),
+    'laravel/ui' => 
+    array (
+      'pretty_version' => 'v3.2.1',
+      'version' => '3.2.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e2478cd0342a92ec1c8c77422553bda8ee004fd0',
     ),
     'league/commonmark' => 
     array (
