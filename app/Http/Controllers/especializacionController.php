@@ -105,7 +105,7 @@ class especializacionController extends Controller
     {
         $eliminar = especializacion::find($id);
         $eliminar->delete();
-        return json_encode(array('statusCode' => 200));
+        return redirect('especializacion');
     }
 
     public function buscarEspecializacion(Request $request)
