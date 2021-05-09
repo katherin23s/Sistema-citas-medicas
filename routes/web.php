@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\citasController;
 use App\Http\Controllers\consultoriosController;
 use App\Http\Controllers\especializacionController;
@@ -7,7 +8,7 @@ use App\Http\Controllers\medicosController;
 use App\Http\Controllers\pacientesController;
 use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\facturacionController;
-
+use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,8 +30,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    return view('indexDashboard');
+})->middleware(['auth', 'is_admin'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
 
@@ -76,6 +77,11 @@ Route::get('/graficas', function () {
     return view('pages.administrador.citas');
 });*/
 
+
+//Route::get('/usuarios', 'PlayerController@index')->name('player')->middleware('player');
+//Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
+Route::get('/usuario', [LoginController::class, 'redirectTo']);
+Route::get('/admin', [LoginController::class, 'redirectTo']);
 
 Route::get('buscar-usuarios-auto', [usuariosController::class, 'userSearch']);
 Route::get('validar-duplicacion-medicos', [medicosController::class, 'validarCedula']);

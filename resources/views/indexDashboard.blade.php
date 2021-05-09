@@ -60,6 +60,11 @@
         @include('pages.administrador.header')
         <!-- si el nombre de la ruta -->
         <!-- la ruta indica al hijo -->
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
         @yield('content')
         <!-- Ventanas -->
         @include('pages.administrador.foother')
