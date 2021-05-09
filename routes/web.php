@@ -8,6 +8,7 @@ use App\Http\Controllers\medicosController;
 use App\Http\Controllers\pacientesController;
 use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\facturacionController;
+use App\Http\Controllers\graficasController;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Support\Facades\Route;
 
@@ -66,10 +67,10 @@ Route::get('/basic_elements', function () {
 Route::get('/chartjs', function () {
     return view('pages.charts.chartjs');
 });
-
+/*
 Route::get('/graficas', function () {
-    return view('pages.graficas');
-});
+    return view('pages.administrador.graficas');
+});*/
 
 
 
@@ -107,7 +108,16 @@ Route::resources(['consultorios' => consultoriosController::class]);
 Route::get('buscar/especializacion/auto', [especializacionController::class, 'buscarEspecializacion']);
 Route::resources(['especializacion' => especializacionController::class]);
 Route::resources(['facturacion' => facturacionController::class]);
+//Route::get(['graficas' => graficasController::class]);
 
+//Citas de hoy
+Route::get('graficas', [graficasController::class, 'index']);
+//Citas pendiente
+Route::get('citas-pendientes', [graficasController::class, 'citasPendientes']);
+//Citas en proceso
+Route::get('citas-proceso', [graficasController::class, 'citasProceso']);
+//Citas Finalizadas
+Route::get('citas-finalizadas', [graficasController::class, 'citasFinalizadas']);
 
 Route::get('/calendario', function () {
     return view('pages.administrador.calendario');

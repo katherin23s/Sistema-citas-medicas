@@ -199,7 +199,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item nav-profile">
-                    <a href="#" class="nav-link">
+                    <a href="{{ url('graficas/') }} class=" nav-link">
                         <div class="profile-image">
                             <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="profile image">
                             <div class="dot-indicator bg-success"></div>
@@ -212,8 +212,8 @@
                 </li>
                 <li class="nav-item nav-category">Main Menu</li>
                 <li class="nav-item">
-                    <a class="nav-link" href="main">
-                        <i class="menu-icon typcn typcn-document-text"></i>
+                    <a class="nav-link" href="{{ url('graficas/') }}">
+                        <i class=" menu-icon typcn typcn-document-text"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
