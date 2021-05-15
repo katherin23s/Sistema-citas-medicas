@@ -79,8 +79,6 @@ Route::get('/graficas', function () {
 });*/
 
 
-//Route::get('/usuarios', 'PlayerController@index')->name('player')->middleware('player');
-//Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
 Route::get('/usuario', [LoginController::class, 'redirectTo']);
 Route::get('/admin', [LoginController::class, 'redirectTo']);
 
@@ -117,7 +115,10 @@ Route::get('citas-pendientes', [graficasController::class, 'citasPendientes']);
 //Citas en proceso
 Route::get('citas-proceso', [graficasController::class, 'citasProceso']);
 //Citas Finalizadas
-Route::get('citas-finalizadas', [graficasController::class, 'citasFinalizadas']);
+Route::get('graficas-citas', [graficasController::class, 'graficasCitas'])->name('graficas.citas');
+Route::get('graficas-finalizadas-canceladas', [graficasController::class, 'graficasCitasFinalizadasCanceladas'])->name('graficas.finalizadas.canceladas');
+
+
 
 Route::get('/calendario', function () {
     return view('pages.administrador.calendario');

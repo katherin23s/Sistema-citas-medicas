@@ -3,7 +3,6 @@
  <!-- partial -->
  @section('content')
 
-
      <!-- partial -->
      <div class="main-panel">
          <div class="content-wrapper">
@@ -60,6 +59,8 @@
                      </div>
                  </div>
              </div>
+
+
 
              <!-- Page Title Header Ends-->
              <div class="row">
@@ -152,36 +153,18 @@
                  </div>
                  <div class="col-lg-6 grid-margin stretch-card">
                      <div class="card">
-                         <div class="p-4 border-bottom bg-light">
-                             <h4 class="card-title mb-0">Stacked Bar chart</h4>
+                         <div class="p-4 pr-5 border-bottom bg-light d-flex justify-content-between">
+                             <h4 class="card-title mb-0">Pie chart</h4>
+                             <id id="pie-chart-legend" class="mr-4"></id>
                          </div>
-                         <div class="card-body">
-                             <div class="d-flex justify-content-between align-items-center pb-4">
-                                 <h4 class="card-title mb-0">Users by Device</h4>
-                                 <div id="stacked-bar-traffic-legend"></div>
-                             </div>
-                             <p class="mb-4">25% more traffic than previous week</p>
-                             <canvas id="stackedbarChart" style="height:250px"></canvas>
+                         <div class="card-body d-flex">
+                             <canvas class="my-auto" id="pieChart" height="130"></canvas>
                          </div>
                      </div>
                  </div>
              </div>
-
 
              <!-- -->
-
-
-             <div class="col-lg-12 grid-margin stretch-card">
-                 <div class="card">
-                     <div class="p-4 pr-5 border-bottom bg-light d-flex justify-content-between">
-                         <h4 class="card-title mb-0">Pie chart</h4>
-                         <id id="pie-chart-legend" class="mr-4"></id>
-                     </div>
-                     <div class="card-body d-flex">
-                         <canvas class="my-auto" id="pieChart" height="130"></canvas>
-                     </div>
-                 </div>
-             </div>
 
              <div class="row">
                  <div class="col-md-8">
@@ -258,4 +241,219 @@
 
              </div>
 
+             <div class="card shadow">
+                 <div class="card-header bg-transparent">
+
+                     <div class="row">
+                         <div class="col">
+                             <h6 class="text-uppercase text-muted ls-1 mb-1">Citas</h6>
+                         </div>
+                         <div class="col-md-4 text-right">
+                             <button id="refresh" type="button" class="btn btn-info" onclick="actualizarDatosCitas()">
+                                 Actualizar
+                             </button>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="card-body">
+                     <div class="chart">
+                         <canvas id="citas-chart" class="chart-canvas"></canvas>
+                     </div>
+                 </div>
+             </div>
+
          @endsection
+         @push('js')
+             <script>
+                 actualizarDatosCitas(0);
+                 CitasFinalizadasCanceladas(3, 0);
+                 CitasFinalizadasCanceladas(0, 1);
+                 //   CitasCanceladas();
+                 'use strict';
+
+                 var chartData = {
+                     labels: [], //['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                     datasets: [{
+                             type: 'bar',
+                             label: 'Standard',
+                             data: [], //["53", "28", "19", "29", "30", "51", "55"],
+                             backgroundColor: ChartColor[0],
+                             borderColor: ChartColor[0],
+                             borderWidth: 2
+                         },
+                         {
+                             type: 'bar',
+                             label: [],
+                             data: [],
+                             backgroundColor: ChartColor[1],
+                             borderColor: ChartColor[1]
+                         }
+                     ]
+                 };
+
+                 var MixedChartCanvas = document.getElementById('mixed-chart').getContext('2d');
+                 lineChart = new Chart(MixedChartCanvas, {
+                     type: 'bar',
+                     data: chartData,
+                     options: {
+                         responsive: true,
+                         /* title: {
+                              display: true,
+                              text: 'Revenue and number of lincences sold'
+                          },*/
+                         scales: {
+                             xAxes: [{
+                                 display: true,
+                                 ticks: {
+                                     fontColor: '#212229',
+                                     stepSize: 50,
+                                     min: 0,
+                                     max: 150,
+                                     autoSkip: true,
+                                     autoSkipPadding: 15,
+                                     maxRotation: 0,
+                                     maxTicksLimit: 10
+                                 },
+                                 gridLines: {
+                                     display: false,
+                                     drawBorder: false,
+                                     color: 'transparent',
+                                     zeroLineColor: '#eeeeee'
+                                 }
+                             }],
+                             yAxes: [{
+                                 display: true,
+                                 scaleLabel: {
+                                     display: true,
+                                     labelString: 'Number of Sales',
+                                     fontSize: 12,
+                                     lineHeight: 2
+                                 },
+                                 ticks: {
+                                     fontColor: '#212229',
+                                     display: true,
+                                     autoSkip: false,
+                                     maxRotation: 0,
+                                     //  stepSize: 20,
+                                     min: 0,
+                                     /* max: 100*/
+                                 },
+                                 gridLines: {
+                                     drawBorder: false
+                                 }
+                             }]
+                         },
+                         legend: {
+                             display: false
+                         },
+                     }
+                 });
+
+
+
+                 var canvasCitas = document.getElementById('citas-chart').getContext('2d');
+                 var chartCitas = new Chart(canvasCitas, {
+                     // The type of chart we want to create
+                     type: 'bar',
+                     // The data for our dataset
+                     data: {
+                         labels: [],
+                         datasets: [{
+                             label: '',
+                             backgroundColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)",
+                                 "rgb(255, 205, 86)"
+                             ],
+                             data: [],
+                         }]
+                     },
+                     // Configuration options go here
+                     options: {
+                         responsive: true,
+                         scales: {
+                             y: {
+                                 beginAtZero: true
+                             }
+                         },
+                         title: {
+                             display: true,
+                             text: "Citas",
+                         },
+                         legend: {
+                             display: false
+                         }
+                     }
+                 });
+
+                 /********************** citas *********************/
+                 function actualizarDatosCitas(dataset) {
+                     $.ajax({
+                         url: "{{ route('graficas.citas') }}",
+                         dataType: 'json',
+                         type: "get",
+                         data: {
+                             "_token": "{{ csrf_token() }}",
+                         },
+                         success: function(response) {
+
+                             console.log(response);
+
+                             let citasPendientes = response[0];
+
+                             if (citasPendientes.length > 0) {
+                                 var meses = [];
+                                 var totales = [];
+                                 for (var i = 0; i < citasPendientes.length; i++) {
+                                     meses.push(citasPendientes[i].mes);
+                                     totales.push(citasPendientes[i].total_citas);
+                                 }
+                                 addData(chartCitas, meses, totales, dataset);
+                             }
+                         }
+                     });
+                     return false;
+                 }
+
+                 function addData(chart, labels, data, dataset) {
+                     removeData(chart, dataset);
+                     chart.data.labels = chart.data.labels.concat(labels);
+                     chart.data.datasets[dataset].data = chart.data.datasets[dataset].data.concat(data);
+                     chart.update();
+                 }
+
+                 function removeData(chart, dataset) {
+                     chart.data.labels = [];
+                     chart.data.datasets[dataset].data = [];
+                 }
+
+
+                 /********************** citas finalizadas y canceladas *********************/
+                 function CitasFinalizadasCanceladas(arreglo, dataset) {
+                     $.ajax({
+                         url: "{{ route('graficas.citas') }}",
+                         dataType: 'json',
+                         type: "get",
+                         data: {
+                             "_token": "{{ csrf_token() }}",
+                         },
+                         success: function(response) {
+
+                             console.log(response + "Esto es un arregloo");
+
+                             let citasFinalizadas = response[arreglo];
+
+                             if (citasFinalizadas.length > 0) {
+                                 var meses = [];
+                                 var totales = [];
+                                 for (var i = 0; i < citasFinalizadas.length; i++) {
+                                     meses.push(citasFinalizadas[i].mes);
+                                     totales.push(citasFinalizadas[i].total_citas);
+                                 }
+                                 addData(lineChart, meses, totales, dataset);
+                             }
+                         }
+                     });
+                     return false;
+                 }
+
+             </script>
+         @endpush
