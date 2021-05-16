@@ -249,7 +249,7 @@
                              <h6 class="text-uppercase text-muted ls-1 mb-1">Citas</h6>
                          </div>
                          <div class="col-md-4 text-right">
-                             <button id="refresh" type="button" class="btn btn-info" onclick="actualizarDatosCitas()">
+                             <button id="refresh" type="button" class="btn btn-info" onclick="">
                                  Actualizar
                              </button>
                          </div>
@@ -262,21 +262,18 @@
                  </div>
              </div>
 
+
          @endsection
          @push('js')
              <script>
-                 actualizarDatosCitas(0);
-                 CitasFinalizadasCanceladas(3, 0);
-                 CitasFinalizadasCanceladas(0, 1);
-                 //   CitasCanceladas();
+                 //Grafica citas finalizadas y canceladas
                  'use strict';
-
                  var chartData = {
-                     labels: [], //['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                     labels: [],
                      datasets: [{
                              type: 'bar',
                              label: 'Standard',
-                             data: [], //["53", "28", "19", "29", "30", "51", "55"],
+                             data: [],
                              backgroundColor: ChartColor[0],
                              borderColor: ChartColor[0],
                              borderWidth: 2
@@ -288,9 +285,9 @@
                              backgroundColor: ChartColor[1],
                              borderColor: ChartColor[1]
                          }
+
                      ]
                  };
-
                  var MixedChartCanvas = document.getElementById('mixed-chart').getContext('2d');
                  lineChart = new Chart(MixedChartCanvas, {
                      type: 'bar',
@@ -349,8 +346,7 @@
                      }
                  });
 
-
-
+                 //Grafica barra citas canceladas
                  var canvasCitas = document.getElementById('citas-chart').getContext('2d');
                  var chartCitas = new Chart(canvasCitas, {
                      // The type of chart we want to create
@@ -385,7 +381,36 @@
                  });
 
                  /********************** citas *********************/
-                 function actualizarDatosCitas(dataset) {
+                 /*     function actualizarDatosCitas(dataset) {
+                          $.ajax({
+                              url: "{{ route('graficas.citas') }}",
+                              dataType: 'json',
+                              type: "get",
+                              data: {
+                                  "_token": "{{ csrf_token() }}",
+                              },
+                              success: function(response) {
+
+                                  console.log(response);
+
+                                  let citasPendientes = response[0];
+
+                                  if (citasPendientes.length > 0) {
+                                      var meses = [];
+                                      var totales = [];
+                                      for (var i = 0; i < citasPendientes.length; i++) {
+                                          meses.push(citasPendientes[i].mes);
+                                          totales.push(citasPendientes[i].total_citas);
+                                      }
+                                      addData(chartCitas, meses, totales, dataset);
+                                  }
+                              }
+                          });
+                          return false;
+                      }*/
+
+                 //Graficas citas finalizadas y canceladas por ultimos 6 meses
+                 function CitasFinalizadasCanceladas(chartName, statusArray, dataset) {
                      $.ajax({
                          url: "{{ route('graficas.citas') }}",
                          dataType: 'json',
@@ -394,24 +419,22 @@
                              "_token": "{{ csrf_token() }}",
                          },
                          success: function(response) {
+                             let citasFinalizadas = response[statusArray];
 
-                             console.log(response);
-
-                             let citasPendientes = response[0];
-
-                             if (citasPendientes.length > 0) {
+                             if (citasFinalizadas.length > 0) {
                                  var meses = [];
                                  var totales = [];
-                                 for (var i = 0; i < citasPendientes.length; i++) {
-                                     meses.push(citasPendientes[i].mes);
-                                     totales.push(citasPendientes[i].total_citas);
+                                 for (var i = 0; i < citasFinalizadas.length; i++) {
+                                     meses.push(citasFinalizadas[i].mes);
+                                     totales.push(citasFinalizadas[i].total_citas);
                                  }
-                                 addData(chartCitas, meses, totales, dataset);
+                                 addData(chartName, meses, totales, dataset);
                              }
                          }
                      });
                      return false;
                  }
+
 
                  function addData(chart, labels, data, dataset) {
                      removeData(chart, dataset);
@@ -426,34 +449,9 @@
                  }
 
 
-                 /********************** citas finalizadas y canceladas *********************/
-                 function CitasFinalizadasCanceladas(arreglo, dataset) {
-                     $.ajax({
-                         url: "{{ route('graficas.citas') }}",
-                         dataType: 'json',
-                         type: "get",
-                         data: {
-                             "_token": "{{ csrf_token() }}",
-                         },
-                         success: function(response) {
-
-                             console.log(response + "Esto es un arregloo");
-
-                             let citasFinalizadas = response[arreglo];
-
-                             if (citasFinalizadas.length > 0) {
-                                 var meses = [];
-                                 var totales = [];
-                                 for (var i = 0; i < citasFinalizadas.length; i++) {
-                                     meses.push(citasFinalizadas[i].mes);
-                                     totales.push(citasFinalizadas[i].total_citas);
-                                 }
-                                 addData(lineChart, meses, totales, dataset);
-                             }
-                         }
-                     });
-                     return false;
-                 }
+                 CitasFinalizadasCanceladas(chartCitas, 3, 0)
+                 CitasFinalizadasCanceladas(lineChart, 3, 0);
+                 CitasFinalizadasCanceladas(lineChart, 0, 1);
 
              </script>
          @endpush
