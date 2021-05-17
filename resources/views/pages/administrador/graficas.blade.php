@@ -266,7 +266,7 @@
          @endsection
          @push('js')
              <script>
-                 //Grafica citas finalizadas y canceladas
+                 //GRAFICAS CITAS FINALIZADAS Y CANCELADAS
                  'use strict';
                  var chartData = {
                      labels: [],
@@ -346,7 +346,7 @@
                      }
                  });
 
-                 //Grafica barra citas canceladas
+                 //GRAFICA BARRA CITAS CANCELADAS
                  var canvasCitas = document.getElementById('citas-chart').getContext('2d');
                  var chartCitas = new Chart(canvasCitas, {
                      // The type of chart we want to create
@@ -380,36 +380,9 @@
                      }
                  });
 
-                 /********************** citas *********************/
-                 /*     function actualizarDatosCitas(dataset) {
-                          $.ajax({
-                              url: "{{ route('graficas.citas') }}",
-                              dataType: 'json',
-                              type: "get",
-                              data: {
-                                  "_token": "{{ csrf_token() }}",
-                              },
-                              success: function(response) {
 
-                                  console.log(response);
 
-                                  let citasPendientes = response[0];
-
-                                  if (citasPendientes.length > 0) {
-                                      var meses = [];
-                                      var totales = [];
-                                      for (var i = 0; i < citasPendientes.length; i++) {
-                                          meses.push(citasPendientes[i].mes);
-                                          totales.push(citasPendientes[i].total_citas);
-                                      }
-                                      addData(chartCitas, meses, totales, dataset);
-                                  }
-                              }
-                          });
-                          return false;
-                      }*/
-
-                 //Graficas citas finalizadas y canceladas por ultimos 6 meses
+                 //GRAFICAS CITAS FINALIZADAS Y CANCELADAS POR ULTIMOS 6 MESES
                  function CitasFinalizadasCanceladas(chartName, statusArray, dataset) {
                      $.ajax({
                          url: "{{ route('graficas.citas') }}",
@@ -434,7 +407,92 @@
                      });
                      return false;
                  }
+                 /******************************************************************************************************/
+                 //GRAFICA INGRESO TOTAL DE CITAS DE LOS ULTIMOS 5 AÑOS
+                 var barChartCanvas = $("#barChart").get(0).getContext("2d");
+                 var barChart = new Chart(barChartCanvas, {
+                     type: 'bar',
+                     data: {
+                         labels: [],
+                         datasets: [{
+                             label: 'Profit',
+                             data: [],
+                             backgroundColor: ChartColor[0],
+                             borderColor: ChartColor[0],
+                             borderWidth: 0
+                         }]
+                     },
 
+                     options: {
+                         responsive: true,
+                         maintainAspectRatio: true,
+                         layout: {
+                             padding: {
+                                 left: 0,
+                                 right: 0,
+                                 top: 0,
+                                 bottom: 0
+                             }
+                         },
+                         scales: {
+
+                             yAxes: [{
+                                 display: true,
+                                 scaleLabel: {
+                                     display: true,
+                                     labelString: 'revenue by sales',
+                                     fontSize: 12,
+                                     lineHeight: 2
+                                 },
+                                 ticks: {
+                                     display: true,
+                                     autoSkip: false,
+                                     maxRotation: 0,
+                                     fontColor: '#bfccda',
+                                     stepSize: 100,
+                                     min: 0,
+                                     //  max: 150
+                                 },
+                                 gridLines: {
+                                     drawBorder: false
+                                 }
+                             }]
+                         },
+                         legend: {
+                             display: false
+                         },
+                         elements: {
+                             point: {
+                                 radius: 0
+                             }
+                         }
+                     }
+
+                 });
+
+                 function CitasIngreso(chartName, statusArray, dataset) {
+                     console.log(chartName);
+                     $.ajax({
+                         type: 'GET',
+                         url: "{{ route('graficas.ingresos') }}",
+                         data: {
+                             "_token": "{{ csrf_token() }}",
+                         },
+                         dataType: 'json',
+                         success: function(data) {
+                             let citasIngresos = data[statusArray];
+                             if (citasIngresos.length > 0) {
+                                 var ano = [];
+                                 var totales = [];
+                                 for (var i = 0; i < citasIngresos.length; i++) {
+                                     ano.push(citasIngresos[i].ano);
+                                     totales.push(citasIngresos[i].ingreso_citas);
+                                 }
+                                 addData(chartName, ano, totales, dataset);
+                             }
+                         }
+                     });
+                 }
 
                  function addData(chart, labels, data, dataset) {
                      removeData(chart, dataset);
@@ -448,10 +506,10 @@
                      chart.data.datasets[dataset].data = [];
                  }
 
-
                  CitasFinalizadasCanceladas(chartCitas, 3, 0)
                  CitasFinalizadasCanceladas(lineChart, 3, 0);
                  CitasFinalizadasCanceladas(lineChart, 0, 1);
+                 CitasIngreso(barChart, 0, 0);
 
              </script>
          @endpush

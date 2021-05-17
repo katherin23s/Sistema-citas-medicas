@@ -76,13 +76,13 @@ class graficasController extends Controller
     private function ingresos($anoInicio, $anoFinal, $status)
     {
         return DB::table('citas')
-            ->select([DB::raw("DATE_FORMAT(fecha_cita, '%y') AS ano"), DB::raw('(COUNT(idCita)) as total_citas'), DB::raw('(costo as ingreso_total')])
+            ->select([DB::raw("DATE_FORMAT(fecha_cita, '%Y') AS ano"), DB::raw('(SUM(costo)) as ingreso_citas')])
             ->whereRaw(
                 '(fecha_cita >= ? AND fecha_cita <= ? AND status = ?)',
                 [$anoInicio . ' 00:00:00', $anoFinal . ' 23:59:59', $status]
             )
             ->orderBy('fecha_cita')
-            ->groupBy(DB::raw("DATE_FORMAT(fecha_cita, '%y')"))
+            ->groupBy(DB::raw("DATE_FORMAT(fecha_cita, '%Y')"))
             ->get();
     }
 }
