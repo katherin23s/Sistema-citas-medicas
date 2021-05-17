@@ -85,4 +85,21 @@ class graficasController extends Controller
             ->groupBy(DB::raw("DATE_FORMAT(fecha_cita, '%Y')"))
             ->get();
     }
+
+    public function graficacitasPCFG()
+    {
+        $citasPCF = [];
+        $citasTotales = $this->citasPCF();
+        array_push($citasPCF, $citasTotales);
+        return json_encode($citasPCF);
+    }
+
+    private function citasPCF()
+    {
+        return DB::table('citas') //barras o divisiones
+            ->select([DB::raw('status as status'), DB::raw('(COUNT(idCita)) as cantidad_citas')])
+            ->orderBy('status')
+            ->groupBy(DB::raw("status"))
+            ->get();
+    }
 }

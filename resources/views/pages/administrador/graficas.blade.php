@@ -435,7 +435,6 @@
                              }
                          },
                          scales: {
-
                              yAxes: [{
                                  display: true,
                                  scaleLabel: {
@@ -494,6 +493,69 @@
                      });
                  }
 
+                 /*****************************************************************************************/
+                 //GRAFICAS CITAS PENDIENTES, CANCELADAS Y FINALIZADAS
+
+                 var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+                 var pieChart = new Chart(pieChartCanvas, {
+                     type: 'pie',
+                     data: {
+                         datasets: [{
+                             data: [],
+                             backgroundColor: [
+                                 ChartColor[0],
+                                 ChartColor[1],
+                                 ChartColor[2]
+                             ],
+                             borderColor: [
+                                 ChartColor[0],
+                                 ChartColor[1],
+                                 ChartColor[2]
+                             ],
+                         }],
+                         labels: [
+                             'Sales',
+                             'Profit',
+                             'Return',
+                         ]
+                     },
+                     options: {
+                         responsive: true,
+                         animation: {
+                             animateScale: true,
+                             animateRotate: true
+                         },
+                         legend: {
+                             display: false
+                         },
+                     }
+                 });
+
+
+                 function Citaspcf(chartName, statusArray, dataset) {
+                     console.log(chartName);
+                     $.ajax({
+                         type: 'GET',
+                         url: "{{ route('graficas.pcf') }}",
+                         data: {
+                             "_token": "{{ csrf_token() }}",
+                         },
+                         dataType: 'json',
+                         success: function(data) {
+                             let citaspcf = data[statusArray];
+                             if (citaspcf.length > 0) {
+                                 var status = [];
+                                 var citasTotales = [];
+                                 for (var i = 0; i < citaspcf.length; i++) {
+                                     status.push(citaspcf[i].status);
+                                     citasTotales.push(citaspcf[i].cantidad_citas);
+                                 }
+                                 addData(chartName, status, citasTotales, dataset);
+                             }
+                         }
+                     });
+                 }
+                 //
                  function addData(chart, labels, data, dataset) {
                      removeData(chart, dataset);
                      chart.data.labels = chart.data.labels.concat(labels);
@@ -506,10 +568,14 @@
                      chart.data.datasets[dataset].data = [];
                  }
 
+                 //1.grafica
+                 //2.Array DB
+                 //3.Array data grafica
                  CitasFinalizadasCanceladas(chartCitas, 3, 0)
                  CitasFinalizadasCanceladas(lineChart, 3, 0);
                  CitasFinalizadasCanceladas(lineChart, 0, 1);
                  CitasIngreso(barChart, 0, 0);
+                 Citaspcf(pieChart, 0, 0);
 
              </script>
          @endpush
