@@ -119,6 +119,7 @@ Route::get('graficas-citas', [graficasController::class, 'graficasCitas'])->name
 Route::get('graficas-finalizadas-canceladas', [graficasController::class, 'graficasCitasFinalizadasCanceladas'])->name('graficas.finalizadas.canceladas');
 Route::get('grafica-ingresos', [graficasController::class, 'graficaIngresos'])->name('graficas.ingresos');
 Route::get('grafica-pcf', [graficasController::class, 'graficacitasPCFG'])->name('graficas.pcf');
+Route::get('tabla-ultimas-citas', [graficasController::class, 'tablaUltimasCitas'])->name('graficas.ultimas.citas');
 
 
 Route::get('/calendario', function () {

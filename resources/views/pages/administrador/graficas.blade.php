@@ -167,11 +167,8 @@
              <!-- -->
 
              <div class="row">
-                 <div class="col-md-8">
+                 <div class="col">
                      <div class="row">
-
-
-
                          <div class="col-md-12 grid-margin">
                              <div class="card">
                                  <div class="card-body">
@@ -182,52 +179,19 @@
                                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est quod
                                          cupiditate esse fuga</p>
                                      <div class="table-responsive">
-                                         <table class="table table-striped table-hover">
+                                         <table id="ultimasCitas" class="table table-striped table-hover">
                                              <thead>
                                                  <tr>
-                                                     <th>Invoice ID</th>
-                                                     <th>Customer</th>
+                                                     <th>noFolio ID</th>
+                                                     <th>Cliente</th>
                                                      <th>Status</th>
-                                                     <th>Due Date</th>
-                                                     <th>Amount</th>
+                                                     <th>Tipo cita</th>
+                                                     <th>Fecha cita</th>
+                                                     <th>Costo</th>
                                                  </tr>
                                              </thead>
                                              <tbody>
-                                                 <tr>
-                                                     <td>INV-87239</td>
-                                                     <td>Viola Ford</td>
-                                                     <td>Paid</td>
-                                                     <td>20 Jan 2019</td>
-                                                     <td>$755</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td>INV-87239</td>
-                                                     <td>Dylan Waters</td>
-                                                     <td>Unpaid</td>
-                                                     <td>23 Feb 2019</td>
-                                                     <td>$800</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td>INV-87239</td>
-                                                     <td>Louis Poole</td>
-                                                     <td>Unpaid</td>
-                                                     <td>25 Mar 2019</td>
-                                                     <td>$463</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td>INV-87239</td>
-                                                     <td>Vera Howell</td>
-                                                     <td>Paid</td>
-                                                     <td>27 Mar 2019</td>
-                                                     <td>$235</td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td>INV-87239</td>
-                                                     <td>Allie Goodman</td>
-                                                     <td>Unpaid</td>
-                                                     <td>1 Apr 2019</td>
-                                                     <td>$657</td>
-                                                 </tr>
+
                                              </tbody>
                                          </table>
                                      </div>
@@ -567,15 +531,44 @@
                      chart.data.labels = [];
                      chart.data.datasets[dataset].data = [];
                  }
+                 /****************************************************************************************************/
+                 function tablaUltimasCitas() {
+                     $.ajax({
+                             type: 'GET',
+                             url: "{{ route('graficas.ultimas.citas') }}",
+                             data: {
+                                 "_token": "{{ csrf_token() }}",
+                             },
+                             dataType: 'json',
+                             success: function(data) {
+                                 console.log(data);
+                                 //  $.each(data, function(i, item) {
+                                 for (var i = 0; i < data.length; i++) {
+                                     console.log(data[0][0]);
+                                     $("#ultimasCitas tbody").append(
+                                         "<tr>" +
+                                         "<td>" + data[i].noFolio + "</td>" +
+                                         "<td>" + data[i].nombre + "</td>" +
+                                         "<td>" + data[i].status + "</td>" +
+                                         "<td>" + data[i].tipoCita + "</td>" +
+                                         "<td>" + data[i].fecha_cita + "</td>" +
+                                         "<td>" + data[i].costo + "</td>" +
+                                         "</tr>")
+                                 }
+                             });
+                     }
 
-                 //1.grafica
-                 //2.Array DB
-                 //3.Array data grafica
-                 CitasFinalizadasCanceladas(chartCitas, 3, 0)
-                 CitasFinalizadasCanceladas(lineChart, 3, 0);
-                 CitasFinalizadasCanceladas(lineChart, 0, 1);
-                 CitasIngreso(barChart, 0, 0);
-                 Citaspcf(pieChart, 0, 0);
+
+
+                     //1.grafica
+                     //2.Array DB
+                     //3.Array data grafica
+                     CitasFinalizadasCanceladas(chartCitas, 3, 0)
+                     CitasFinalizadasCanceladas(lineChart, 3, 0);
+                     CitasFinalizadasCanceladas(lineChart, 0, 1);
+                     CitasIngreso(barChart, 0, 0);
+                     Citaspcf(pieChart, 0, 0);
+                     tablaUltimasCitas();
 
              </script>
          @endpush

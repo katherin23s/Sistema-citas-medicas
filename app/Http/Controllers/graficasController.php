@@ -102,4 +102,12 @@ class graficasController extends Controller
             ->groupBy(DB::raw("status"))
             ->get();
     }
+
+    public function tablaUltimasCitas()
+    {
+        // $ultimasCitas = [];
+        $ultimasCitas = citas::latest()->take(5)->get();
+        // array_push($ultimasCitas, $citas);
+        return json_encode($ultimasCitas);
+    }
 }
