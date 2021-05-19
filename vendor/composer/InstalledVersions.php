@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'd3dfdcb27dee1c98462a40393c7267c590209d51',
+    'reference' => 'c20f947eef384d876ec937f0b778dbac08d078c9',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -194,12 +194,12 @@ private static $installed = array (
     ),
     'guzzlehttp/guzzle' => 
     array (
-      'pretty_version' => '7.2.0',
-      'version' => '7.2.0.0',
+      'pretty_version' => '7.3.0',
+      'version' => '7.3.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0aa74dfb41ae110835923ef10a9d803a22d50e79',
+      'reference' => '7008573787b430c1c1f650e3722d9bba59967628',
     ),
     'guzzlehttp/promises' => 
     array (
@@ -477,7 +477,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'd3dfdcb27dee1c98462a40393c7267c590209d51',
+      'reference' => 'c20f947eef384d876ec937f0b778dbac08d078c9',
     ),
     'laravel/sail' => 
     array (
@@ -1320,6 +1320,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'bafc69caeb4d49c39fd0779086c03a3738cbb389',
+    ),
+    'wildbit/swiftmailer-postmark' => 
+    array (
+      'pretty_version' => '3.3.0',
+      'version' => '3.3.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '44ccab7834de8b220d292647ecb2cb683f9962ee',
     ),
     'yajra/laravel-datatables-oracle' => 
     array (

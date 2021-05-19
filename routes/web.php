@@ -11,7 +11,8 @@ use App\Http\Controllers\facturacionController;
 use App\Http\Controllers\graficasController;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Support\Facades\Route;
-
+use App\Mail\ConfirmationDate;
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -122,6 +123,15 @@ Route::get('grafica-pcf', [graficasController::class, 'graficacitasPCFG'])->name
 Route::get('tabla-ultimas-citas', [graficasController::class, 'tablaUltimasCitas'])->name('graficas.ultimas.citas');
 
 
+
+Route::get('send-email', function () {
+    Mail::to('katherin.serna.m@gmail.com')->send(new ConfirmationDate);
+    if (Mail::failures()) {
+        echo "Email not send";
+    } else {
+        echo "Email has been sent";
+    }
+});
 Route::get('/calendario', function () {
     return view('pages.administrador.calendario');
 });

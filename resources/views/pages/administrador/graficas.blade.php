@@ -534,41 +534,41 @@
                  /****************************************************************************************************/
                  function tablaUltimasCitas() {
                      $.ajax({
-                             type: 'GET',
-                             url: "{{ route('graficas.ultimas.citas') }}",
-                             data: {
-                                 "_token": "{{ csrf_token() }}",
-                             },
-                             dataType: 'json',
-                             success: function(data) {
-                                 console.log(data);
-                                 //  $.each(data, function(i, item) {
-                                 for (var i = 0; i < data.length; i++) {
-                                     console.log(data[0][0]);
-                                     $("#ultimasCitas tbody").append(
-                                         "<tr>" +
-                                         "<td>" + data[i].noFolio + "</td>" +
-                                         "<td>" + data[i].nombre + "</td>" +
-                                         "<td>" + data[i].status + "</td>" +
-                                         "<td>" + data[i].tipoCita + "</td>" +
-                                         "<td>" + data[i].fecha_cita + "</td>" +
-                                         "<td>" + data[i].costo + "</td>" +
-                                         "</tr>")
-                                 }
-                             });
-                     }
+                         type: 'GET',
+                         url: "{{ route('graficas.ultimas.citas') }}",
+                         data: {
+                             "_token": "{{ csrf_token() }}",
+                         },
+                         dataType: 'json',
+                         success: function(data) {
+                             console.log(data);
 
+                             for (var i = 0; i < data.length; i++) {
+                                 console.log(data[0][0]);
+                                 $("#ultimasCitas tbody").append(
+                                     "<tr>" +
+                                     "<td>" + data[i].noFolio + "</td>" +
+                                     "<td>" + data[i].nombre + "</td>" +
+                                     "<td>" + data[i].status + "</td>" +
+                                     "<td>" + data[i].tipoCita + "</td>" +
+                                     "<td>" + data[i].fecha_cita + "</td>" +
+                                     "<td>" + data[i].costo + "</td>" +
+                                     "</tr>")
+                             }
+                         }
+                     })
 
+                 }
 
-                     //1.grafica
-                     //2.Array DB
-                     //3.Array data grafica
-                     CitasFinalizadasCanceladas(chartCitas, 3, 0)
-                     CitasFinalizadasCanceladas(lineChart, 3, 0);
-                     CitasFinalizadasCanceladas(lineChart, 0, 1);
-                     CitasIngreso(barChart, 0, 0);
-                     Citaspcf(pieChart, 0, 0);
-                     tablaUltimasCitas();
+                 //1.grafica
+                 //2.Array DB
+                 //3.Array data grafica
+                 CitasFinalizadasCanceladas(chartCitas, 3, 0)
+                 CitasFinalizadasCanceladas(lineChart, 3, 0);
+                 CitasFinalizadasCanceladas(lineChart, 0, 1);
+                 CitasIngreso(barChart, 0, 0);
+                 Citaspcf(pieChart, 0, 0);
+                 tablaUltimasCitas();
 
              </script>
          @endpush
