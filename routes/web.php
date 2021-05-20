@@ -9,6 +9,7 @@ use App\Http\Controllers\pacientesController;
 use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\facturacionController;
 use App\Http\Controllers\graficasController;
+use App\Http\Controllers\mailController;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Support\Facades\Route;
 use App\Mail\ConfirmationDate;
@@ -121,8 +122,7 @@ Route::get('graficas-finalizadas-canceladas', [graficasController::class, 'grafi
 Route::get('grafica-ingresos', [graficasController::class, 'graficaIngresos'])->name('graficas.ingresos');
 Route::get('grafica-pcf', [graficasController::class, 'graficacitasPCFG'])->name('graficas.pcf');
 Route::get('tabla-ultimas-citas', [graficasController::class, 'tablaUltimasCitas'])->name('graficas.ultimas.citas');
-
-
+Route::post('contact-mail', [mailController::class, 'contactmail'])->name('contact.mail');
 
 Route::get('send-email', function () {
     Mail::to('katherin.serna.m@gmail.com')->send(new ConfirmationDate);
