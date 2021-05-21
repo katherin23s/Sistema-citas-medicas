@@ -954,7 +954,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                                <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Your Name"
                                     required>
                             </div>
                             <div class="col-md-6 form-group mt-3 mt-md-0">
@@ -967,7 +967,7 @@
                                 required>
                         </div>
                         <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Message"
+                            <textarea class="form-control" name="msg" id="msg" rows="5" placeholder="msg"
                                 required></textarea>
                         </div>
                         <div class="my-3">

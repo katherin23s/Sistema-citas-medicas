@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Contact;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmationDate;
+use App\Mail\ContactInfoMail;
 use App\Mail\contactmail;
 
 class mailController extends Controller
@@ -14,16 +16,21 @@ class mailController extends Controller
     {
 
         $data = $request->validate([
-            'name' => 'required',
+            'nombre' => 'required',
             'email' => 'required',
             'subject' => 'required',
-            'message' => 'required',
+            'msg' => 'required',
         ]);
 
         $email = $request->input('email');
 
+        $contact = new Contact();
+        $contact->email =  $data['email'];
+        $contact->msg = $data['msg'];
+        $contact->subject =  $data['subject'];
+        $contact->nombre = $data['nombre'];
 
-        Mail::to($email)->send(new contactmail($data));
+        Mail::to($email)->send(new ContactInfoMail($contact));
         if (Mail::failures()) {
             echo "Email not send";
         } else {
