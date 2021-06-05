@@ -21,16 +21,20 @@ class citasClienteController extends Controller
         $horaEntrada = DB::table('horario')
             ->join('medicos', 'horario.idHorario', '=', 'medicos.id_horario')
             ->select('horario.horaEntrada')
+            ->where('medicos.idMedicos', '=', $id)
             ->get();
 
         $horaSalida = DB::table('horario')
             ->join('medicos', 'horario.idHorario', '=', 'medicos.id_horario')
             ->select('horario.horaSalida')
+            ->where('medicos.idMedicos', '=', $id)
             ->get();
 
+        $horaEntrada2 = $horaEntrada->all();
+        $horaSalida2 = $horaSalida->all();
         $citas = [];
 
-        $citasFinalizadas = $this->horasDisponiblesMedico('18:00:00', '23:00:00', $fechaCita, $id);
+        $citasFinalizadas = $this->horasDisponiblesMedico($horaEntrada2[0]->horaEntrada, $horaSalida2[0]->horaSalida, $fechaCita, $id);
         array_push($citas, $citasFinalizadas);
         return json_encode($citas);
     }
@@ -53,8 +57,8 @@ class citasClienteController extends Controller
 
 
         $horasDisponibles = $horasMedico->all();
-        for ($i = 0; $i <= 3; $i++) {
-            for ($x = 0; $x <= 5; $x++) {
+        for ($i = 0; $i <= count($horasOcupadas) - 1; $i++) {
+            for ($x = 0; $x <= count($horasMedico) - 1; $x++) {
                 if ($horasMedico[$x]->hora == $horasOcupadas[$i]->horaCita) {
                     unset($horasDisponibles[$x]);
                 }
