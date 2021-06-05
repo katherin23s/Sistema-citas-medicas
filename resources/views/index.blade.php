@@ -54,8 +54,22 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data-10-year-range.min.js"
         integrity="sha512-Rb9RCtecTEK3SdnnQhrZx4GM1ascb2CNHybgugRDTriP/b1As79OemxeIT5qs6RMJ/fCpeJrDjtpASh7I7EKMQ=="
         crossorigin="anonymous"></script>
+    <!-- CDN example (unpkg) -->
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/plugin/localizedFormat.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/plugin/relativeTime.js"></script>
     <script>
-    var base_url = '..';
+        dayjs.extend(window.dayjs_plugin_localizedFormat)
+        dayjs.extend(window.dayjs_plugin_relativeTime)
+
+    </script>
+    <script>
+        dayjs().format();
+
+    </script>
+    <script>
+        var base_url = '..';
+
     </script>
 
 
@@ -85,7 +99,7 @@
     <!-- portada -->
 
     @hasSection('content')
-    @yield('content')
+        @yield('content')
     @endif
     <!-- End Hero -->
 
@@ -103,10 +117,7 @@
     <script src="landingPage/assets/vendor/php-email-form/validate.js"></script>
     <script src="landingPage/assets/vendor/purecounter/purecounter.js"></script>
     <script src="landingPage/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script>
-    .item-purchase-banner { 
-        display:  none;
-    } </script>
+
     <!-- Template Main JS File -->
     <script src="landingPage/assets/js/main.js"></script>
 

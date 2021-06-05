@@ -10,6 +10,7 @@ use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\facturacionController;
 use App\Http\Controllers\graficasController;
 use App\Http\Controllers\mailController;
+use App\Http\Controllers\citasClienteController;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Support\Facades\Route;
 use App\Mail\ConfirmationDate;
@@ -42,9 +43,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/ladingpage', function () {
-    return view('ladingpage.ladingpage');
-});
+
 
 Route::get('/indexDashboard', function () {
     return view('indexDashboard');
@@ -135,6 +134,10 @@ Route::get('send-email', function () {
 Route::get('/calendario', function () {
     return view('pages.administrador.calendario');
 });
+
+Route::get('horas-disponibles-fecha/{id}', [citasClienteController::class, 'horasDisponiblesDia'])->name('horas.disponibles.fecha');
+Route::get('ladingpage', [citasClienteController::class, 'doctoresCitas'])->name('doctores.citas');
+Route::get('guardar-cita-hora-disponible', [citasClienteController::class, 'guardarCitaHoraDisponible'])->name('guardar.cita.hora.disponible');
 
 
 Route::get('/receta', function () {

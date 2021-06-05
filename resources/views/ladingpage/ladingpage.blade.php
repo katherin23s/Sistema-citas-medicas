@@ -221,7 +221,153 @@
 
 
     <!-- ======= Appointment Section ======= -->
+
+    <div class="container">
+        <div class="row">
+            <div class='col-sm-6'>
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(function() {
+                    $('#datetimepicker1').datetimepicker();
+                });
+
+            </script>
+        </div>
+    </div>
+
+
     <section id="appointment" class="appointment section-bg">
+
+
+        <link href='css/main.css' rel='stylesheet' />
+        <script src='js/main.js'></script>
+        <style>
+            .day-highlight {
+                background-color: yellow !important;
+                color: red !important;
+            }
+
+        </style>
+        <script>
+            var fechaActual = dayjs();
+            var fechaFuturo = fechaActual.add(3, 'hour');
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth',
+                    initialDate: '2021-02-07',
+                    editable: false,
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    }, //mandar un valor por parametro y que sea el ID del medico que seleccione
+                    dateClick: function(info) {
+                        //  console.log(variable)
+                        $('#FechaCita').val("");
+                        calendar.removeAllEvents();
+                        //Obtener el ID del medico
+                        var id = document.getElementById('doctorSelect').value;
+
+                        //Bloquear formulario
+                        $.ajax({
+                            url: "horas-disponibles-fecha/" + id,
+                            dataType: 'json',
+                            type: "get",
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                id: id,
+                                fechaCita: info.dateStr
+                            },
+                            success: function(data) {
+
+                                $("#table-horas tbody").html("");
+                                $("#myModal").modal("show");
+                                for (var i = 0; i < data[0].length; i++) {
+                                    $("#table-horas tbody").append(
+                                        "<tr id=" + data[0][i].hora +
+                                        " onclick='cerrarModal(this.id);hacerAlgoMas(\" " +
+                                        info.dateStr + "\");'>" +
+                                        "<td>" + data[0][i].id + "</td>" +
+                                        "<td>" + data[0][i].hora + "</td>" +
+                                        "</tr>")
+                                }
+
+                                calendar.addEvent({
+                                    title: info.dateStr,
+                                    start: info
+                                        .dateStr, //fecha del dia que se le dio click
+                                    allDay: true
+                                });
+                            }
+
+                        });
+                    },
+
+                    validRange: {
+                        start: Date.now(),
+                    }
+                });
+                calendar.render();
+
+                console.log(fechaFuturo)
+            });
+
+            //cuando se selecciona a un medico obtener el ID , cambiar paso y habilitar calendario
+            function activarAppointment() {
+                var element = document.getElementById("choiceApoint");
+                element.classList.add("current");
+                $("#citasMedicos").removeAttr("style").visible();
+
+            }
+
+            //Obtener valor de select
+
+            /*  var valorDoctor = $("#doctorSelect").val();
+              console.log(valorDoctor);*/
+
+            /*    var e = document.getElementById("doctorSelect");
+                var strUser = e.value;*/
+
+        </script>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Horas Disponibles</h5>
+                    </div>
+                    <div class="modal-body">
+                        <table id="table-horas" class="table table-hover">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Horas Disponibles</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="container">
 
             <div class="section-title">
@@ -230,113 +376,172 @@
                     sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
                     ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
-
-            <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
-                @csrf
+            <button onclick="activarAppointment()"> dfgdrgf </button>
+            <div class="php-email-form">
                 <div class="container mb-5 ml-0 p-0">
                     <div class="wrapper ">
                         <div class="arrow-steps clearfix">
-                            <div class="step current"> <span> Step 1</span> </div>
-                            <div class="step"> <span>Step 2 Choice Apoint</span> </div>
-                            <div class="step"> <span> Step 3 Register your information</span> </div>
-                            <div class="step"> <span>Step 4 Confirm Date</span> </div>
+                            <div id="choiceDoctor" class="step current"> <span> Step 1 Choice Doctor</span>
+                            </div>
+                            <div id="choiceApoint" class="step"> <span>Step 2 Choice Apoint</span> </div>
+                            <div id="RegisterInformation" class="step"> <span> Step 3 Register your information</span>
+                            </div>
+                            <div id="confirmDate" class="step"> <span>Step 4 Confirm Date</span> </div>
                         </div>
 
                     </div>
                 </div>
 
+                <!----===============1. Campos de busqueda y añadir nueva cita FORM ==================--------->
 
+                <div class=" container pb-4 mb-4">
+                    <div class="col form-group mt-3">
+                        <select name="doctor" id="doctorSelect" class="form-select"
+                            onchange="if (this.selectedIndex) activarAppointment();">
+                            <option value="">Select Doctor</option>
+                            @foreach ($doctores as $doctor)
+                                <option value="{{ $doctor->idMedicos }}"> {{ $doctor->nombre }}
+                                    {{ $doctor->apellido }}
+                                    {{ $doctor->apellidoM }}</option>
+                            @endforeach
 
-
-
-                <h3 id="minimum-setup">Choice Date</h3>
-                <div class="container-fluid">
-
-                    <div class="row m-l-0">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input"
-                                        data-target="#datetimepicker1" />
-                                    <div class="input-group-append" data-target="#datetimepicker1"
-                                        data-toggle="datetimepicker">
-                                        <span class="input-group-btn">
-                                            <div class="input-group-text align-self-stretch"><i
-                                                    class="fa fa-calendar pt-2 pb-1"></i></div>
-                                        </span>
-                                    </div>
+                            <!--  <option value="Doctor 2" onclick="activarAppointment()">Doctor 2</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <option value="Doctor 3" onclick="activarAppointment()">Doctor 3</option> -->
+                        </select>
+                        <div class="validate"></div>
+                    </div>
+                    <div class="row" id="citasMedicos" style="visibility: hidden;">
+                        <div id='calendar' class="col" style=" width: 460px; margin: 0 auto; font-size: 10px; p-0 m-0">
+                        </div>
+                        <div class="col-7">
+                            <div class="m-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Nombre</label>
+                                    <input type="text" name="name" class="form-control" id="nombre" placeholder="Tu Nombre"
+                                        data-rule="minlen:4" data-msg="Please enter at least 4 chars" disabled>
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Apellido</label>
+                                    <input type="text" id="apellido" name="apellido" class="form-control" id="apellido"
+                                        placeholder="Tu Apellido" data-rule="minlen:4"
+                                        data-msg="Please enter at least 4 chars" disabled>
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Apellido Materno</label>
+                                    <input type="text" name="apellidoM" class="form-control" id="apellidoM"
+                                        placeholder="Tu Apellido Materno" data-rule="minlen:4"
+                                        data-msg="Please enter at least 4 chars" disabled>
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Telefono</label>
+                                    <input id="telefono" type="text" name="telefono" class="form-control" id="telefono"
+                                        placeholder="Tu Teléfono" data-rule="minlen:4"
+                                        data-msg="Please enter at least 4 chars" disabled>
+                                    <div class="validate"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="text" name="email" class="form-control" id="email" placeholder="Tu email"
+                                        data-rule="minlen:4" data-msg="Please enter at least 4 chars" disabled>
+                                    <div class="validate"></div>
                                 </div>
                             </div>
                         </div>
-                        <script type="text/javascript">
-                            $(function() {
-                                $('#datetimepicker1').datetimepicker();
-                            });
 
-                        </script>
+                        <!--  <div id='calendar2' class="col" style=" width: 460px; margin: 0 auto; font-size: 15px; p-0 m-0">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div> -->
                     </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-4 form-group">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
-                            data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                        <div class="validate"></div>
+                    <div class="row mt-4" id="appoinmentDate">
+                        <div class="form-group">
+                            <!--  <label for="exampleInputEmail1">Fecha Cita</label> -->
+                            <input type="text" name="Fecha" class="form-control" id="FechaCita" placeholder="Fecha de cita"
+                                data-rule="minlen:4" data-msg="Please enter at least 4 chars" disabled>
+                            <div class="validate"></div>
+                        </div>
                     </div>
-                    <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
-                            data-rule="email" data-msg="Please enter a valid email">
-                        <div class="validate"></div>
-                    </div>
-                    <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone"
-                            data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                        <div class="validate"></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 form-group mt-3">
-                        <input type="datetime" name="date" class="form-control datepicker" id="date"
-                            placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-                        <div class="validate"></div>
-                    </div>
-                    <div class="col-md-4 form-group mt-3">
-                        <select name="department" id="department" class="form-select">
-                            <option value="">Select Department</option>
-                            <option value="Department 1">Department 1</option>
-                            <option value="Department 2">Department 2</option>
-                            <option value="Department 3">Department 3</option>
-                        </select>
-                        <div class="validate"></div>
-                    </div>
-                    <div class="col-md-4 form-group mt-3">
-                        <select name="doctor" id="doctor" class="form-select">
-                            <option value="">Select Doctor</option>
-                            <option value="Doctor 1">Doctor 1</option>
-                            <option value="Doctor 2">Doctor 2</option>
-                            <option value="Doctor 3">Doctor 3</option>
-                        </select>
-                        <div class="validate"></div>
-                    </div>
-                </div>
-
-                <div class="form-group mt-3">
-                    <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
-                    <div class="validate"></div>
+                    <!-- -->
                 </div>
                 <div class="mb-3">
                     <div class="loading">Loading</div>
                     <div class="error-message"></div>
                     <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
                 </div>
-                <div class="text-center"><button type="submit">Make an Appointment</button></div>
-            </form>
+                <div class="text-center"><button id="makeAppointment" type="submit">Make an Appointment</button></div>
+            </div>
 
         </div>
     </section><!-- End Appointment Section -->
 
+    <script>
+        function cerrarModal(clicked_id) {
+            $("#myModal").modal('hide');
+            document.getElementById('FechaCita').value = clicked_id;
 
+            //DESBLOQUEAR ELEMENTOS
+            var name = document.getElementById('nombre');
+            name.disabled = false;
+            var apellido = document.getElementById('apellido');
+            apellido.disabled = false;
+            var apellidoM = document.getElementById('apellidoM');
+            apellidoM.disabled = false;
+            var telefono = document.getElementById('telefono');
+            telefono.disabled = false;
+            var email = document.getElementById('email');
+            email.disabled = false;
+
+            //REGISTRA TU INFORMACIÓN
+            var element = document.getElementById("RegisterInformation");
+            element.classList.add("current");
+        }
+
+        function hacerAlgoMas(info) {
+
+            //   alert(info)
+        }
+
+        //CREAR UNA NUEVA CITA Y PACIENTE
+        $("#makeAppointment").click(function(e) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            e.preventDefault();
+            console.log("deberia registrar algo")
+            var validarFolio = {
+                nombre: jQuery('#nombre').val(),
+                apellido: jQuery('#apellido').val(),
+                apellidoM: jQuery('#apellidoM').val(),
+                telefono: jQuery('#telefono').val(),
+                email: jQuery('#email').val(),
+                registro: '2021-06-04',
+            }
+
+            $.ajax({
+                url: "guardar-cita-hora-disponible",
+                type: "GET",
+                data: validarFolio,
+                dataType: 'json',
+                success: function(data) {
+                    //Mostrar registro en el crud
+                    $.ajax({
+                        url: "guardar-cita-hora-disponible",
+                        type: "GET",
+                        data: validarFolio,
+                        dataType: 'json',
+                        success: function(data) {
+                            //Mostrar registro en el crud
+                            console.log(data);
+                        },
+                    });
+                },
+            });
+        });
+
+    </script>
     <!-- ======= Departments Section ======= -->
     <section id="departments" class="departments">
         <div class="container">
