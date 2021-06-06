@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\citas;
+use App\Models\pacientes;
+use App\Models\persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -54,8 +57,6 @@ class citasClienteController extends Controller
                 [$fechaCita, 2, $id]
             )->get();
 
-
-
         $horasDisponibles = $horasMedico->all();
         for ($i = 0; $i <= count($horasOcupadas) - 1; $i++) {
             for ($x = 0; $x <= count($horasMedico) - 1; $x++) {
@@ -65,5 +66,37 @@ class citasClienteController extends Controller
             }
         }
         return array_values($horasDisponibles);
+    }
+
+
+    public function guardarPaciente(Request $request)
+    {
+        $data = $request->validate([
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'apellidoM' => 'required',
+            'telefono' => 'required',
+            'email' => 'required',
+            'registro' => 'required',
+        ]);
+        //Guardar persona 
+        $citasPersona = pacientes::create($data);
+        return response()->json($citasPersona);
+    }
+
+    public function guardarCitaHoraDisponible(Request $request)
+    {
+        //Guardar cita
+        $data = $request->validate([
+            'noFolio' => 'required',
+            'id_paciente' => 'required',
+            'id_medico' => 'required',
+            'horaCita' => 'required',
+            'fecha_cita' => 'required',
+            'status' => 'required',
+        ]);
+        //Guardar persona 
+        $citasHora = citas::create($data);
+        return response()->json($citasHora);
     }
 }

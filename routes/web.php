@@ -137,8 +137,8 @@ Route::get('/calendario', function () {
 
 Route::get('horas-disponibles-fecha/{id}', [citasClienteController::class, 'horasDisponiblesDia'])->name('horas.disponibles.fecha');
 Route::get('ladingpage', [citasClienteController::class, 'doctoresCitas'])->name('doctores.citas');
+Route::get('guardar-paciente', [citasClienteController::class, 'guardarPaciente'])->name('guardar.paciente');
 Route::get('guardar-cita-hora-disponible', [citasClienteController::class, 'guardarCitaHoraDisponible'])->name('guardar.cita.hora.disponible');
-
 
 Route::get('/receta', function () {
     return view('pages.administrador.receta');

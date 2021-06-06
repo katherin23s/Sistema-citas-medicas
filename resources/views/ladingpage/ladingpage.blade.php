@@ -245,8 +245,6 @@
 
 
     <section id="appointment" class="appointment section-bg">
-
-
         <link href='css/main.css' rel='stylesheet' />
         <script src='js/main.js'></script>
         <style>
@@ -273,7 +271,9 @@
                     }, //mandar un valor por parametro y que sea el ID del medico que seleccione
                     dateClick: function(info) {
                         //  console.log(variable)
+                        $('#HoraCita').val("");
                         $('#FechaCita').val("");
+
                         calendar.removeAllEvents();
                         //Obtener el ID del medico
                         var id = document.getElementById('doctorSelect').value;
@@ -311,6 +311,7 @@
                             }
 
                         });
+                        document.getElementById('FechaCita').value = info.dateStr;
                     },
 
                     validRange: {
@@ -320,6 +321,7 @@
                 calendar.render();
 
                 console.log(fechaFuturo)
+
             });
 
             //cuando se selecciona a un medico obtener el ID , cambiar paso y habilitar calendario
@@ -406,7 +408,7 @@
                             @endforeach
 
                             <!--  <option value="Doctor 2" onclick="activarAppointment()">Doctor 2</option>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option value="Doctor 3" onclick="activarAppointment()">Doctor 3</option> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option value="Doctor 3" onclick="activarAppointment()">Doctor 3</option> -->
                         </select>
                         <div class="validate"></div>
                     </div>
@@ -452,13 +454,15 @@
                         </div>
 
                         <!--  <div id='calendar2' class="col" style=" width: 460px; margin: 0 auto; font-size: 15px; p-0 m-0">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
                     </div>
                     <div class="row mt-4" id="appoinmentDate">
                         <div class="form-group">
                             <!--  <label for="exampleInputEmail1">Fecha Cita</label> -->
-                            <input type="text" name="Fecha" class="form-control" id="FechaCita" placeholder="Fecha de cita"
+                            <input type="text" name="Hora" class="form-control" id="HoraCita" placeholder="Hora de cita"
                                 data-rule="minlen:4" data-msg="Please enter at least 4 chars" disabled>
+                            <input type="text" name="fecha" class="form-control" id="FechaCita" type="hidden"
+                                placeholder="Fecha de cita" disabled>
                             <div class="validate"></div>
                         </div>
                     </div>
@@ -478,8 +482,7 @@
     <script>
         function cerrarModal(clicked_id) {
             $("#myModal").modal('hide');
-            document.getElementById('FechaCita').value = clicked_id;
-
+            document.getElementById('HoraCita').value = clicked_id;
             //DESBLOQUEAR ELEMENTOS
             var name = document.getElementById('nombre');
             name.disabled = false;
@@ -520,25 +523,42 @@
                 registro: '2021-06-04',
             }
 
+
+            //Obtener valor del id "medico"
+            $('#doctorSelect').on('change', function() {
+                var valueEspe = $(this).val();
+            });
+            var folio = Math.floor(Math.random() * 90000) + 10000;
             $.ajax({
-                url: "guardar-cita-hora-disponible",
+                url: "guardar-paciente",
                 type: "GET",
                 data: validarFolio,
                 dataType: 'json',
                 success: function(data) {
+                    console.log(data);
                     //Mostrar registro en el crud
+
+                    var validarCita = {
+                        noFolio: folio,
+                        id_paciente: data.idPaciente,
+                        id_medico: jQuery('#doctorSelect').val(),
+                        horaCita: jQuery('#HoraCita').val(),
+                        fecha_cita: jQuery('#FechaCita').val(),
+                        status: 2,
+                    }
                     $.ajax({
                         url: "guardar-cita-hora-disponible",
                         type: "GET",
-                        data: validarFolio,
+                        data: validarCita,
                         dataType: 'json',
-                        success: function(data) {
+                        success: function(data2) {
                             //Mostrar registro en el crud
-                            console.log(data);
+                            console.log(data2);
                         },
                     });
                 },
             });
+
         });
 
     </script>
