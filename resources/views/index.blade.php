@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="landingPage/assets/img/favicon.png" rel="icon">
-    <link href="landingPage/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="{{ asset('landingPage/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('landingPage/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
@@ -19,23 +19,23 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="landingPage/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="landingPage/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="landingPage/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="landingPage/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="landingPage/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="landingPage/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="landingPage/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="landingPage/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="{{ asset('landingPage/assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingPage/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingPage/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingPage/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingPage/assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingPage/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingPage/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ asset('landingPage/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="landingPage/assets/css/style.css" rel="stylesheet">
+    <link href="{{ asset('landingPage/assets/css/style.css') }}" rel="stylesheet">
 
 
     <!-- Plugin DateTime Picker -->
 
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
-    <link href="css/base.css" rel="stylesheet">
+    <link href="{{ asset('css/base.css" rel="stylesheet') }}">
     <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css" rel="stylesheet">
     <link href="css/tempusdominus-bootstrap-4.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
@@ -74,12 +74,12 @@
 
 
 
-    <script src="js/tempusdominus-bootstrap-4.js"></script>
+    <script src="{{ asset('js/tempusdominus-bootstrap-4.js') }}"></script>
 
 
 
     <!-- Progress Steps -->
-    <link href="css/progress.css" rel="stylesheet">
+    <link href="{{ asset('css/progress.css') }}" rel="stylesheet">
 
 
     <!-- =======================================================
@@ -112,14 +112,14 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
     <!-- Vendor JS Files -->
-    <script src="landingPage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="landingPage/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="landingPage/assets/vendor/php-email-form/validate.js"></script>
-    <script src="landingPage/assets/vendor/purecounter/purecounter.js"></script>
-    <script src="landingPage/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="{{ asset('landingPage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('landingPage/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('landingPage/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('landingPage/assets/vendor/purecounter/purecounter.js') }}"></script>
+    <script src="{{ asset('landingPage/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="landingPage/assets/js/main.js"></script>
+    <script src="{{ asset('landingPage/assets/js/main.js') }}"></script>
 
 </body>
 

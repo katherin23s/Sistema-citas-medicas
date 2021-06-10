@@ -139,6 +139,9 @@ Route::get('horas-disponibles-fecha/{id}', [citasClienteController::class, 'hora
 Route::get('ladingpage', [citasClienteController::class, 'doctoresCitas'])->name('doctores.citas');
 Route::get('guardar-paciente', [citasClienteController::class, 'guardarPaciente'])->name('guardar.paciente');
 Route::get('guardar-cita-hora-disponible', [citasClienteController::class, 'guardarCitaHoraDisponible'])->name('guardar.cita.hora.disponible');
+Route::post('citas-correo-confirmacion', [citasClienteController::class, 'citasCorreoConfirmacion'])->name('citas.correo.confirmacion');
+Route::get('confirmar-citas/{idCita}', [citasClienteController::class, 'confirmarCitas'])->name('confirmar.citas');
+
 
 Route::get('/receta', function () {
     return view('pages.administrador.receta');

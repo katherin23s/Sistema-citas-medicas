@@ -222,31 +222,9 @@
 
     <!-- ======= Appointment Section ======= -->
 
-    <div class="container">
-        <div class="row">
-            <div class='col-sm-6'>
-                <div class="form-group">
-                    <div class='input-group date' id='datetimepicker1'>
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(function() {
-                    $('#datetimepicker1').datetimepicker();
-                });
-
-            </script>
-        </div>
-    </div>
-
-
     <section id="appointment" class="appointment section-bg">
-        <link href='css/main.css' rel='stylesheet' />
-        <script src='js/main.js'></script>
+        <link href='{{ asset('css/main.css') }}' rel='stylesheet' />
+        <script src='{{ asset('js/main.js') }}'></script>
         <style>
             .day-highlight {
                 background-color: yellow !important;
@@ -378,7 +356,7 @@
                     sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias
                     ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
             </div>
-            <button onclick="activarAppointment()"> dfgdrgf </button>
+
             <div class="php-email-form">
                 <div class="container mb-5 ml-0 p-0">
                     <div class="wrapper ">
@@ -390,7 +368,6 @@
                             </div>
                             <div id="confirmDate" class="step"> <span>Step 4 Confirm Date</span> </div>
                         </div>
-
                     </div>
                 </div>
 
@@ -408,7 +385,7 @@
                             @endforeach
 
                             <!--  <option value="Doctor 2" onclick="activarAppointment()">Doctor 2</option>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option value="Doctor 3" onclick="activarAppointment()">Doctor 3</option> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option value="Doctor 3" onclick="activarAppointment()">Doctor 3</option> -->
                         </select>
                         <div class="validate"></div>
                     </div>
@@ -419,8 +396,9 @@
                             <div class="m-4">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nombre</label>
-                                    <input type="text" name="name" class="form-control" id="nombre" placeholder="Tu Nombre"
-                                        data-rule="minlen:4" data-msg="Please enter at least 4 chars" disabled>
+                                    <input type="text" name="nombre" class="form-control" id="nombre"
+                                        placeholder="Tu Nombre" data-rule="minlen:4"
+                                        data-msg="Please enter at least 4 chars" disabled>
                                     <div class="validate"></div>
                                 </div>
                                 <div class="form-group">
@@ -454,7 +432,7 @@
                         </div>
 
                         <!--  <div id='calendar2' class="col" style=" width: 460px; margin: 0 auto; font-size: 15px; p-0 m-0">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </div> -->
                     </div>
                     <div class="row mt-4" id="appoinmentDate">
                         <div class="form-group">
@@ -528,6 +506,7 @@
             $('#doctorSelect').on('change', function() {
                 var valueEspe = $(this).val();
             });
+            //GUARDAR PACIENTE
             var folio = Math.floor(Math.random() * 90000) + 10000;
             $.ajax({
                 url: "guardar-paciente",
@@ -536,7 +515,7 @@
                 dataType: 'json',
                 success: function(data) {
                     console.log(data);
-                    //Mostrar registro en el crud
+                    //GUARDAR CITA
 
                     var validarCita = {
                         noFolio: folio,
@@ -554,6 +533,31 @@
                         success: function(data2) {
                             //Mostrar registro en el crud
                             console.log(data2);
+
+                            var datosCorreo = {
+
+                            }
+                            //ENVIAR CORREO
+                            $.ajax({
+                                url: "citas-correo-confirmacion",
+                                type: "post",
+                                data: {
+                                    _token: '{{ csrf_token() }}',
+                                    idCita: data2.idCita,
+                                    nombre: jQuery('#nombre').val(),
+                                    apellido: jQuery('#apellido').val(),
+                                    email: jQuery('#email').val(),
+                                    fecha: jQuery('#FechaCita').val(),
+                                    Hora: jQuery('#HoraCita').val(),
+                                    subject: "Confirmacion de cita",
+                                    msg: "Para confirmación de cita, dar click al botón confirmar",
+                                },
+                                dataType: 'json',
+                                success: function(data3) {
+                                    //Mostrar registro en el crud
+                                    console.log(data3);
+                                },
+                            });
                         },
                     });
                 },
@@ -607,7 +611,8 @@
                                         quaerat quos qui similique accusamus nostrum rem vero</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="landingPage/assets/img/departments-1.jpg" alt="" class="img-fluid">
+                                    <img src="{{ asset('landingPage/assets/img/departments-1.jpg') }}" alt=""
+                                        class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -623,7 +628,8 @@
                                         madirna desera vafle de nideran pal</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="landingPage/assets/img/departments-2.jpg" alt="" class="img-fluid">
+                                    <img src="{{ asset('landingPage/assets/img/departments-2.jpg') }}" alt=""
+                                        class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -640,7 +646,8 @@
                                         Soluta et harum voluptatem optio quae</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="landingPage/assets/img/departments-3.jpg" alt="" class="img-fluid">
+                                    <img src="{{ asset('landingPage/assets/img/departments-3.jpg') }}" alt=""
+                                        class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -656,7 +663,8 @@
                                         quia a laborum inventore</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="landingPage/assets/img/departments-4.jpg" alt="" class="img-fluid">
+                                    <img src="{{ asset('landingPage/assets/img/departments-4.jpg') }}" alt=""
+                                        class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -671,7 +679,8 @@
                                         quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
                                 </div>
                                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                                    <img src="landingPage/assets/img/departments-5.jpg" alt="" class="img-fluid">
+                                    <img src="{{ asset('landingPage/assets/img/departments-5.jpg') }}" alt=""
+                                        class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -699,7 +708,8 @@
 
                 <div class="col-lg-6">
                     <div class="member d-flex align-items-start">
-                        <div class="pic"><img src="landingPage/assets/img/doctors/doctors-1.jpg" class="img-fluid" alt="">
+                        <div class="pic"><img src="{{ asset('landingPage/assets/img/doctors/doctors-1.jpg') }}"
+                                class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
                             <h4>Walter White</h4>
@@ -717,7 +727,8 @@
 
                 <div class="col-lg-6 mt-4 mt-lg-0">
                     <div class="member d-flex align-items-start">
-                        <div class="pic"><img src="landingPage/assets/img/doctors/doctors-2.jpg" class="img-fluid" alt="">
+                        <div class="pic"><img src="{{ asset('landingPage/assets/img/doctors/doctors-2.jpg') }}"
+                                class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
                             <h4>Sarah Jhonson</h4>
@@ -735,7 +746,8 @@
 
                 <div class="col-lg-6 mt-4">
                     <div class="member d-flex align-items-start">
-                        <div class="pic"><img src="landingPage/assets/img/doctors/doctors-3.jpg" class="img-fluid" alt="">
+                        <div class="pic"><img src="{{ asset('landingPage/assets/img/doctors/doctors-3.jpg') }}"
+                                class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
                             <h4>William Anderson</h4>
@@ -753,7 +765,8 @@
 
                 <div class="col-lg-6 mt-4">
                     <div class="member d-flex align-items-start">
-                        <div class="pic"><img src="landingPage/assets/img/doctors/doctors-4.jpg" class="img-fluid" alt="">
+                        <div class="pic"><img src="{{ asset('landingPage/assets/img/doctors/doctors-4.jpg') }}"
+                                class="img-fluid" alt="">
                         </div>
                         <div class="member-info">
                             <h4>Amanda Jepson</h4>
@@ -950,8 +963,8 @@
                     <div class="swiper-slide">
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
-                                <img src="landingPage/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
-                                    alt="">
+                                <img src="{{ asset('landingPage/assets/img/testimonials/testimonials-1.jpg') }}"
+                                    class="testimonial-img" alt="">
                                 <h3>Saul Goodman</h3>
                                 <h4>Ceo &amp; Founder</h4>
                                 <p>
@@ -968,8 +981,8 @@
                     <div class="swiper-slide">
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
-                                <img src="landingPage/assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
-                                    alt="">
+                                <img src="{{ asset('landingPage/assets/img/testimonials/testimonials-2.jpg') }}"
+                                    class="testimonial-img" alt="">
                                 <h3>Sara Wilsson</h3>
                                 <h4>Designer</h4>
                                 <p>
@@ -986,8 +999,8 @@
                     <div class="swiper-slide">
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
-                                <img src="landingPage/assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
-                                    alt="">
+                                <img src="{{ asset('landingPage/assets/img/testimonials/testimonials-3.jpg') }}"
+                                    class="testimonial-img" alt="">
                                 <h3>Jena Karlis</h3>
                                 <h4>Store Owner</h4>
                                 <p>
@@ -1004,8 +1017,8 @@
                     <div class="swiper-slide">
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
-                                <img src="landingPage/assets/img/testimonials/testimonials-4.jpg" class="testimonial-img"
-                                    alt="">
+                                <img src="{{ asset('landingPage/assets/img/testimonials/testimonials-4.jpg') }}"
+                                    class="testimonial-img" alt="">
                                 <h3>Matt Brandon</h3>
                                 <h4>Freelancer</h4>
                                 <p>
@@ -1022,8 +1035,8 @@
                     <div class="swiper-slide">
                         <div class="testimonial-wrap">
                             <div class="testimonial-item">
-                                <img src="landingPage/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img"
-                                    alt="">
+                                <img src="{{ asset('landingPage/assets/img/testimonials/testimonials-5.jpg') }}"
+                                    class="testimonial-img" alt="">
                                 <h3>John Larson</h3>
                                 <h4>Entrepreneur</h4>
                                 <p>
@@ -1061,64 +1074,72 @@
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item">
-                        <a href="landingPage/assets/img/gallery/gallery-1.jpg" class="galelry-lightbox">
-                            <img src="landingPage/assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
+                        <a href="{{ asset('landingPage/assets/img/gallery/gallery-1.jpg') }}" class="galelry-lightbox">
+                            <img src="{{ asset('landingPage/assets/img/gallery/gallery-1.jpg') }}" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item">
-                        <a href="landingPage/assets/img/gallery/gallery-2.jpg" class="galelry-lightbox">
-                            <img src="landingPage/assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
+                        <a href="{{ asset('landingPage/assets/img/gallery/gallery-2.jpg') }}" class="galelry-lightbox">
+                            <img src="{{ asset('landingPage/assets/img/gallery/gallery-2.jpg') }}" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item">
-                        <a href="landingPage/assets/img/gallery/gallery-3.jpg" class="galelry-lightbox">
-                            <img src="landingPage/assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
+                        <a href="{{ asset('landingPage/assets/img/gallery/gallery-3.jpg') }}" class="galelry-lightbox">
+                            <img src="{{ asset('landingPage/assets/img/gallery/gallery-3.jpg') }}" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item">
-                        <a href="landingPage/assets/img/gallery/gallery-4.jpg" class="galelry-lightbox">
-                            <img src="landingPage/assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
+                        <a href="{{ asset('landingPage/assets/img/gallery/gallery-4.jpg') }}" class="galelry-lightbox">
+                            <img src="{{ asset('landingPage/assets/img/gallery/gallery-4.jpg') }}" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item">
-                        <a href="landingPage/assets/img/gallery/gallery-5.jpg" class="galelry-lightbox">
-                            <img src="landingPage/assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
+                        <a href="{{ asset('landingPage/assets/img/gallery/gallery-5.jpg') }}" class="galelry-lightbox">
+                            <img src="{{ asset('landingPage/assets/img/gallery/gallery-5.jpg') }}" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item">
-                        <a href="landingPage/assets/img/gallery/gallery-6.jpg" class="galelry-lightbox">
-                            <img src="landingPage/assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
+                        <a href="{{ asset('landingPage/assets/img/gallery/gallery-6.jpg') }}" class="galelry-lightbox">
+                            <img src="{{ asset('landingPage/assets/img/gallery/gallery-6.jpg') }}" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item">
-                        <a href="landingPage/assets/img/gallery/gallery-7.jpg" class="galelry-lightbox">
-                            <img src="landingPage/assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
+                        <a href="{{ asset('landingPage/assets/img/gallery/gallery-7.jpg') }}" class="galelry-lightbox">
+                            <img src="{{ asset('landingPage/assets/img/gallery/gallery-7.jpg') }}" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item">
-                        <a href="landingPage/assets/img/gallery/gallery-8.jpg" class="galelry-lightbox">
-                            <img src="landingPage/assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
+                        <a href="{{ asset('landingPage/assets/img/gallery/gallery-8.jpg') }}" class="galelry-lightbox">
+                            <img src="{{ asset('landingPage/assets/img/gallery/gallery-8.jpg') }}" alt=""
+                                class="img-fluid">
                         </a>
                     </div>
                 </div>

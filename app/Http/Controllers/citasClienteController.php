@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Confirmation;
 use App\Http\Controllers\Controller;
 use App\Models\citas;
 use App\Models\pacientes;
 use App\Models\persona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DateConfirmation;
+
 
 class citasClienteController extends Controller
 {
@@ -98,5 +102,59 @@ class citasClienteController extends Controller
         //Guardar persona 
         $citasHora = citas::create($data);
         return response()->json($citasHora);
+    }
+
+    public function citasCorreoConfirmacion(Request $request)
+    {
+
+        $data = $request->validate([
+            'idCita' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'email' => 'required',
+            'fecha' => 'required',
+            'Hora' => 'required',
+            'subject' => 'required',
+            'msg' => 'required',
+        ]);
+
+        $email = $request->input('email');
+
+
+
+        $confirmation = new Confirmation();
+        $confirmation->idCita = $data['idCita'];
+        $confirmation->nombre = $data['nombre'];
+        $confirmation->apellido = $data['apellido'];
+        $confirmation->email =  $data['email'];
+        $confirmation->dia = $data['fecha'];
+        $confirmation->hora =  $data['Hora'];
+        $confirmation->subject =  $data['subject'];
+        $confirmation->msg = $data['msg'];
+
+
+        Mail::to($email)->send(new DateConfirmation($confirmation));
+        if (Mail::failures()) {
+            echo "Email not send";
+        } else {
+            echo "Email has been sent";
+        }
+    }
+
+    public function confirmarCitas($idCita)
+    {
+        /*   $data = $request->validate([
+            'idCita' => 'required',
+        ]);*/
+
+        /*$paciente = pacientes::findOrFail($id);
+        pacientes::where('idPaciente', '=', $id)->update($datosPaciente);
+        return view('pages.ventanas.EditarPaciente', compact('paciente'));*/
+
+        DB::table('citas')
+            ->where('idCita', $idCita)
+            ->update(['status' => 3]);
+        //  $doctores = DB::table('medicos')->get();
+        return view('ladingpage.confirmacion');
     }
 }
